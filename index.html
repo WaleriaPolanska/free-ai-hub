@@ -95,6 +95,7 @@ const G={catalog:"Catalogs / mixed",text:"Text / writing",dev:"Code / dev",image
 const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#b6f09c"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#ff9ad5"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#7ee0c3"]};
 const FOLD={skills:Object.fromEntries(Object.entries(G).map(([k,v])=>[k,[v,`var(--${k})`]])),patches:PF};
 const AF={free:{forever:["Free forever","#6ee7a0"],trial:["Credits / trial","#8ad4ff"],local:["Install yourself","#ffb87a"]},paid:{paid:["Nearly free","#ffd166"]}};
+AF.all={...AF.free,...AF.paid};
 Object.defineProperty(FOLD,"ai",{get:()=>AF[P.ai]});
 const F={ai:"all",skills:"all",patches:"all"};
 const SN={ok:"Active",part:"Partial",off:"Inactive"},TN={free:"Free forever",trial:"Credits / trial",paid:"Nearly free"};
@@ -121,10 +122,10 @@ function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
  $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}${link(o,"Visit site")}</div>`).join("");
  const nc=$("#nocard").checked,aik=o=>o.model!==undefined||o.author?"local":o.t=="free"?"forever":o.t;
- const ais=[...D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))),...(P.ai=="free"?D.open:[])].filter(o=>m(o,"ai"));
+ const ais=[...D.ai.filter(o=>(P.ai=="all"||(P.ai=="paid"?o.t=="paid":o.t!="paid"))&&(!nc||!o.req.includes("Card"))),...(P.ai!="paid"?D.open:[])].filter(o=>m(o,"ai"));
  book("ai",ais,aik,o=>aik(o)=="local"?openCard(o):`<div class="c pc" style="--pc:${FOLD.ai[aik(o)][1]}"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`,flip);
  book("patches",D.patches.filter(o=>m(o,"patches")),o=>o.f,o=>`<div class="c pc" style="--pc:${PF[o.f][1]}"><div class="d">${PF[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,"GitHub")}</div>`,flip);
- book("skills",D.skills.filter(o=>o.p==P.skills&&m(o,"skills")),o=>o.g,o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
+ book("skills",D.skills.filter(o=>(P.skills=="all"||o.p==P.skills)&&m(o,"skills")),o=>o.g,o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
  flip=false;
 }
 let flip=false;
@@ -139,13 +140,13 @@ function book(t,items,key,card,anim){
  if(anim){pg.classList.remove("flip");void pg.offsetWidth;pg.classList.add("flip")}
 }
 ["ai","skills","patches"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
-const P={ai:"free",skills:"free"};
+const P={ai:"all",skills:"all"};
 const LB={ai:"AI",skills:"Skills"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
- if(b.dataset.go){P[t]=b.dataset.go;mark();flip=true;render();b.blur()}
+ if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v;flip=true}mark();render();b.blur()}
  document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`nav > * > [data-t="${t}"],nav > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on")};
 })();
 </script>
