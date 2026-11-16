@@ -71,6 +71,8 @@ nav{padding-bottom:58px}
 @media (max-width:700px){.book{flex-direction:column}.tabs{flex-direction:row;flex:none;overflow-x:auto;padding:0;width:100%;margin:0 0 10px}
 .tabs button{margin:0;white-space:nowrap;transform-origin:center bottom}
 .page{border-left:1px solid var(--line);border-top:6px solid var(--pc,#d6d9e0);border-radius:0 0 12px 12px;width:100%}}
+.links{display:flex;flex-wrap:wrap;gap:8px}.go.li{background:linear-gradient(90deg,#0a66c2,#3d8fe0);color:#fff!important}.go.mail{background:linear-gradient(90deg,#ffb87a,#ff8a8a)}.go.copy{border:none;cursor:pointer;background:#2a2f3a;color:var(--tx)!important}
+#contacts .c h3{margin-bottom:2px}.go.soon{background:#2a2f3a;color:var(--mut)!important;box-shadow:none;cursor:default}
 ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
 </head>
@@ -82,6 +84,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <div class="dd"><button data-t="skills">Skills ▾</button><div class="menu"><button data-t="skills" data-go="free">✅ Free</button><button data-t="skills" data-go="paid">💲 Paid</button></div></div>
 <button data-t="patches">Patches</button>
 <button data-t="offers">Bonuses & services</button>
+<button data-t="contacts">Contacts</button>
 <div class="seg" id="seg"></div>
 </nav>
 <main>
@@ -90,6 +93,16 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <p class="upd hint">"No card needed" hides services that ask for a bank card at signup, even when they are free.</p><div class="book"><div class="tabs" id="t-ai"></div><div class="page" id="p-ai"><h2 id="h-ai"></h2><div class="grid" id="g-ai"></div></div></div></section>
 <section id="skills"><div class="bar"><input placeholder="Search skills" data-q="skills"></div><div class="book"><div class="tabs" id="t-skills"></div><div class="page" id="p-skills"><h2 id="h-skills"></h2><div class="grid" id="g-skills"></div></div></div></section>
 <section id="patches"><div class="bar"><input placeholder="Search patches" data-q="patches"></div><div class="book"><div class="tabs" id="t-patches"></div><div class="page" id="p-patches"><h2 id="h-patches"></h2><div class="grid" id="g-patches"></div></div></div></section>
+<section id="contacts">
+<h2>Contacts</h2>
+<p class="upd">Questions, ideas or a service to add? Write me.</p>
+<div class="grid">
+ <div class="c pc" style="--pc:#d6d9e0"><h3>GitHub</h3><div class="d">Code of this site and other projects</div><a class="go" href="https://github.com/WaleriaPolanska" target="_blank" rel="noopener">github.com/WaleriaPolanska →</a></div>
+ <div class="c pc" style="--pc:#3d8fe0"><h3>LinkedIn</h3><div class="d">Waleria Polańska</div><a class="go li" href="https://www.linkedin.com/in/waleria-pola%C5%84ska/" target="_blank" rel="noopener">Open profile →</a></div>
+ <div class="c pc" style="--pc:#ffb87a"><h3>Email</h3><div class="d" id="mailtxt"></div><div class="links"><a class="go mail" id="mail" href="#">Write →</a><button class="go copy" id="copy" type="button">Copy</button></div></div>
+ <div class="c pc" style="--pc:#29a9eb"><h3>Telegram</h3><div class="d">Coming soon</div><span class="go soon">Soon</span></div>
+</div>
+</section>
 <section id="road" class="on">
 <div class="warn"><b>⚠ Before you start - "free" has two layers</b>
 <p>1. <b>The tool</b> (patch, skill, extension) - free and open source.<br>2. <b>The AI model behind it</b> - this is what can cost money. A free tool connected to a paid API (Claude, GPT, Gemini) is billed by that provider per token.</p>
@@ -175,6 +188,9 @@ function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d
  if(!(CUR in P)){el.classList.remove("show");return}
  el.classList.add("show");el.innerHTML=`<span>Show:</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
 $("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};
+const ML=["waleriapolanska","gmail.com"].join("@");$("#mail").href="mailto:"+ML;
+$("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(ML);$("#copy").textContent="Copied ✓"}catch{$("#copy").textContent=ML}};
+$("#mailtxt").textContent=ML;
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
  if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v;flip=true}mark();render();b.blur()}
