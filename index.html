@@ -17,7 +17,7 @@ h1 span{font-family:"Bangers","Comic Sans MS",cursive!important;font-weight:400;
 .meta,.upd,.tag,.cnt,.st{font-family:"JetBrains Mono",ui-monospace,monospace}
 header{padding:20px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 h1{margin:0;font-size:22px}.upd{color:var(--mut);font-size:13px}
-nav{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:30}
 nav button{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit}
 nav button.on{background:var(--acc);color:#000;border-color:var(--acc)}
 main{max-width:1200px;margin:0 auto;padding:16px}
@@ -46,7 +46,15 @@ a{color:#8fb0ff;text-decoration-color:#8fb0ff66;text-underline-offset:3px}a:hove
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
 nav{padding-bottom:58px}
 .sort{position:absolute;right:16px;bottom:10px;display:none;align-items:center;gap:6px;padding:4px 8px;border:2px solid var(--line);border-radius:10px;background:var(--card);font:600 13px "Space Grotesk",sans-serif;color:#fff}.sort.show{display:flex}
-.sort{justify-content:center;background:linear-gradient(180deg,#16405e,#0f2c44)!important;border:2px solid #4fb3e8!important;box-shadow:0 0 8px #4fb3e877,0 0 18px #4fb3e833}.sort option{background:#0f2c44}.sort select{text-align:center;text-align-last:center;background:transparent;color:#fff;border:none;font:700 15px "Space Grotesk",sans-serif;text-shadow:0 1px 2px #000;letter-spacing:.2px;cursor:pointer}.sort option{background:var(--card)}
+.sort{justify-content:center;background:linear-gradient(180deg,#16405e,#0f2c44)!important;border:2px solid #4fb3e8!important;box-shadow:0 0 8px #4fb3e877,0 0 18px #4fb3e833;padding:0!important}
+#sortbtn{all:unset;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:8px;width:100%;min-width:150px;padding:6px 14px;cursor:pointer;color:#fff;font:700 15px "Space Grotesk",sans-serif;text-shadow:0 1px 2px #000;letter-spacing:.2px}
+#sortbtn .chev{font-size:11px;opacity:.8;transition:transform .15s}.sort.open #sortbtn .chev{transform:rotate(180deg)}
+#sortlist{display:none;position:absolute;top:calc(100% + 6px);right:-2px;min-width:calc(100% + 4px);margin:0;padding:6px;list-style:none;border-radius:10px;background:linear-gradient(180deg,#16405e,#0f2c44);border:2px solid #4fb3e8;box-shadow:0 0 10px #4fb3e877,0 0 22px #4fb3e844,0 10px 24px #000a;z-index:20}
+.sort.open #sortlist{display:block}
+#sortlist li{padding:8px 12px;border-radius:7px;cursor:pointer;white-space:nowrap;color:#fff;font:700 15px "Space Grotesk",sans-serif;text-shadow:0 1px 2px #000;text-align:center}
+#sortlist li small{font:600 12px "JetBrains Mono",monospace;opacity:.7;margin-left:6px}
+#sortlist li:hover{background:#4fb3e833}#sortlist li.sel{background:#4fb3e8;color:#08121c;text-shadow:none;box-shadow:0 0 10px #4fb3e8aa}
+#sortlist li[hidden]{display:none}
 .c{position:relative}.starb{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:99px;background:#ffd16622;border:1px solid #ffd16688;color:#ffd166;font:700 13px "JetBrains Mono",monospace;box-shadow:0 0 10px #ffd16633}
 .starb{cursor:help;z-index:2}.starb::after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;width:220px;padding:9px 11px;border-radius:10px;background:#1d212b;border:1px solid #ffd16688;color:var(--tx);font:500 12px/1.4 "Inter",sans-serif;box-shadow:0 8px 24px #000a;opacity:0;pointer-events:none;transform:translateY(-4px);transition:opacity .15s,transform .15s;white-space:normal;text-align:left}
 .starb:hover::after,.starb:focus::after{opacity:1;transform:none}
@@ -92,7 +100,7 @@ nav{padding-bottom:58px}
  .menu{display:none!important}
  .strip{display:flex;gap:8px;padding:0 16px;align-items:stretch}.strip:not(:has(.show)){display:none}
  .seg,.sort{position:static!important}.seg span{display:none}.seg button{padding:6px 10px;font-size:13px}
- .strip{width:100%}.seg{flex:none}.sort{flex:1 1 0;min-width:0;width:0;overflow:hidden;padding:4px 8px}.sort select{flex:1;width:100%;min-width:0;font-size:13px;text-overflow:ellipsis}
+ .strip{width:100%}.seg{flex:none}.sort{flex:1 1 0;min-width:0;position:relative!important}#sortbtn{min-width:0;font-size:14px}#sortlist{right:0;left:auto}
  main{padding:12px 16px}
  .tabs{gap:8px!important}.tabs button{font-size:13px!important;padding:8px 10px!important;border-width:4px!important;border-radius:12px!important}
  .tabs button.on{transform:none!important}
@@ -120,7 +128,10 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </div>
 <div class="strip">
 <div class="seg" id="seg"></div>
-<label class="sort" id="sortbox"><select id="sort" title="Default: A → Z"><option value="def">⇅ Sort</option><option value="az" hidden></option><option value="za">Z → A</option><option value="stars" title="Sorted by GitHub stars">★ Most GitHub stars</option><option value="top">Top rated</option><option value="most">Most voted</option></select></label>
+<div class="sort" id="sortbox"><button type="button" id="sortbtn" aria-haspopup="listbox" aria-expanded="false">⇅ Sort <span class="chev">▾</span></button>
+<ul id="sortlist" role="listbox">
+<li data-v="def">⇅ Sort <small>A → Z</small></li><li data-v="za">Z → A</li><li data-v="stars" title="Sorted by GitHub stars">★ Most GitHub stars</li><li data-v="top">Top rated</li><li data-v="most">Most voted</li>
+</ul></div>
 </div>
 </nav>
 <main>
@@ -243,11 +254,15 @@ function vbar(t,o){const id=vid(t,o),c=VC[id]||[0,0],m=MY[id]||0;return `<div cl
 document.addEventListener("click",async e=>{const b=e.target.closest(".vote button");if(!b)return;const box=b.parentElement,id=box.dataset.id,want=b.classList.contains("up")?1:-1,old=MY[id]||0,nv=old==want?0:want,c=VC[id]=VC[id]||[0,0];
  const apply=(from,to)=>{if(from==1)c[0]--;if(from==-1)c[1]--;if(to==1)c[0]++;if(to==-1)c[1]++;MY[id]=to;document.querySelectorAll(`.vote[data-id="${CSS.escape(id)}"]`).forEach(v=>{v.querySelector(".up").classList.toggle("on",to==1);v.querySelector(".down").classList.toggle("on",to==-1);v.querySelector(".up b").textContent=c[0];v.querySelector(".down b").textContent=c[1]})};
  apply(old,nv);try{const r=await rpc("vote",{p_item:id,p_voter:VOTER,p_v:nv});if(!r.ok)throw 0}catch{apply(nv,old)}});
-$("#sort").onchange=e=>{SORT[CUR]=e.target.value;flip=true;render()};
+const sbox=$("#sortbox");
+function sortUI(){const v=SORT[CUR];sbox.querySelectorAll("li").forEach(li=>li.classList.toggle("sel",li.dataset.v==v));const cur=sbox.querySelector(`li[data-v="${v}"]`);$("#sortbtn").innerHTML=(v=="def"?"⇅ Sort":"⇅ "+cur.textContent)+' <span class="chev">▾</span>'}
+$("#sortbtn").onclick=e=>{e.stopPropagation();const o=sbox.classList.toggle("open");$("#sortbtn").setAttribute("aria-expanded",o)};
+$("#sortlist").onclick=e=>{e.stopPropagation();const li=e.target.closest("li");if(!li)return;sbox.classList.remove("open");if(SORT[CUR]!=li.dataset.v){SORT[CUR]=li.dataset.v;flip=true;render()}sortUI()};
+document.addEventListener("click",()=>sbox.classList.remove("open"));
 Promise.all([rpc("vote_counts").then(r=>r.json()),rpc("my_votes",{p_voter:VOTER}).then(r=>r.json())]).then(([a,b])=>{a.forEach(x=>VC[x.item]=[+x.likes,+x.dislikes]);b.forEach(x=>MY[x.item]=x.v);render()}).catch(()=>{});
 function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d=>d.classList.toggle("cur",d.querySelector("[data-t]").dataset.t==CUR));
  $("#sortbox").classList.toggle("show",CUR in SORT);
- if(CUR in SORT){const sel=$("#sort");sel.querySelector('[value=stars]').hidden=!["skills","patches"].includes(CUR);sel.value=SORT[CUR]}
+ if(CUR in SORT){sbox.querySelector('[data-v=stars]').hidden=!["skills","patches"].includes(CUR);sbox.classList.remove("open");sortUI()}
  if(!(CUR in P)){el.classList.remove("show");return}
  el.classList.add("show");el.innerHTML=`<span>Show</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
 $("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};
