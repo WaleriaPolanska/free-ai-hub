@@ -111,7 +111,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 (async()=>{
 const D=await (await fetch("data.json",{cache:"no-cache"})).json(),$=s=>document.querySelector(s);
 const G={catalog:"Catalogs / mixed",text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
-const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#2f8f5f"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#e85cf0"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#7ee0c3"]};
+const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#2f8f5f"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#e85cf0"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#c6ff3d"]};
 const FOLD={skills:Object.fromEntries(Object.entries(G).map(([k,v])=>[k,[v,`var(--${k})`]])),patches:PF};
 const AF={free:{forever:["Free forever","#2f8f5f"],trial:["Credits / trial","#8ad4ff"],local:["Install yourself","#ffb87a"]},paid:{paid:["Nearly free","#ffd166"]}};
 AF.all={...AF.free,...AF.paid};
