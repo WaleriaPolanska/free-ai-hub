@@ -6,12 +6,12 @@ A catalog of free and nearly free AI services, open-source patches and AI skills
 
 ## Features
 - **Roadmap & legend** - opens first and explains the color legend, statuses and plans.
-- **AI** - 30+ AI APIs and agents, split into Free and Paid sub-tabs. Each card shows status, what it gives, what it can do and what signup needs. You can filter by "no card needed".
+- **AI** - 30+ AI APIs and agents in Free and Paid, plus an **Install yourself** folder with 19 open-weight model families (DeepSeek, Qwen, GLM, Llama, Gemma, gpt-oss, FLUX, Whisper...). You can run those locally and fine-tune them. Their current flagship model, downloads, likes and license come from the Hugging Face API. You can filter services by "no card needed".
 - **Skills** - 70 skills (52 free from real GitHub repos, 18 paid services) in color-coded folders. Notebook-style bookmarks on the left flip the page with a 3D page-turn.
 - **Patches** - 54 free open-source tools in 8 folders: routers and proxies, CLI agents, IDE extensions, local models, chat UIs, MCP servers, usage and hooks, free API lists.
 - Every GitHub card shows live ★ stars and last update. Each card also says which AIs make it free and which make it paid.
 - **Cloud & tools** - non-AI deals: cloud and VPS credits, proxies, SMS numbers, search APIs for agents.
-- **Auto-refresh** - a GitHub Actions workflow runs every 3 days, re-checks every link, refreshes GitHub stars and activity through the GraphQL API, and stamps each card with its check date. Dead links are flagged on the site.
+- **Auto-refresh** - a GitHub Actions workflow runs every 3 days, re-checks every link, refreshes GitHub stars and activity through the GraphQL API, picks the current trending model for each open family on Hugging Face, and stamps each card with its check date. Dead links are flagged on the site.
 
 ## Tech
 - Vanilla HTML, CSS and JS, with no build step and no dependencies.
