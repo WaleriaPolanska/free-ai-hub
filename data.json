@@ -866,7 +866,7 @@
    "f": "agent",
    "d": "The open source coding agent.",
    "url": "https://github.com/anomalyco/opencode",
-   "stars": 227284,
+   "stars": 227291,
    "pushed": "2026-11-16",
    "free": "Built-in free models (GLM Flash, DeepSeek Flash) or local Ollama",
    "paid": "Your own Claude/GPT keys or its paid premium models",
@@ -880,7 +880,7 @@
    "f": "local",
    "d": "Get up and running with Kimi, GLM, MiniMax, DeepSeek, gpt-oss, Qwen, Gemma and other models.",
    "url": "https://github.com/ollama/ollama",
-   "stars": 187246,
+   "stars": 187249,
    "pushed": "2026-11-16",
    "free": "Every local model - costs only your hardware and electricity",
    "paid": "Nothing, unless you rent a GPU server to run it",
@@ -894,7 +894,7 @@
    "f": "ui",
    "d": "User-friendly AI Interface (Supports Ollama, OpenAI API, ...)",
    "url": "https://github.com/open-webui/open-webui",
-   "stars": 158834,
+   "stars": 158836,
    "pushed": "2026-11-16",
    "free": "Self-hosted with Ollama or free API keys",
    "paid": "Paid APIs you connect; some have paid cloud or enterprise plans",
@@ -908,7 +908,7 @@
    "f": "agent",
    "d": "Lightweight coding agent that runs in your terminal",
    "url": "https://github.com/openai/codex",
-   "stars": 135526,
+   "stars": 135527,
    "pushed": "2026-11-16",
    "free": "Local open models via config (limited)",
    "paid": "ChatGPT Plus/Pro plan or OpenAI API",
@@ -922,7 +922,7 @@
    "f": "local",
    "d": "LLM inference in C/C++",
    "url": "https://github.com/ggml-org/llama.cpp",
-   "stars": 135321,
+   "stars": 135327,
    "pushed": "2026-11-16",
    "free": "Every local model - costs only your hardware and electricity",
    "paid": "Nothing, unless you rent a GPU server to run it",
@@ -936,7 +936,7 @@
    "f": "usage",
    "d": "Persistent Context Across Sessions for Every Agent – Captures everything your agent does during sessions, compresses it...",
    "url": "https://github.com/thedotmack/claude-mem",
-   "stars": 117645,
+   "stars": 117649,
    "pushed": "2026-11-16",
    "free": "The tool itself is free",
    "paid": "Claude Code needs a paid Claude plan or API key, unless routed to free models",
@@ -978,7 +978,7 @@
    "f": "agent",
    "d": "🙌 OpenHands: AI-Driven Development",
    "url": "https://github.com/OpenHands/OpenHands",
-   "stars": 93600,
+   "stars": 93604,
    "pushed": "2026-11-16",
    "free": "Free models (Groq, OpenRouter free models, OpenCode free) or local Ollama",
    "paid": "Paid model APIs or the vendor's paid plan",
@@ -992,7 +992,7 @@
    "f": "mcp",
    "d": "Model Context Protocol Reference Servers",
    "url": "https://github.com/modelcontextprotocol/servers",
-   "stars": 92046,
+   "stars": 92048,
    "pushed": "2026-11-12",
    "free": "The server is free; works with any client on free models",
    "paid": "The paid AI client you use it from, or a paid service behind it",
@@ -1006,7 +1006,7 @@
    "f": "ui",
    "d": "✨ Zero-config AI chat assistant. No API key needed — sign up and instantly chat with GPT-5, Claude 4, Gemini 2.5, DeepSe...",
    "url": "https://github.com/ChatGPTNextWeb/NextChat",
-   "stars": 88968,
+   "stars": 88969,
    "pushed": "2026-10-20",
    "free": "Self-hosted with Ollama or free API keys",
    "paid": "Paid APIs you connect; some have paid cloud or enterprise plans",
@@ -1034,7 +1034,7 @@
    "f": "agent",
    "d": "🌊 The original agent harness. Deploy intelligent multi-player swarms, coordinate autonomous workflows, and build convers...",
    "url": "https://github.com/ruvnet/ruflo",
-   "stars": 81869,
+   "stars": 81871,
    "pushed": "2026-11-16",
    "free": "Free models (Groq, OpenRouter free models, OpenCode free) or local Ollama",
    "paid": "Paid model APIs or the vendor's paid plan",
@@ -1132,7 +1132,7 @@
    "f": "router",
    "d": "Wrap Antigravity, ChatGPT Codex, Claude Code, Grok Build, Muse Code, Devin as an OpenAI/Gemini/Claude/Codex compatible A...",
    "url": "https://github.com/router-for-me/CLIProxyAPI",
-   "stars": 58735,
+   "stars": 58738,
    "pushed": "2026-11-16",
    "free": "Free APIs from the AI tab (Groq, OpenCode, OrcaRouter) or local Ollama",
    "paid": "Paid model APIs you route through it (Anthropic, OpenAI) - billed by that provider",
@@ -1146,7 +1146,7 @@
    "f": "mcp",
    "d": "Chrome DevTools for coding agents",
    "url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
-   "stars": 57613,
+   "stars": 57620,
    "pushed": "2026-11-16",
    "free": "The server is free; works with any client on free models",
    "paid": "The paid AI client you use it from, or a paid service behind it",
@@ -1174,7 +1174,7 @@
    "f": "ui",
    "d": "Your AI workspace for models, agents, and productivity.",
    "url": "https://github.com/CherryHQ/cherry-studio",
-   "stars": 53565,
+   "stars": 53566,
    "pushed": "2026-11-16",
    "free": "Self-hosted with Ollama or free API keys",
    "paid": "Paid APIs you connect; some have paid cloud or enterprise plans",
@@ -1230,7 +1230,7 @@
    "f": "mcp",
    "d": "Local code intelligence for developers and AI agents. Connect code, docs and infrastructure in a persistent graph, with...",
    "url": "https://github.com/DeusData/codebase-memory-mcp",
-   "stars": 48726,
+   "stars": 48727,
    "pushed": "2026-11-14",
    "free": "The server is free; works with any client on free models",
    "paid": "The paid AI client you use it from, or a paid service behind it",
@@ -1244,7 +1244,7 @@
    "f": "ui",
    "d": "Enhanced ChatGPT Clone: Features Agents, MCP, Skills, DeepSeek, Anthropic, AWS, OpenAI, Responses API, Azure, Groq, o1,...",
    "url": "https://github.com/LibreChat-AI/LibreChat",
-   "stars": 47197,
+   "stars": 47198,
    "pushed": "2026-11-16",
    "free": "Self-hosted with Ollama or free API keys",
    "paid": "Paid APIs you connect; some have paid cloud or enterprise plans",
@@ -1258,7 +1258,7 @@
    "f": "local",
    "d": "Jan is an open source alternative to ChatGPT that runs 100% offline on your computer.",
    "url": "https://github.com/janhq/jan",
-   "stars": 45745,
+   "stars": 45746,
    "pushed": "2026-11-16",
    "free": "Every local model - costs only your hardware and electricity",
    "paid": "Nothing, unless you rent a GPU server to run it",
@@ -1272,7 +1272,7 @@
    "f": "mcp",
    "d": "Playwright MCP server",
    "url": "https://github.com/microsoft/playwright-mcp",
-   "stars": 39743,
+   "stars": 39745,
    "pushed": "2026-11-16",
    "free": "The server is free; works with any client on free models",
    "paid": "The paid AI client you use it from, or a paid service behind it",
@@ -1342,7 +1342,7 @@
    "f": "usage",
    "d": "Free, local plugin that keeps tool output out of your coding agent's context window. Sandbox and SQLite FTS5 search, 99%...",
    "url": "https://github.com/mksglu/context-mode",
-   "stars": 34173,
+   "stars": 34175,
    "pushed": "2026-11-16",
    "free": "The tool itself is free",
    "paid": "Claude Code needs a paid Claude plan or API key, unless routed to free models",
@@ -1370,7 +1370,7 @@
    "f": "mcp",
    "d": "A powerful MCP toolkit for coding, providing semantic retrieval and editing capabilities - the IDE for your agent",
    "url": "https://github.com/oraios/serena",
-   "stars": 31448,
+   "stars": 31447,
    "pushed": "2026-11-15",
    "free": "The server is free; works with any client on free models",
    "paid": "The paid AI client you use it from, or a paid service behind it",
@@ -1384,7 +1384,7 @@
    "f": "agent",
    "d": "An open-source AI coding agent that lives in your terminal.",
    "url": "https://github.com/QwenLM/qwen-code",
-   "stars": 30621,
+   "stars": 30625,
    "pushed": "2026-11-16",
    "free": "Free daily quota with Qwen OAuth",
    "paid": "Paid Alibaba Model Studio / API keys",
@@ -1398,7 +1398,7 @@
    "f": "ide",
    "d": "Kilo is the all-in-one agentic engineering platform. Build, ship, and iterate faster with the most popular open source c...",
    "url": "https://github.com/Kilo-Org/kilocode",
-   "stars": 28026,
+   "stars": 28025,
    "pushed": "2026-11-16",
    "free": "Local Ollama or any free API key from the AI tab",
    "paid": "Paid API keys, or the extension's own credits / Pro plan",
@@ -1524,7 +1524,7 @@
    "f": "freeapi",
    "d": "134+ free LLM APIs & AI API keys from 40+ providers. Google Gemini, NVIDIA NIM, Groq, OpenRouter & more. One-click setup...",
    "url": "https://github.com/open-free-llm-api/awesome-freellm-apis",
-   "stars": 5712,
+   "stars": 5713,
    "pushed": "2026-11-16",
    "free": "Lists only free and free-tier APIs",
    "paid": "Nothing - but free tiers have rate limits",
@@ -1625,7 +1625,7 @@
    "p": "free",
    "d": "An agentic skills framework & software development methodology that works.",
    "url": "https://github.com/obra/superpowers",
-   "stars": 318631,
+   "stars": 318641,
    "pushed": "2026-11-03",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1640,7 +1640,7 @@
    "p": "free",
    "d": "Official Agent Skills: docx, pptx, xlsx, pdf, design, testing and more",
    "url": "https://github.com/anthropics/skills",
-   "stars": 195948,
+   "stars": 195961,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1655,7 +1655,7 @@
    "p": "free",
    "d": "Makes your AI agent think like the laziest senior dev in the room. The best code is the code you never wrote.",
    "url": "https://github.com/DietrichGebert/ponytail",
-   "stars": 192067,
+   "stars": 192081,
    "pushed": "2026-10-29",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1670,7 +1670,7 @@
    "p": "free",
    "d": "Production-grade engineering skills for AI coding agents.",
    "url": "https://github.com/addyosmani/agent-skills",
-   "stars": 118284,
+   "stars": 118291,
    "pushed": "2026-11-14",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1685,7 +1685,7 @@
    "p": "free",
    "d": "Agent skills that give coding agents taste: art direction, reference images and a browser check instead of generic AI pa...",
    "url": "https://github.com/Leonxlnx/taste-skill",
-   "stars": 116803,
+   "stars": 116815,
    "pushed": "2026-11-08",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1700,7 +1700,7 @@
    "p": "free",
    "d": "The design vocabulary for your coding agent. Steer with polish and bolder, review with critique and audit, catch AI slop...",
    "url": "https://github.com/pbakaus/impeccable",
-   "stars": 111300,
+   "stars": 111309,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1715,7 +1715,7 @@
    "p": "free",
    "d": "The 1st Collaborative AI Design Agent Workspace. Local-first and open source. Create motion, prototypes, websites, apps,...",
    "url": "https://github.com/nexu-io/open-design",
-   "stars": 107923,
+   "stars": 107931,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1730,7 +1730,7 @@
    "p": "free",
    "d": "🕷️ The BEST Web Scraping framework that handles everything from a single request to a full-scale crawl! Don't be shy, jo...",
    "url": "https://github.com/D4Vinci/Scrapling",
-   "stars": 103612,
+   "stars": 103618,
    "pushed": "2026-11-14",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1745,7 +1745,7 @@
    "p": "free",
    "d": "Turn any idea, plan, or codebase into a beautiful interactive diagram. An agent skill for Claude Code, Codex, and more.",
    "url": "https://github.com/tt-a1i/archify",
-   "stars": 97143,
+   "stars": 97147,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1760,7 +1760,7 @@
    "p": "free",
    "d": "Graphs that teach > graphs that impress. Turn any code into an interactive knowledge graph you can explore, search, and...",
    "url": "https://github.com/Egonex-AI/Understand-Anything",
-   "stars": 92845,
+   "stars": 92849,
    "pushed": "2026-11-15",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1775,7 +1775,7 @@
    "p": "free",
    "d": "Open-source AI job search agent and job finder: scan job boards, score each job 1-5 against your CV before you apply, ta...",
    "url": "https://github.com/career-ops-hq/career-ops",
-   "stars": 83069,
+   "stars": 83075,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1790,7 +1790,7 @@
    "p": "free",
    "d": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows",
    "url": "https://github.com/ComposioHQ/awesome-claude-skills",
-   "stars": 79646,
+   "stars": 79649,
    "pushed": "2026-09-18",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1805,7 +1805,7 @@
    "p": "free",
    "d": "Agent skill that removes signs of AI-generated writing from text",
    "url": "https://github.com/blader/humanizer",
-   "stars": 69855,
+   "stars": 69868,
    "pushed": "2026-11-10",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1820,7 +1820,7 @@
    "p": "free",
    "d": "Editorial diagram design for Claude Code, Codex, GitHub Copilot, Cursor, Factory Droid, Qoder, and Pi. 45 diagram types....",
    "url": "https://github.com/cathrynlavery/diagram-design",
-   "stars": 67623,
+   "stars": 67624,
    "pushed": "2026-11-12",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1835,7 +1835,7 @@
    "p": "free",
    "d": "A skill to stop your coding agent from burying the answer. ADHD-friendly output.",
    "url": "https://github.com/ayghri/i-have-adhd",
-   "stars": 61387,
+   "stars": 61389,
    "pushed": "2026-10-19",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1850,7 +1850,7 @@
    "p": "free",
    "d": "Marketing skills for Claude Code and AI agents. CRO, copywriting, SEO, analytics, and growth engineering.",
    "url": "https://github.com/coreyhaines31/marketingskills",
-   "stars": 60775,
+   "stars": 60780,
    "pushed": "2026-11-11",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1865,7 +1865,7 @@
    "p": "free",
    "d": "A hand-picked collection of the finest of resources for the most awesome of agents, Claude Code, the undisputed champion...",
    "url": "https://github.com/hesreallyhim/awesome-claude-code",
-   "stars": 58153,
+   "stars": 58154,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1880,7 +1880,7 @@
    "p": "free",
    "d": "Turn any AI agent into an AI Scientist. The #1 Agent Skills library for science, used by 250,000+ scientists worldwide....",
    "url": "https://github.com/K-Dense-AI/scientific-agent-skills",
-   "stars": 57444,
+   "stars": 57446,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1895,7 +1895,7 @@
    "p": "free",
    "d": "Skills for Designers and Engineers.",
    "url": "https://github.com/emilkowalski/skills",
-   "stars": 57435,
+   "stars": 57440,
    "pushed": "2026-11-15",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1910,8 +1910,8 @@
    "p": "free",
    "d": "Agent skills for Obsidian. Teach your agent to use Obsidian CLI and open formats including Markdown, Bases, JSON Canvas.",
    "url": "https://github.com/obsidianmd/obsidian-skills",
-   "stars": 52941,
-   "pushed": "2026-11-11",
+   "stars": 52943,
+   "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
    "archived": false,
@@ -1925,7 +1925,7 @@
    "p": "free",
    "d": "2,955+ reusable AI agent skills for Claude Code, Codex, Cursor and Gemini CLI. AAS Core adds local catalog discovery, ag...",
    "url": "https://github.com/sickn33/agentic-awesome-skills",
-   "stars": 49807,
+   "stars": 49809,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1940,7 +1940,7 @@
    "p": "free",
    "d": "Plugins, agents, skills, and commands for Claude Code, Codex CLI, Cursor, OpenCode, Antigravity CLI, GitHub Copilot, and...",
    "url": "https://github.com/wshobson/agents",
-   "stars": 42580,
+   "stars": 42581,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1955,7 +1955,7 @@
    "p": "free",
    "d": "Community-contributed instructions, agents, skills, and configurations to help you make the most of GitHub Copilot.",
    "url": "https://github.com/github/awesome-copilot",
-   "stars": 41218,
+   "stars": 41219,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -1970,7 +1970,7 @@
    "p": "free",
    "d": "A curated collection of 1000+ agent skills from official dev teams and the community, compatible with Claude Code, Codex...",
    "url": "https://github.com/VoltAgent/awesome-agent-skills",
-   "stars": 37243,
+   "stars": 37244,
    "pushed": "2026-11-15",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2000,7 +2000,7 @@
    "p": "free",
    "d": "410 Claude Code skills & agent skills & plugins (120+ Agents, custom commands, 410+ skills, customizable references, scr...",
    "url": "https://github.com/alirezarezvani/claude-skills",
-   "stars": 29896,
+   "stars": 29898,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2045,7 +2045,7 @@
    "p": "free",
    "d": "A collection of 100+ specialized Claude Code subagents covering a wide range of development use cases",
    "url": "https://github.com/VoltAgent/awesome-claude-code-subagents",
-   "stars": 26600,
+   "stars": 26601,
    "pushed": "2026-11-02",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2060,7 +2060,7 @@
    "p": "free",
    "d": "You built it. Now brag. Turn the project you just created into a short, shareable launch video with one command.",
    "url": "https://github.com/latent-spaces/brag",
-   "stars": 21710,
+   "stars": 21714,
    "pushed": "2026-11-15",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2075,7 +2075,7 @@
    "p": "free",
    "d": "AI video skill for Claude Code & Codex — cinematic, editable product promos with Remotion: 124 shot recipe cards, 150 mo...",
    "url": "https://github.com/Vincentwei1021/video-shotcraft",
-   "stars": 20515,
+   "stars": 20519,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2105,7 +2105,7 @@
    "p": "free",
    "d": "Open-source plugin for designing and reviewing software with agents",
    "url": "https://github.com/google/elephant-goldfish-model",
-   "stars": 20298,
+   "stars": 20306,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2135,7 +2135,7 @@
    "p": "free",
    "d": "A Claude skill that turns vibecoded, AI-looking UI into a designed interface",
    "url": "https://github.com/heydamir/unslop",
-   "stars": 17214,
+   "stars": 17223,
    "pushed": "2026-11-15",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2165,7 +2165,7 @@
    "p": "free",
    "d": "A curated list of awesome Claude Skills, resources, and tools for customizing Claude AI workflows — particularly Claude...",
    "url": "https://github.com/travisvn/awesome-claude-skills",
-   "stars": 15848,
+   "stars": 15849,
    "pushed": "2026-04-28",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2210,7 +2210,7 @@
    "p": "free",
    "d": "A curated list of Claude Skills.",
    "url": "https://github.com/BehiSecc/awesome-claude-skills",
-   "stars": 10440,
+   "stars": 10441,
    "pushed": "2026-11-02",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2225,7 +2225,7 @@
    "p": "free",
    "d": "Claude skills for marketing: 49 free marketing skills for Claude Code and claude.ai (Google Ads, Meta Ads, SEO, AI visib...",
    "url": "https://github.com/irinabuht12-oss/marketing-skills",
-   "stars": 7998,
+   "stars": 8004,
    "pushed": "2026-10-27",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2240,7 +2240,7 @@
    "p": "free",
    "d": "Agent Skills",
    "url": "https://github.com/remotion-dev/skills",
-   "stars": 7340,
+   "stars": 7342,
    "pushed": "2026-11-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2285,7 +2285,7 @@
    "p": "free",
    "d": "Eleven Claude skills that run a YouTube channel: scripts off 21 hook formulas with a scored hook, title and thumbnail li...",
    "url": "https://github.com/Jakeschincariol/youtube-agent-skill",
-   "stars": 6148,
+   "stars": 6151,
    "pushed": "2026-09-16",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2300,7 +2300,7 @@
    "p": "free",
    "d": "Claude skills for LinkedIn. 12 Claude Code and Codex skills that write human-sounding LinkedIn posts, craft comments tha...",
    "url": "https://github.com/sergebulaev/linkedin-skills",
-   "stars": 5963,
+   "stars": 5964,
    "pushed": "2026-11-10",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2345,7 +2345,7 @@
    "p": "free",
    "d": "Free Claude skill: viral animated story shorts (2D characters in a 3D world) with three.js + Remotion",
    "url": "https://github.com/mromidev/claude-animated-shorts",
-   "stars": 3704,
+   "stars": 3706,
    "pushed": "2026-11-01",
    "free": "Claude Code, OpenCode, Codex or Gemini CLI on free models (Gemini CLI free quota, OpenCode free, Groq, Ollama)",
    "paid": "Claude Pro/Max, ChatGPT Plus, Cursor Pro or paid model APIs",
@@ -2611,7 +2611,7 @@
    "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
    "license": "mit",
    "downloads": 467224,
-   "likes": 5784,
+   "likes": 5785,
    "modified": "2026-11-10",
    "alive": true,
    "checked": "2026-11-16",
@@ -2634,7 +2634,7 @@
    "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
    "license": "apache-2.0",
    "downloads": 6763402,
-   "likes": 20236,
+   "likes": 20244,
    "modified": "2026-11-07",
    "alive": true,
    "checked": "2026-11-16",
@@ -2680,7 +2680,7 @@
    "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
    "license": "other",
    "downloads": 49428,
-   "likes": 2141,
+   "likes": 2143,
    "modified": "2026-11-05",
    "alive": true,
    "checked": "2026-11-16",
@@ -2819,7 +2819,7 @@
    "url": "https://huggingface.co/MiniMaxAI/MiniMax-H3-Image",
    "license": "other",
    "downloads": 609130,
-   "likes": 1292,
+   "likes": 1296,
    "modified": "2026-11-16",
    "alive": true,
    "checked": "2026-11-16",
@@ -2891,7 +2891,7 @@
    "url": "https://huggingface.co/black-forest-labs/flux-3-image-klein-comfy",
    "license": "other",
    "downloads": 1115161,
-   "likes": 3317,
+   "likes": 3318,
    "modified": "2026-11-02",
    "alive": true,
    "checked": "2026-11-16"
@@ -2908,7 +2908,7 @@
    "url": "https://huggingface.co/Qwen/Qwen-Image-2.1",
    "license": "other",
    "downloads": 281528,
-   "likes": 3652,
+   "likes": 3653,
    "modified": "2026-09-30",
    "alive": true,
    "checked": "2026-11-16"
@@ -2942,7 +2942,7 @@
    "url": "https://huggingface.co/Wan-AI/Wan2.2-TI2V-5B",
    "license": "apache-2.0",
    "downloads": 19538,
-   "likes": 1006,
+   "likes": 1007,
    "modified": "2025-08-07",
    "alive": true,
    "checked": "2026-11-16"
@@ -3108,6 +3108,150 @@
    "d": "Prototype with Gemini models for free in the browser or through the API with rate limits.",
    "req": [
     "Google account"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Groq",
+   "f": "inference",
+   "url": "https://console.groq.com",
+   "v": "Free fast inference",
+   "d": "Runs open models on its own LPU chips, very fast. Free tier with rate limits.",
+   "req": [
+    "Account"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Cerebras Cloud",
+   "f": "inference",
+   "url": "https://cloud.cerebras.ai",
+   "v": "Free tier",
+   "d": "Huge wafer-scale chips, one of the fastest ways to run open models. Free daily limits.",
+   "req": [
+    "Account"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "SambaNova Cloud",
+   "f": "inference",
+   "url": "https://cloud.sambanova.ai",
+   "v": "Free tier",
+   "d": "Fast inference of big open models on custom chips, with a free tier.",
+   "req": [
+    "Account"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "OpenRouter free models",
+   "f": "inference",
+   "url": "https://openrouter.ai/models?q=free",
+   "v": "Free models with limits",
+   "d": "One API key for many providers. Models marked :free cost nothing within daily limits.",
+   "req": [
+    "Account"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "HF Inference Providers",
+   "f": "inference",
+   "url": "https://huggingface.co/docs/inference-providers",
+   "v": "Free monthly credits",
+   "d": "Call thousands of models on partner GPUs from one Hugging Face token. Small free monthly credit.",
+   "req": [
+    "HF account"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Azure for Students",
+   "f": "students",
+   "url": "https://azure.microsoft.com/free/students",
+   "v": "$100 credit, no card",
+   "d": "Azure credit for students with a school email, renews yearly while you study.",
+   "req": [
+    "School email"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "GitHub Student Developer Pack",
+   "f": "students",
+   "url": "https://education.github.com/pack",
+   "v": "Bundle of free credits",
+   "d": "Free tools and cloud credits from many partners for verified students.",
+   "req": [
+    "Student status"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "AWS Activate",
+   "f": "students",
+   "url": "https://aws.amazon.com/activate/",
+   "v": "Credits for startups",
+   "d": "AWS credits for early startups, including GPU instances.",
+   "req": [
+    "Startup application"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Microsoft for Startups",
+   "f": "students",
+   "url": "https://www.microsoft.com/en-us/startups",
+   "v": "Azure credits for startups",
+   "d": "Founders program with Azure credits and access to AI models.",
+   "req": [
+    "Startup application"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "NVIDIA Inception",
+   "f": "students",
+   "url": "https://www.nvidia.com/en-us/startups/",
+   "v": "Free program for AI startups",
+   "d": "Free membership with cloud credit offers, training and NVIDIA tech support.",
+   "req": [
+    "Startup application"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "EuroHPC supercomputers",
+   "f": "research",
+   "url": "https://eurohpc-ju.europa.eu/access-our-supercomputers_en",
+   "v": "Free access for EU research",
+   "d": "European supercomputers with many GPUs. Free access calls for researchers, startups and companies in the EU.",
+   "req": [
+    "Application"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "NSF ACCESS",
+   "f": "research",
+   "url": "https://access-ci.org",
+   "v": "Free compute for US research",
+   "d": "US national program that gives researchers and educators free HPC and GPU time.",
+   "req": [
+    "US institution"
    ],
    "alive": true,
    "checked": "2026-11-16"
@@ -3408,6 +3552,168 @@
    "url": "https://madewithml.com",
    "by": "Made With ML",
    "d": "MLOps: design, develop, deploy and iterate on ML.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Generative AI for Everyone",
+   "f": "beginner",
+   "url": "https://www.deeplearning.ai/courses/generative-ai-for-everyone/",
+   "by": "DeepLearning.AI",
+   "d": "How generative AI works and how to use it at work.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Machine Learning Specialization",
+   "f": "beginner",
+   "url": "https://www.coursera.org/specializations/machine-learning-introduction",
+   "by": "Stanford / DeepLearning.AI",
+   "d": "Andrew Ng's classic ML course. Free to audit.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "StatQuest",
+   "f": "beginner",
+   "url": "https://statquest.org",
+   "by": "Josh Starmer",
+   "d": "Statistics and ML explained clearly and simply.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "MIT 6.034 Artificial Intelligence",
+   "f": "beginner",
+   "url": "https://ocw.mit.edu/courses/6-034-artificial-intelligence-fall-2010/",
+   "by": "MIT OpenCourseWare",
+   "d": "Classic AI lectures from MIT, free.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "OpenAI Academy",
+   "f": "intermediate",
+   "url": "https://academy.openai.com",
+   "by": "OpenAI",
+   "d": "Free videos and guides on using AI tools well.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Gemini API docs",
+   "f": "intermediate",
+   "url": "https://ai.google.dev/gemini-api/docs",
+   "by": "Google",
+   "d": "Build with Gemini: prompting, tools, files and more.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "LLM University",
+   "f": "intermediate",
+   "url": "https://cohere.com/llmu",
+   "by": "Cohere",
+   "d": "LLMs, embeddings, RAG and deployment.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "LLM Bootcamp",
+   "f": "intermediate",
+   "url": "https://fullstackdeeplearning.com/llm-bootcamp/",
+   "by": "Full Stack Deep Learning",
+   "d": "Build and ship LLM apps.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Pinecone Learn",
+   "f": "intermediate",
+   "url": "https://www.pinecone.io/learn/",
+   "by": "Pinecone",
+   "d": "Vector search, embeddings and RAG explained.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Ollama docs",
+   "f": "intermediate",
+   "url": "https://docs.ollama.com",
+   "by": "Ollama",
+   "d": "Run and customize models locally.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Unsloth docs",
+   "f": "intermediate",
+   "url": "https://docs.unsloth.ai",
+   "by": "Unsloth",
+   "d": "Fine-tuning guides for open models on small GPUs.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "The Illustrated Transformer",
+   "f": "advanced",
+   "url": "https://jalammar.github.io/illustrated-transformer/",
+   "by": "Jay Alammar",
+   "d": "The famous visual explanation of transformers.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Build an LLM from scratch",
+   "f": "advanced",
+   "url": "https://github.com/rasbt/LLMs-from-scratch",
+   "by": "Sebastian Raschka",
+   "d": "Code a GPT-like model step by step.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "nanoGPT",
+   "f": "advanced",
+   "url": "https://github.com/karpathy/nanoGPT",
+   "by": "Andrej Karpathy",
+   "d": "Smallest clean code to train GPT models.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "smol course",
+   "f": "advanced",
+   "url": "https://github.com/huggingface/smol-course",
+   "by": "Hugging Face",
+   "d": "Practical course on aligning small models.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "HF Computer Vision Course",
+   "f": "advanced",
+   "url": "https://huggingface.co/learn/computer-vision-course",
+   "by": "Hugging Face",
+   "d": "Vision models from CNNs to transformers.",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Transformer Circuits",
+   "f": "advanced",
+   "url": "https://transformer-circuits.pub",
+   "by": "Anthropic",
+   "d": "Research on how models work inside (interpretability).",
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Lil'Log",
+   "f": "advanced",
+   "url": "https://lilianweng.github.io",
+   "by": "Lilian Weng",
+   "d": "Deep, clear posts on agents, prompting and more.",
    "alive": true,
    "checked": "2026-11-16"
   }
@@ -3712,6 +4018,194 @@
     "Get a free Groq key",
     "Use the echo-bot example and send messages to the model",
     "Run it on a free server (Bonuses tab)"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "AI on your phone, offline",
+   "f": "chat",
+   "url": "https://github.com/a-ghorbani/pocketpal-ai",
+   "tools": [
+    "PocketPal AI",
+    "small open model"
+   ],
+   "d": "Chat with a small model right on your phone, no internet needed.",
+   "steps": [
+    "Install PocketPal AI from the app store or GitHub",
+    "Download a small model inside the app",
+    "Start chatting offline"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Desktop app for local models",
+   "f": "chat",
+   "url": "https://lmstudio.ai",
+   "tools": [
+    "LM Studio"
+   ],
+   "d": "Point-and-click app to download and chat with open models.",
+   "steps": [
+    "Download LM Studio",
+    "Search a model and download it",
+    "Open the chat tab and talk",
+    "Optionally turn on the local server for other apps"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Subtitles for any video",
+   "f": "voice",
+   "url": "https://github.com/SubtitleEdit/subtitleedit",
+   "tools": [
+    "Subtitle Edit",
+    "Whisper"
+   ],
+   "d": "Auto-generate and edit subtitles with Whisper built in.",
+   "steps": [
+    "Install Subtitle Edit",
+    "Open your video",
+    "Use Video, Audio to text (Whisper)",
+    "Fix lines and export .srt"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Clone a voice for free",
+   "f": "voice",
+   "url": "https://huggingface.co/ResembleAI/chatterbox",
+   "tools": [
+    "Chatterbox TTS"
+   ],
+   "d": "Speak any text in a voice from a short sample. Use only voices you have rights to.",
+   "steps": [
+    "Open Chatterbox on Hugging Face and try the demo",
+    "Upload a short clean voice sample",
+    "Type your text and generate",
+    "Run it locally for unlimited use"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Make music with AI",
+   "f": "voice",
+   "url": "https://github.com/ace-step/ACE-Step",
+   "tools": [
+    "ACE-Step"
+   ],
+   "d": "Generate songs with vocals from a text description using an open model.",
+   "steps": [
+    "Open the ACE-Step GitHub page",
+    "Try the online demo or install locally on a GPU",
+    "Write style and lyrics",
+    "Generate and download"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Local AI image studio",
+   "f": "images",
+   "url": "https://github.com/invoke-ai/InvokeAI",
+   "tools": [
+    "InvokeAI",
+    "open image models"
+   ],
+   "d": "A full creative app for generating and editing images on your GPU.",
+   "steps": [
+    "Install InvokeAI with its launcher",
+    "Download a model in the model manager",
+    "Generate, inpaint and edit on the canvas"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Diagrams by chatting",
+   "f": "docs",
+   "url": "https://github.com/DayuanJiang/next-ai-draw-io",
+   "tools": [
+    "next-ai-draw-io",
+    "free model"
+   ],
+   "d": "Describe a diagram in words and edit it in draw.io.",
+   "steps": [
+    "Open the project page and try the web app",
+    "Connect a free model key",
+    "Describe the diagram",
+    "Export to draw.io or PNG"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Website from a prompt",
+   "f": "code",
+   "url": "https://github.com/stackblitz-labs/bolt.diy",
+   "tools": [
+    "bolt.diy",
+    "free model"
+   ],
+   "d": "Describe a web app and get working code you can edit and run.",
+   "steps": [
+    "Run bolt.diy locally (see README)",
+    "Add a free model key",
+    "Describe the app you want",
+    "Edit, preview and download the code"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Your own AI search engine",
+   "f": "agents",
+   "url": "https://github.com/ItzCrazyKns/Perplexica",
+   "tools": [
+    "Perplexica",
+    "local or free model"
+   ],
+   "d": "A private Perplexity-style search that answers with sources.",
+   "steps": [
+    "Run Perplexica with Docker",
+    "Choose Ollama or a free model",
+    "Ask a question and read the sourced answer"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Turn PDFs into clean text for AI",
+   "f": "docs",
+   "url": "https://github.com/docling-project/docling",
+   "tools": [
+    "Docling"
+   ],
+   "d": "Convert PDFs, Word and slides into clean markdown that AI understands well.",
+   "steps": [
+    "Install Docling with pip",
+    "Run it on your files",
+    "Feed the markdown to any AI or RAG app"
+   ],
+   "alive": true,
+   "checked": "2026-11-16"
+  },
+  {
+   "n": "Scrape websites for AI",
+   "f": "agents",
+   "url": "https://github.com/unclecode/crawl4ai",
+   "tools": [
+    "Crawl4AI"
+   ],
+   "d": "Crawl pages and get clean markdown ready for AI agents.",
+   "steps": [
+    "Install Crawl4AI with pip",
+    "Give it a URL",
+    "Save the markdown and use it in your agent"
    ],
    "alive": true,
    "checked": "2026-11-16"
