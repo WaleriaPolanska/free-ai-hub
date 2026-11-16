@@ -44,7 +44,12 @@ a{color:#8fb0ff;text-decoration-color:#8fb0ff66;text-underline-offset:3px}a:hove
 
 .c{transition:transform .15s,box-shadow .15s}.c:hover{transform:translateY(-2px);box-shadow:0 8px 24px #0006}h2{font-size:18px;margin:22px 0 10px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
-nav{padding-bottom:58px}nav:hover .dd:not(:hover) .menu{display:none}.dd{position:relative}.menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:8px;gap:4px;white-space:nowrap}.dd:hover .menu{display:flex}
+nav{padding-bottom:58px}
+.seg{position:absolute;left:16px;bottom:10px;display:none;align-items:stretch;border:2px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}.seg.show{display:flex}
+.seg span{display:flex;align-items:center;padding:0 10px;font:600 12px "JetBrains Mono",monospace;color:var(--mut)}
+.seg button{border:none;border-radius:0;border-left:1px solid var(--line);padding:6px 14px;background:transparent;font-weight:600}
+.seg button.sel{background:var(--acc);color:#000}.seg button.sel[data-v=free]{background:#2f8f5f;color:#fff}.seg button.sel[data-v=paid]{background:#ffd166;color:#000}
+.dd.cur .menu{display:none!important}nav:hover .dd:not(:hover) .menu{display:none}.dd{position:relative}.menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:8px;gap:4px;white-space:nowrap}.dd:hover .menu{display:flex}
 .menu button{padding:8px 10px}.menu button.sel{background:#2f8f5f;color:#000;border-color:#2f8f5f}.menu button.sel[data-go=paid]{background:#ffd166;border-color:#ffd166}
 .tog{display:flex;align-items:center;cursor:pointer;user-select:none}.tog input{display:none}
 .tog span{display:flex;align-items:center;height:100%;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);white-space:nowrap}
@@ -77,6 +82,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <div class="dd"><button data-t="skills">Skills ▾</button><div class="menu"><button data-t="skills" data-go="free">✅ Free</button><button data-t="skills" data-go="paid">💲 Paid</button></div></div>
 <button data-t="patches">Patches</button>
 <button data-t="offers">Cloud & tools</button>
+<div class="seg" id="seg"></div>
 </nav>
 <main>
 <section id="offers"><div class="bar"><input placeholder="Search" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
@@ -163,10 +169,15 @@ const P={ai:"all",skills:"all"};
 const LB={ai:"AI",skills:"Skills"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
+let CUR="road";
+function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d=>d.classList.toggle("cur",d.querySelector("[data-t]").dataset.t==CUR));
+ if(!(CUR in P)){el.classList.remove("show");return}
+ el.classList.add("show");el.innerHTML=`<span>Show:</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
+$("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
  if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v;flip=true}mark();render();b.blur()}
- document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`nav > * > [data-t="${t}"],nav > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on")};
+ document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`nav > * > [data-t="${t}"],nav > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on");CUR=t;seg()};
 })();
 </script>
 </body>
