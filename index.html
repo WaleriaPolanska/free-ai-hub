@@ -129,10 +129,10 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <nav id="nav">
 <div class="navrow">
 <button data-t="road" class="on">Roadmap & legend</button>
-<div class="dd"><button data-t="ai">AI ▾</button><div class="menu"><button data-t="ai" data-go="free">✅ Free</button><button data-t="ai" data-go="paid">💲 Paid</button></div></div>
-<div class="dd"><button data-t="skills">Skills ▾</button><div class="menu"><button data-t="skills" data-go="free">✅ Free</button><button data-t="skills" data-go="paid">💲 Paid</button></div></div>
-<div class="dd"><button data-t="patches">Patches ▾</button><div class="menu"><button data-t="patches" data-go="free">✅ Free</button><button data-t="patches" data-go="paid">💲 Paid</button></div></div>
-<div class="dd"><button data-t="offers">Bonuses & Services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
+<div class="dd"><button data-t="ai">AI</button></div>
+<div class="dd"><button data-t="skills">Skills</button></div>
+<div class="dd"><button data-t="patches">Patches</button></div>
+<div class="dd"><button data-t="offers">Bonuses & Services</button></div>
 <button data-t="kits">Starter Kits</button>
 <button data-t="gpu">Free GPU</button>
 <button data-t="learn">Learn</button>
@@ -267,7 +267,7 @@ function book(t,items,key,card,anim){
 const P={ai:"all",skills:"all",offers:"all",patches:"all"};
 const PAIDPLAN=new Set(["BerriAI/litellm","Portkey-AI/gateway","continuedev/continue","cline/cline","Kilo-Org/kilocode","RooCodeInc/Roo-Code","anomalyco/opencode","ollama/ollama","open-webui/open-webui","Mintplex-Labs/anything-llm","TabbyML/tabby","lobehub/lobehub","czlonkowski/n8n-mcp","upstash/context7","openai/codex","google-gemini/gemini-cli","OpenHands/OpenHands"]);
 const LB={ai:"AI",skills:"Skills",offers:"Bonuses & Services",patches:"Patches"};
-function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
+function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=LB[t];
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 let CUR="road";
 const SB="https://ghztrdkufbgggbzwwtlf.supabase.co/rest/v1/rpc/",SK="sb_publishable_yzOV4c3b4f7f2PxkN2n9kg_v6b_qAae";
