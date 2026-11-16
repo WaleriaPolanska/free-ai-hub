@@ -98,7 +98,7 @@ function render(){
 }
 const P={ai:"free",skills:"free"};
 const LB={ai:"AI",skills:"Skills"};
-function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} · ${P[t]=="free"?"Free":"Paid"} ▾`;
+function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
