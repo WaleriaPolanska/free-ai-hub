@@ -133,7 +133,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <button data-t="gpu">Free GPU</button>
 <button data-t="learn">Learn</button>
 <button data-t="prompts">Prompts</button>
-<div class="dd"><button data-t="offers">Bonuses & services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
+<div class="dd"><button data-t="offers">Bonuses & Services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
 <button data-t="contacts">Contacts</button>
 </div>
 <div class="strip">
@@ -186,7 +186,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <li><b>Skills</b> - hover the tab to pick Free or Paid, then open a colored bookmark on the left to flip to that folder</li>
 <li><b>Patches</b> - bookmarks on the left split tools into folders: routers, CLI agents, IDE extensions, local models, chat UIs, MCP servers and more</li>
 <li>Every GitHub card shows its ★ stars and last update, refreshed automatically</li>
-<li><b>Bonuses & services</b> - everything around AI that is not a model: free cloud credits and VPS to host bots and agents, search APIs for agents, proxies, SMS numbers and virtual cards for signups. Bookmarks on the left split them by type</li>
+<li><b>Bonuses & Services</b> - everything around AI that is not a model: free cloud credits and VPS to host bots and agents, search APIs for agents, proxies, SMS numbers and virtual cards for signups. Bookmarks on the left split them by type</li>
 </ol>
 <h2>Roadmap</h2>
 <ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>✅ AI → Install yourself: open-weight models you can run locally and fine-tune, refreshed from Hugging Face</li><li>✅ 👍 / 👎 votes on every card, stored in a shared database, and sorting by rating</li><li>✅ Starter Kits, Free GPU, Learn and Prompts sections</li><li>✅ Sort AI by LMArena rating</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
@@ -264,7 +264,7 @@ function book(t,items,key,card,anim){
 ["ai","skills","patches","offers","kits","gpu","learn","prompts"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
 const P={ai:"all",skills:"all",offers:"all",patches:"all"};
 const PAIDPLAN=new Set(["BerriAI/litellm","Portkey-AI/gateway","continuedev/continue","cline/cline","Kilo-Org/kilocode","RooCodeInc/Roo-Code","anomalyco/opencode","ollama/ollama","open-webui/open-webui","Mintplex-Labs/anything-llm","TabbyML/tabby","lobehub/lobehub","czlonkowski/n8n-mcp","upstash/context7","openai/codex","google-gemini/gemini-cli","OpenHands/OpenHands"]);
-const LB={ai:"AI",skills:"Skills",offers:"Bonuses & services",patches:"Patches"};
+const LB={ai:"AI",skills:"Skills",offers:"Bonuses & Services",patches:"Patches"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 let CUR="road";

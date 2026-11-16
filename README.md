@@ -10,7 +10,7 @@ A catalog of free and nearly free AI services, open-source patches and AI skills
 - **Skills** - 70 skills (52 free from real GitHub repos, 18 paid services) in color-coded folders. Notebook-style bookmarks on the left flip the page with a 3D page-turn.
 - **Patches** - 54 free open-source tools in 8 folders: routers and proxies, CLI agents, IDE extensions, local models, chat UIs, MCP servers, usage and hooks, free API lists.
 - Every GitHub card shows live ★ stars and last update. Each card also says which AIs make it free and which make it paid.
-- **Bonuses & services** - non-AI deals: cloud and VPS credits, proxies, SMS numbers, search APIs for agents.
+- **Bonuses & Services** - non-AI deals: cloud and VPS credits, proxies, SMS numbers, search APIs for agents.
 - **Starter Kits** - step-by-step free setups for real tasks (coding agent, local ChatGPT, voiceover, speech to text, images, research agent, fine-tuning).
 - **Free GPU** - where to run and train models on a GPU for free (Colab, Kaggle, SageMaker Studio Lab, HF Spaces, Lightning AI, Modal).
 - **Learn** - 16 free AI courses split into Beginner, Intermediate and Advanced.
