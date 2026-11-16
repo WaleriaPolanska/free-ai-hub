@@ -140,7 +140,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <div class="seg" id="seg"></div>
 <div class="sort" id="sortbox"><button type="button" id="sortbtn" aria-haspopup="listbox" aria-expanded="false">⇅ Sort <span class="chev">▾</span></button>
 <ul id="sortlist" role="listbox">
-<li data-v="def">⇅ Sort <small>A → Z</small></li><li data-v="za">Z → A</li><li data-v="stars" title="Sorted by GitHub stars">★ Most GitHub stars</li><li data-v="arena" title="LMArena human-preference rating">🏆 LLM Arena rating</li><li data-v="top">Top rated</li><li data-v="most">Most voted</li>
+<li data-v="za">Z → A</li><li data-v="stars" title="Sorted by GitHub stars">★ Most GitHub stars</li><li data-v="arena" title="LMArena human-preference rating">🏆 LLM Arena rating</li><li data-v="top">Top rated</li><li data-v="most">Most voted</li>
 </ul></div>
 </div>
 </nav>
@@ -280,9 +280,9 @@ document.addEventListener("click",async e=>{const b=e.target.closest(".vote butt
  const apply=(from,to)=>{if(from==1)c[0]--;if(from==-1)c[1]--;if(to==1)c[0]++;if(to==-1)c[1]++;MY[id]=to;document.querySelectorAll(`.vote[data-id="${CSS.escape(id)}"]`).forEach(v=>{v.querySelector(".up").classList.toggle("on",to==1);v.querySelector(".down").classList.toggle("on",to==-1);v.querySelector(".up b").textContent=c[0];v.querySelector(".down b").textContent=c[1]})};
  apply(old,nv);try{const r=await rpc("vote",{p_item:id,p_voter:VOTER,p_v:nv});if(!r.ok)throw 0}catch{apply(nv,old)}});
 const sbox=$("#sortbox");
-function sortUI(){const v=SORT[CUR];sbox.querySelectorAll("li").forEach(li=>li.classList.toggle("sel",li.dataset.v==v));const cur=sbox.querySelector(`li[data-v="${v}"]`);$("#sortbtn").innerHTML=(v=="def"?"⇅ Sort":"⇅ "+cur.textContent)+' <span class="chev">▾</span>'}
+function sortUI(){const v=SORT[CUR];sbox.querySelectorAll("li").forEach(li=>li.classList.toggle("sel",li.dataset.v==v));const cur=sbox.querySelector(`li[data-v="${v}"]`);$("#sortbtn").innerHTML=(v=="def"||!cur?"⇅ Sort":"⇅ "+cur.textContent)+' <span class="chev">▾</span>'}
 $("#sortbtn").onclick=e=>{e.stopPropagation();const o=sbox.classList.toggle("open");$("#sortbtn").setAttribute("aria-expanded",o)};
-$("#sortlist").onclick=e=>{e.stopPropagation();const li=e.target.closest("li");if(!li)return;sbox.classList.remove("open");if(SORT[CUR]!=li.dataset.v){SORT[CUR]=li.dataset.v;flip=true;render()}sortUI()};
+$("#sortlist").onclick=e=>{e.stopPropagation();const li=e.target.closest("li");if(!li)return;sbox.classList.remove("open");{SORT[CUR]=SORT[CUR]==li.dataset.v?"def":li.dataset.v;flip=true;render()}sortUI()};
 document.addEventListener("click",()=>sbox.classList.remove("open"));
 Promise.all([rpc("vote_counts").then(r=>r.json()),rpc("my_votes",{p_voter:VOTER}).then(r=>r.json())]).then(([a,b])=>{a.forEach(x=>VC[x.item]=[+x.likes,+x.dislikes]);b.forEach(x=>MY[x.item]=x.v);render()}).catch(()=>{});
 function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d=>d.classList.toggle("cur",d.querySelector("[data-t]").dataset.t==CUR));
