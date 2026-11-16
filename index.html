@@ -72,7 +72,7 @@ nav{padding-bottom:58px}
 .tabs button{margin:0;white-space:nowrap;transform-origin:center bottom}
 .page{border-left:1px solid var(--line);border-top:6px solid var(--pc,#d6d9e0);border-radius:0 0 12px 12px;width:100%}}
 .links{display:flex;flex-wrap:wrap;gap:8px}.go.li{background:linear-gradient(90deg,#0a66c2,#3d8fe0);color:#fff!important}.go.mail{background:linear-gradient(90deg,#ffb87a,#ff8a8a)}.go.copy{border:none;cursor:pointer;background:#2a2f3a;color:var(--tx)!important}
-#contacts .c h3{margin-bottom:2px}.go.soon{background:#2a2f3a;color:var(--mut)!important;box-shadow:none;cursor:default}
+#contacts .c h3{margin-bottom:2px}.vlist{display:flex;flex-direction:column;gap:12px;max-width:520px}.vlist .c{display:grid;grid-template-columns:100px 1fr auto;align-items:center;gap:12px}.vlist .c .links{flex-wrap:nowrap}@media (max-width:500px){.vlist .c{grid-template-columns:1fr auto}.vlist .c .d{grid-column:1/-1;order:3}}.vlist .c .go{margin-top:0}.go.soon{background:#2a2f3a;color:var(--mut)!important;box-shadow:none;cursor:default}
 ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
 </head>
@@ -96,8 +96,8 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <section id="contacts">
 <h2>Contacts</h2>
 <p class="upd">Questions, ideas or a service to add? Write me.</p>
-<div class="grid">
- <div class="c pc" style="--pc:#d6d9e0"><h3>GitHub</h3><div class="d">Code of this site and other projects</div><a class="go" href="https://github.com/WaleriaPolanska" target="_blank" rel="noopener">github.com/WaleriaPolanska →</a></div>
+<div class="vlist">
+ <div class="c pc" style="--pc:#d6d9e0"><h3>GitHub</h3><div class="d">github.com/WaleriaPolanska</div><a class="go" href="https://github.com/WaleriaPolanska" target="_blank" rel="noopener">Open →</a></div>
  <div class="c pc" style="--pc:#3d8fe0"><h3>LinkedIn</h3><div class="d">Waleria Polańska</div><a class="go li" href="https://www.linkedin.com/in/waleria-pola%C5%84ska/" target="_blank" rel="noopener">Open profile →</a></div>
  <div class="c pc" style="--pc:#ffb87a"><h3>Email</h3><div class="d" id="mailtxt"></div><div class="links"><a class="go mail" id="mail" href="#">Write →</a><button class="go copy" id="copy" type="button">Copy</button></div></div>
  <div class="c pc" style="--pc:#29a9eb"><h3>Telegram</h3><div class="d">Coming soon</div><span class="go soon">Soon</span></div>
