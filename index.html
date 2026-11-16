@@ -48,6 +48,8 @@ nav{padding-bottom:58px}
 .sort{position:absolute;right:16px;bottom:10px;display:none;align-items:center;gap:6px;padding:4px 8px;border:2px solid var(--line);border-radius:10px;background:var(--card);font:600 13px "JetBrains Mono",monospace;color:var(--mut)}.sort.show{display:flex}
 .sort select{background:transparent;color:var(--tx);border:none;font:600 13px "Space Grotesk",sans-serif;cursor:pointer}.sort option{background:var(--card)}
 .c{position:relative}.starb{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:99px;background:#ffd16622;border:1px solid #ffd16688;color:#ffd166;font:700 13px "JetBrains Mono",monospace;box-shadow:0 0 10px #ffd16633}
+.starb{cursor:help;z-index:2}.starb::after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;width:220px;padding:9px 11px;border-radius:10px;background:#1d212b;border:1px solid #ffd16688;color:var(--tx);font:500 12px/1.4 "Inter",sans-serif;box-shadow:0 8px 24px #000a;opacity:0;pointer-events:none;transform:translateY(-4px);transition:opacity .15s,transform .15s;white-space:normal;text-align:left}
+.starb:hover::after,.starb:focus::after{opacity:1;transform:none}
 .vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
 .vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
 @media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
@@ -79,20 +81,45 @@ nav{padding-bottom:58px}
 .page{border-left:1px solid var(--line);border-top:6px solid var(--pc,#d6d9e0);border-radius:0 0 12px 12px;width:100%}}
 .links{display:flex;flex-wrap:wrap;gap:8px}.go.li{background:linear-gradient(90deg,#0a66c2,#3d8fe0);color:#fff!important}.go.mail{background:linear-gradient(90deg,#ffb87a,#ff8a8a)}.go.copy{border:none;cursor:pointer;background:#2a2f3a;color:var(--tx)!important}
 #contacts .c h3{margin-bottom:2px}.about{max-width:720px;margin-bottom:18px;padding:16px 18px;border-radius:12px;background:linear-gradient(135deg,#1a2a22,#1b1830);border:2px solid #2f8f5f88}.about h2{margin:0 0 6px}.about p{margin:6px 0;color:#d6dbe6}.vlist{display:flex;flex-direction:column;gap:12px;max-width:520px}.vlist .c{display:grid;grid-template-columns:100px 1fr auto;align-items:center;gap:12px}.vlist .c .links{flex-wrap:nowrap}@media (max-width:500px){.vlist .c{grid-template-columns:1fr auto}.vlist .c .d{grid-column:1/-1;order:3}}.vlist .c .go{margin-top:0}.go.soon{background:#2a2f3a;color:var(--mut)!important;box-shadow:none;cursor:default}
+.navrow{display:flex;gap:6px;flex-wrap:wrap}
+@media (max-width:700px){
+ header{padding:12px 16px}h1{padding:6px 14px 4px;border-width:4px!important}h1 span{font-size:30px}
+ nav{padding:8px 0 8px!important;gap:6px;flex-direction:column}
+ .navrow{flex-wrap:nowrap;overflow-x:auto;padding:0 16px 4px;scrollbar-width:none}.navrow::-webkit-scrollbar{display:none}
+ .navrow button,.navrow .dd>button{white-space:nowrap;padding:7px 12px;font-size:14px}
+ .menu{display:none!important}
+ .strip{display:flex;gap:8px;padding:0 16px;align-items:stretch}.strip:not(:has(.show)){display:none}
+ .seg,.sort{position:static!important}.seg span{display:none}.seg button{padding:6px 10px;font-size:13px}
+ .strip{width:100%}.seg{flex:none}.sort{flex:1 1 0;min-width:0;width:0;overflow:hidden;padding:4px 8px}.sort select{flex:1;width:100%;min-width:0;font-size:13px;text-overflow:ellipsis}
+ main{padding:12px 16px}
+ .tabs{gap:8px!important}.tabs button{font-size:13px!important;padding:8px 10px!important;border-width:4px!important;border-radius:12px!important}
+ .tabs button.on{transform:none!important}
+ .page{padding:12px!important;min-height:0!important}
+ .grid{grid-template-columns:1fr!important}
+ .c h3{font-size:17px!important}
+}
+@media (min-width:701px) and (max-width:1024px){
+ .tabs{flex:0 0 160px!important;margin-right:22px!important}.tabs button{font-size:14px!important;padding:9px 10px!important;border-width:5px!important}
+ .grid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr))}
+}
 ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
 </head>
 <body>
 <header><h1><span>Free AI Hub</span></h1><div class="upd" id="upd"></div></header>
 <nav id="nav">
+<div class="navrow">
 <button data-t="road" class="on">Roadmap & legend</button>
 <div class="dd"><button data-t="ai">AI ▾</button><div class="menu"><button data-t="ai" data-go="free">✅ Free</button><button data-t="ai" data-go="paid">💲 Paid</button></div></div>
 <div class="dd"><button data-t="skills">Skills ▾</button><div class="menu"><button data-t="skills" data-go="free">✅ Free</button><button data-t="skills" data-go="paid">💲 Paid</button></div></div>
 <button data-t="patches">Patches</button>
 <button data-t="offers">Bonuses & services</button>
 <button data-t="contacts">Contacts</button>
+</div>
+<div class="strip">
 <div class="seg" id="seg"></div>
-<label class="sort" id="sortbox">⇅ <select id="sort"><option value="def">★ Stars, then A → Z</option><option value="top">Top rated</option><option value="most">Most voted</option><option value="az">A → Z</option><option value="za">Z → A</option></select></label>
+<label class="sort" id="sortbox">⇅ <select id="sort"><option value="def">Default (A → Z)</option><option value="za">Z → A</option><option value="stars" title="Sorted by GitHub stars">★ Most GitHub stars</option><option value="top">Top rated</option><option value="most">Most voted</option></select></label>
+</div>
 </nav>
 <main>
 <section id="offers"><div class="bar"><input placeholder="Search servers, proxies, numbers..." data-q="offers"></div><div class="book"><div class="tabs" id="t-offers"></div><div class="page" id="p-offers"><h2 id="h-offers"></h2><div class="grid" id="g-offers"></div></div></div></section>
@@ -182,10 +209,11 @@ function render(){
 let flip=false;
 function book(t,items,key,card,anim){
  const nm=o=>String(o.n).toLowerCase(),abc=(a,b)=>nm(a).localeCompare(nm(b));
- if(SORT=="az")items=[...items].sort(abc);else if(SORT=="za")items=[...items].sort((a,b)=>abc(b,a));
- else if(SORT=="def")items=[...items].sort((a,b)=>(b.stars??-1)-(a.stars??-1)||abc(a,b));
- else{const sc=o=>{const c=VC[vid(t,o)]||[0,0],n=c[0]+c[1];return SORT=="most"?n:wilson(c[0],n)};items=items.map((o,i)=>[o,i]).sort((a,b)=>sc(b[0])-sc(a[0])||a[1]-b[1]).map(x=>x[0])}
- const card0=card;card=o=>card0(o).replace(/^(<div[^>]*>)/,"$1"+(o.stars!=null?`<span class="starb">★ ${k(o.stars)}</span>`:"")).replace(/<\/div>\s*$/,vbar(t,o)+"</div>");
+ const SO=SORT[t]||"def";
+ if(SO=="def")items=[...items].sort(abc);else if(SO=="za")items=[...items].sort((a,b)=>abc(b,a));
+ else if(SO=="stars")items=[...items].sort((a,b)=>(b.stars??-1)-(a.stars??-1)||abc(a,b));
+ else{const sc=o=>{const c=VC[vid(t,o)]||[0,0],n=c[0]+c[1];return SO=="most"?n:wilson(c[0],n)};items=items.map((o,i)=>[o,i]).sort((a,b)=>sc(b[0])-sc(a[0])||a[1]-b[1]).map(x=>x[0])}
+ const card0=card;card=o=>card0(o).replace(/^(<div[^>]*>)/,"$1"+(o.stars!=null?`<span class="starb" tabindex="0" data-tip="GitHub stars: how many people bookmarked this project on GitHub. More stars = more popular and trusted.">★ ${k(o.stars)}</span>`:"")).replace(/<\/div>\s*$/,vbar(t,o)+"</div>");
  const fold=FOLD[t],cnt={};items.forEach(o=>cnt[key(o)]=(cnt[key(o)]||0)+1);
  if(F[t]!="all"&&!cnt[F[t]])F[t]="all";
  const AL={all:["All","#d6d9e0"],free:["All free","#2f8f5f"],paid:["All paid","#ffd166"]}[P[t]||"all"];
@@ -205,17 +233,18 @@ let CUR="road";
 const SB="https://ghztrdkufbgggbzwwtlf.supabase.co/rest/v1/rpc/",SK="sb_publishable_yzOV4c3b4f7f2PxkN2n9kg_v6b_qAae";
 const rpc=(f,b)=>fetch(SB+f,{method:"POST",headers:{apikey:SK,"Content-Type":"application/json"},body:JSON.stringify(b||{})});
 let VOTER;try{VOTER=localStorage.getItem("fah-voter")||crypto.randomUUID();localStorage.setItem("fah-voter",VOTER)}catch{VOTER=crypto.randomUUID()}
-const VC={},MY={};let SORT="def";
+const VC={},MY={};const SORT={ai:"def",skills:"def",patches:"def",offers:"def"};
 function vid(t,o){return (t=="ai"&&o.author?"open":t)+":"+(o.repo||o.n)}
 function wilson(up,n){if(!n)return 0;const z=1.96,p=up/n;return (p+z*z/(2*n)-z*Math.sqrt((p*(1-p)+z*z/(4*n))/n))/(1+z*z/n)}
 function vbar(t,o){const id=vid(t,o),c=VC[id]||[0,0],m=MY[id]||0;return `<div class="vote" data-id="${esc(id)}"><button class="up${m==1?" on":""}" title="Like">👍 <b>${c[0]}</b></button><button class="down${m==-1?" on":""}" title="Dislike">👎 <b>${c[1]}</b></button></div>`}
 document.addEventListener("click",async e=>{const b=e.target.closest(".vote button");if(!b)return;const box=b.parentElement,id=box.dataset.id,want=b.classList.contains("up")?1:-1,old=MY[id]||0,nv=old==want?0:want,c=VC[id]=VC[id]||[0,0];
  const apply=(from,to)=>{if(from==1)c[0]--;if(from==-1)c[1]--;if(to==1)c[0]++;if(to==-1)c[1]++;MY[id]=to;document.querySelectorAll(`.vote[data-id="${CSS.escape(id)}"]`).forEach(v=>{v.querySelector(".up").classList.toggle("on",to==1);v.querySelector(".down").classList.toggle("on",to==-1);v.querySelector(".up b").textContent=c[0];v.querySelector(".down b").textContent=c[1]})};
  apply(old,nv);try{const r=await rpc("vote",{p_item:id,p_voter:VOTER,p_v:nv});if(!r.ok)throw 0}catch{apply(nv,old)}});
-$("#sort").onchange=e=>{SORT=e.target.value;flip=true;render()};
+$("#sort").onchange=e=>{SORT[CUR]=e.target.value;flip=true;render()};
 Promise.all([rpc("vote_counts").then(r=>r.json()),rpc("my_votes",{p_voter:VOTER}).then(r=>r.json())]).then(([a,b])=>{a.forEach(x=>VC[x.item]=[+x.likes,+x.dislikes]);b.forEach(x=>MY[x.item]=x.v);render()}).catch(()=>{});
 function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d=>d.classList.toggle("cur",d.querySelector("[data-t]").dataset.t==CUR));
- $("#sortbox").classList.toggle("show",["ai","skills","patches","offers"].includes(CUR));
+ $("#sortbox").classList.toggle("show",CUR in SORT);
+ if(CUR in SORT){const sel=$("#sort");sel.querySelector('[value=stars]').hidden=!["skills","patches"].includes(CUR);sel.value=SORT[CUR]}
  if(!(CUR in P)){el.classList.remove("show");return}
  el.classList.add("show");el.innerHTML=`<span>Show:</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
 $("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};
@@ -225,7 +254,7 @@ $("#mailtxt").textContent=ML;
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
  if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v;flip=true}mark();render();b.blur()}
- document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`nav > * > [data-t="${t}"],nav > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on");CUR=t;seg()};
+ document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`.navrow > [data-t="${t}"],.navrow > .dd > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on");CUR=t;seg()};
 })();
 </script>
 </body>
