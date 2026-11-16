@@ -4,10 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free AI Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--tx:#e8eaf0;--mut:#8a92a6;--acc:#7c9cff;
 --text:#ffe08a;--dev:#8ad4ff;--image:#e85cf0;--docs:#b6f09c;--research:#c9a8ff;--data:#ffb87a;--media:#ff8a8a;--catalog:#d6d9e0;--page:#14171d}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.55 "Inter",system-ui,sans-serif}
+h1,h2,h3,nav button,.tabs button,.v{font-family:"Space Grotesk","Inter",system-ui,sans-serif!important}
+h1{font-size:26px!important;letter-spacing:-.5px;background:linear-gradient(90deg,#7c9cff,#e85cf0 55%,#ffb87a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.c h3{font-size:18px!important;letter-spacing:-.2px}
+.meta,.upd,.tag,.cnt,.st{font-family:"JetBrains Mono",ui-monospace,monospace}
 header{padding:20px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 h1{margin:0;font-size:22px}.upd{color:var(--mut);font-size:13px}
 nav{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
@@ -23,7 +29,16 @@ main{max-width:1200px;margin:0 auto;padding:16px}
 .tags{display:flex;flex-wrap:wrap;gap:4px}.tag{font-size:11px;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
 .st{font-size:11px;font-weight:700}.st.ok{color:#6ee7a0}.st.part{color:#ffd166}.st.off{color:#ff6b6b}
 .skill{color:#111;border:none}.skill .d{color:#333}.skill a{color:#111}.skill .upd{color:#333}
-a{color:var(--acc)}h2{font-size:18px;margin:22px 0 10px}
+a{color:#8fb0ff;text-decoration-color:#8fb0ff66;text-underline-offset:3px}a:hover{color:#c3d3ff}
+.go{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;margin-top:4px;padding:7px 14px;border-radius:99px;background:linear-gradient(90deg,#7c9cff,#a98bff);color:#0b0d12!important;font:700 13px "Space Grotesk",sans-serif;text-decoration:none;box-shadow:0 0 0 1px #ffffff22,0 4px 14px #7c9cff44;transition:transform .15s,box-shadow .15s}
+.go:hover{transform:translateY(-1px);box-shadow:0 0 0 1px #fff6,0 6px 20px #a98bff88}
+.go.alt{background:linear-gradient(90deg,#ffb87a,#ff8a8a)}
+.skill .go{background:#111;color:#fff!important;box-shadow:0 3px 10px #0004}
+.i-star{color:#ffd166}.i-dl{color:#5ee3ff}.i-like{color:#ff6fae}.i-ok{color:#6ee7a0}.i-warn{color:#ffa94d}.i-lic{color:#c9a8ff}
+.skill .i-star,.skill .i-ok,.skill .i-warn{color:#111}
+.fw{color:#6ee7a0}.pw{color:#ffd166}.skill .fw,.skill .pw{color:#111}
+.cost{border-top:2px solid var(--pc,var(--line))!important}.c.skill .cost{border-top:2px solid #0003!important}
+.c{transition:transform .15s,box-shadow .15s}.c:hover{transform:translateY(-2px);box-shadow:0 8px 24px #0006}h2{font-size:18px;margin:22px 0 10px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
 nav{padding-bottom:58px}nav:hover .dd:not(:hover) .menu{display:none}.dd{position:relative}.menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:8px;gap:4px;white-space:nowrap}.dd:hover .menu{display:flex}
 .menu button{padding:8px 10px}.menu button.sel{background:#6ee7a0;color:#000;border-color:#6ee7a0}.menu button.sel[data-go=paid]{background:#ffd166;border-color:#ffd166}
@@ -34,7 +49,7 @@ nav{padding-bottom:58px}nav:hover .dd:not(:hover) .menu{display:none}.dd{positio
 .warn{background:#2a2410;border:1px solid #ffd166;border-radius:12px;padding:14px;margin-top:12px}.warn p{margin:8px 0 0}
 .book{display:flex;align-items:flex-start}
 .tabs{display:flex;flex-direction:column;gap:16px;padding-top:14px;flex:0 0 190px;margin-right:28px}
-.tabs button{display:flex;justify-content:space-between;align-items:center;gap:6px;border:6px solid color-mix(in srgb,var(--c) 70%,#fff);border-radius:16px;padding:11px 12px;background:color-mix(in srgb,var(--c) 26%,#0d0f14)!important;text-shadow:0 1px 2px #000;box-shadow:-3px 0 0 #000,3px 0 0 #000;transform-origin:left center;cursor:pointer;font:700 15px/1.25 system-ui,sans-serif;color:#fff;letter-spacing:.2px;text-align:left;transition:transform .2s,box-shadow .2s,filter .2s}
+.tabs button{display:flex;justify-content:space-between;align-items:center;gap:6px;border:6px solid color-mix(in srgb,var(--c) 70%,#fff);border-radius:16px;padding:11px 12px;background:color-mix(in srgb,var(--c) 26%,#0d0f14)!important;text-shadow:0 1px 2px #000;box-shadow:-3px 0 0 #000,3px 0 0 #000;transform-origin:left center;cursor:pointer;font:700 15px/1.25 "Space Grotesk",system-ui,sans-serif;color:#fff;letter-spacing:.2px;text-align:left;transition:transform .2s,box-shadow .2s,filter .2s}
 .tabs button:hover{filter:brightness(1.1)}
 .tabs button.on{transform:scale(1.06);border-color:var(--c);box-shadow:-3px 0 0 #000,3px 0 0 #000,0 0 8px 1px color-mix(in srgb,var(--c) 70%,transparent);z-index:1;position:relative}
 .tabs .cnt{font-size:13px;background:#0005;border-radius:99px;padding:1px 7px}
@@ -109,14 +124,14 @@ const lg=o=>Object.values(o).map(([n,c])=>`<div><span class="sw" style="backgrou
 $("#legend").innerHTML=lg(FOLD.skills);$("#legend-p").innerHTML=lg(PF);
 const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
 const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
-const cost=o=>`<div class="cost"><div>✅ <b>Free with:</b> ${esc(o.free)}</div><div>💲 <b>Paid with:</b> ${esc(o.paid)}</div></div>`;
-const chk=o=>o.checked?`<div class="upd">${o.alive===false?"⚠ Link may be dead":"✓ Link checked"} ${esc(o.checked)}</div>`:"";
+const cost=o=>`<div class="cost"><div>✅ <b class="fw">Free with:</b> ${esc(o.free)}</div><div>💲 <b class="pw">Paid with:</b> ${esc(o.paid)}</div></div>`;
+const chk=o=>o.checked?`<div class="upd">${o.alive===false?'<span class="i-warn">⚠</span> Link may be dead':'<span class="i-ok">✓</span> Link checked'} ${esc(o.checked)}</div>`:"";
 const k=n=>n>=1000?(n/1000).toFixed(n>=1e5?0:1)+"k":n;
-const meta=o=>o.stars!=null?`<div class="meta">★ ${k(o.stars)} · updated ${esc(o.pushed)}${o.archived?" · ⚠ archived":""}</div>`:"";
-const link=(o,l)=>o.url?`<a href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
+const meta=o=>o.stars!=null?`<div class="meta"><span class="i-star">★ ${k(o.stars)}</span> · updated ${esc(o.pushed)}${o.archived?' · <span class="i-warn">⚠ archived</span>':""}</div>`:"";
+const link=(o,l)=>o.url?`<a class="go" href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a class="go alt" href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
 const OPENLIC=["apache-2.0","mit"];
 const openCard=o=>`<div class="c pc" style="--pc:#ffb87a"><span class="st ok">● Open weights · Install yourself</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.model||"")}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}
-<div class="meta">⬇ ${k(o.downloads||0)}/month · ♥ ${k(o.likes||0)} · updated ${esc(o.modified||"")}</div><div class="meta">License: <b>${esc(o.license||"unknown")}</b></div>
+<div class="meta"><span class="i-dl">⬇ ${k(o.downloads||0)}</span>/month · <span class="i-like">♥ ${k(o.likes||0)}</span> · updated ${esc(o.modified||"")}</div><div class="meta">License: <b class="i-lic">${esc(o.license||"unknown")}</b></div>
 ${cost({free:"Download and run it on your own computer (Ollama, llama.cpp, LM Studio, ComfyUI), fine-tune it and build on it",paid:"Only your hardware or a rented GPU. "+(OPENLIC.includes(o.license)?`${o.license} license allows commercial use and changes`:"Custom license - check its limits before commercial use")})}${link(o,"Hugging Face")}</div>`;
 function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
