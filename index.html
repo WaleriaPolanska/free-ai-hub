@@ -157,7 +157,8 @@ let flip=false;
 function book(t,items,key,card,anim){
  const fold=FOLD[t],cnt={};items.forEach(o=>cnt[key(o)]=(cnt[key(o)]||0)+1);
  if(F[t]!="all"&&!cnt[F[t]])F[t]="all";
- const tabs=[["all","All","#d6d9e0",items.length],...Object.entries(fold).filter(([f])=>cnt[f]).map(([f,[n,c]])=>[f,n,c,cnt[f]])];
+ const AL={all:["All","#d6d9e0"],free:["All free","#2f8f5f"],paid:["All paid","#ffd166"]}[P[t]||"all"];
+ const tabs=[["all",AL[0],AL[1],items.length],...Object.entries(fold).filter(([f])=>cnt[f]).map(([f,[n,c]])=>[f,n,c,cnt[f]])];
  $("#t-"+t).innerHTML=tabs.map(([f,n,c,x])=>`<button data-f="${f}" class="${F[t]==f?"on":""}" style="background:${c};--c:${c}"><span>${n}</span><span class="cnt">${x}</span></button>`).join("");
  const cur=tabs.find(x=>x[0]==F[t]),pg=$("#p-"+t);
  pg.style.setProperty("--pc",cur[2]);$("#h-"+t).innerHTML=`<span class="sw" style="background:${cur[2]}"></span>${cur[1]} <span class="upd">${cur[3]} items</span>`;
