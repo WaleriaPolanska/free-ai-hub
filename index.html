@@ -47,6 +47,7 @@ a{color:#8fb0ff;text-decoration-color:#8fb0ff66;text-underline-offset:3px}a:hove
 nav{padding-bottom:58px}
 .sort{position:absolute;right:16px;bottom:10px;display:none;align-items:center;gap:6px;padding:4px 8px;border:2px solid var(--line);border-radius:10px;background:var(--card);font:600 13px "JetBrains Mono",monospace;color:var(--mut)}.sort.show{display:flex}
 .sort select{background:transparent;color:var(--tx);border:none;font:600 13px "Space Grotesk",sans-serif;cursor:pointer}.sort option{background:var(--card)}
+.c{position:relative}.starb{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:99px;background:#ffd16622;border:1px solid #ffd16688;color:#ffd166;font:700 13px "JetBrains Mono",monospace;box-shadow:0 0 10px #ffd16633}
 .vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
 .vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
 @media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
@@ -91,7 +92,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <button data-t="offers">Bonuses & services</button>
 <button data-t="contacts">Contacts</button>
 <div class="seg" id="seg"></div>
-<label class="sort" id="sortbox">⇅ <select id="sort"><option value="def">Default order</option><option value="top">Top rated</option><option value="most">Most voted</option></select></label>
+<label class="sort" id="sortbox">⇅ <select id="sort"><option value="def">★ Stars, then A → Z</option><option value="top">Top rated</option><option value="most">Most voted</option><option value="az">A → Z</option><option value="za">Z → A</option></select></label>
 </nav>
 <main>
 <section id="offers"><div class="bar"><input placeholder="Search servers, proxies, numbers..." data-q="offers"></div><div class="book"><div class="tabs" id="t-offers"></div><div class="page" id="p-offers"><h2 id="h-offers"></h2><div class="grid" id="g-offers"></div></div></div></section>
@@ -163,7 +164,7 @@ const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
 const cost=o=>`<div class="cost"><div>✅ <b class="fw">Free with:</b> ${esc(o.free)}</div><div>💲 <b class="pw">Paid with:</b> ${esc(o.paid)}</div></div>`;
 const chk=o=>o.checked?`<div class="upd">${o.alive===false?'<span class="i-warn">⚠</span> Link may be dead':'<span class="i-ok">✓</span> Link checked'} ${esc(o.checked)}</div>`:"";
 const k=n=>n>=1000?(n/1000).toFixed(n>=1e5?0:1)+"k":n;
-const meta=o=>o.stars!=null?`<div class="meta"><span class="i-star">★ ${k(o.stars)}</span> · updated ${esc(o.pushed)}${o.archived?' · <span class="i-warn">⚠ archived</span>':""}</div>`:"";
+const meta=o=>o.stars!=null?`<div class="meta">updated ${esc(o.pushed)}${o.archived?' · <span class="i-warn">⚠ archived</span>':""}</div>`:"";
 const link=(o,l)=>o.url?`<a class="go" href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a class="go alt" href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
 const OPENLIC=["apache-2.0","mit"];
 const openCard=o=>`<div class="c pc" style="--pc:#ffb87a"><span class="st ok">● Open weights · Install yourself</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.model||"")}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}
@@ -180,8 +181,11 @@ function render(){
 }
 let flip=false;
 function book(t,items,key,card,anim){
- if(SORT!="def"){const sc=o=>{const c=VC[vid(t,o)]||[0,0],n=c[0]+c[1];return SORT=="most"?n:wilson(c[0],n)};items=items.map((o,i)=>[o,i]).sort((a,b)=>sc(b[0])-sc(a[0])||a[1]-b[1]).map(x=>x[0])}
- const card0=card;card=o=>card0(o).replace(/<\/div>\s*$/,vbar(t,o)+"</div>");
+ const nm=o=>String(o.n).toLowerCase(),abc=(a,b)=>nm(a).localeCompare(nm(b));
+ if(SORT=="az")items=[...items].sort(abc);else if(SORT=="za")items=[...items].sort((a,b)=>abc(b,a));
+ else if(SORT=="def")items=[...items].sort((a,b)=>(b.stars??-1)-(a.stars??-1)||abc(a,b));
+ else{const sc=o=>{const c=VC[vid(t,o)]||[0,0],n=c[0]+c[1];return SORT=="most"?n:wilson(c[0],n)};items=items.map((o,i)=>[o,i]).sort((a,b)=>sc(b[0])-sc(a[0])||a[1]-b[1]).map(x=>x[0])}
+ const card0=card;card=o=>card0(o).replace(/^(<div[^>]*>)/,"$1"+(o.stars!=null?`<span class="starb">★ ${k(o.stars)}</span>`:"")).replace(/<\/div>\s*$/,vbar(t,o)+"</div>");
  const fold=FOLD[t],cnt={};items.forEach(o=>cnt[key(o)]=(cnt[key(o)]||0)+1);
  if(F[t]!="all"&&!cnt[F[t]])F[t]="all";
  const AL={all:["All","#d6d9e0"],free:["All free","#2f8f5f"],paid:["All paid","#ffd166"]}[P[t]||"all"];
