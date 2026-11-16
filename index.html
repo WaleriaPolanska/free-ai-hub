@@ -6,7 +6,7 @@
 <title>Free AI Hub</title>
 <style>
 :root{--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--tx:#e8eaf0;--mut:#8a92a6;--acc:#7c9cff;
---text:#ffe08a;--dev:#8ad4ff;--image:#ff9ad5;--docs:#b6f09c;--research:#c9a8ff;--data:#ffb87a;--media:#ff8a8a;--catalog:#d6d9e0;--page:#14171d}
+--text:#ffe08a;--dev:#8ad4ff;--image:#e85cf0;--docs:#b6f09c;--research:#c9a8ff;--data:#ffb87a;--media:#ff8a8a;--catalog:#d6d9e0;--page:#14171d}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,sans-serif}
 header{padding:20px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 h1{margin:0;font-size:22px}.upd{color:var(--mut);font-size:13px}
@@ -92,7 +92,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 (async()=>{
 const D=await (await fetch("data.json",{cache:"no-cache"})).json(),$=s=>document.querySelector(s);
 const G={catalog:"Catalogs / mixed",text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
-const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#b6f09c"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#ff9ad5"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#7ee0c3"]};
+const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#b6f09c"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#e85cf0"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#7ee0c3"]};
 const FOLD={skills:Object.fromEntries(Object.entries(G).map(([k,v])=>[k,[v,`var(--${k})`]])),patches:PF};
 const AF={free:{forever:["Free forever","#6ee7a0"],trial:["Credits / trial","#8ad4ff"],local:["Install yourself","#ffb87a"]},paid:{paid:["Nearly free","#ffd166"]}};
 AF.all={...AF.free,...AF.paid};
