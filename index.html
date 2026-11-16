@@ -50,6 +50,7 @@ nav{padding-bottom:58px}
 .c{position:relative}.starb{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:99px;background:#ffd16622;border:1px solid #ffd16688;color:#ffd166;font:700 13px "JetBrains Mono",monospace;box-shadow:0 0 10px #ffd16633}
 .starb{cursor:help;z-index:2}.starb::after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;width:220px;padding:9px 11px;border-radius:10px;background:#1d212b;border:1px solid #ffd16688;color:var(--tx);font:500 12px/1.4 "Inter",sans-serif;box-shadow:0 8px 24px #000a;opacity:0;pointer-events:none;transform:translateY(-4px);transition:opacity .15s,transform .15s;white-space:normal;text-align:left}
 .starb:hover::after,.starb:focus::after{opacity:1;transform:none}
+.usd{display:inline-block;width:1.1em;text-align:center;font:800 15px "Space Grotesk",sans-serif;color:#ffd34d;text-shadow:0 0 4px #ffcc33,0 0 10px #ffb30099,0 0 16px #ffb30066}
 .vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
 .vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
 @media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
@@ -188,7 +189,7 @@ const lg=o=>Object.values(o).map(([n,c])=>`<div><span class="sw" style="backgrou
 $("#legend").innerHTML=lg(FOLD.skills);$("#legend-p").innerHTML=lg(PF);
 const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
 const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
-const cost=o=>`<div class="cost"><div>✅ <b class="fw">Free with:</b> ${esc(o.free)}</div><div>💲 <b class="pw">Paid with:</b> ${esc(o.paid)}</div></div>`;
+const cost=o=>`<div class="cost"><div>✅ <b class="fw">Free with:</b> ${esc(o.free)}</div><div><span class="usd">$</span> <b class="pw">Paid with:</b> ${esc(o.paid)}</div></div>`;
 const chk=o=>o.checked?`<div class="upd">${o.alive===false?'<span class="i-warn">⚠</span> Link may be dead':'<span class="i-ok">✓</span> Link checked'} ${esc(o.checked)}</div>`:"";
 const k=n=>n>=1000?(n/1000).toFixed(n>=1e5?0:1)+"k":n;
 const meta=o=>o.stars!=null?`<div class="meta">updated ${esc(o.pushed)}${o.archived?' · <span class="i-warn">⚠ archived</span>':""}</div>`:"";
