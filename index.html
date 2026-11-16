@@ -27,11 +27,11 @@ a{color:var(--acc)}h2{font-size:18px;margin:22px 0 10px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
 .dd{display:flex;gap:4px}.menu{display:none;gap:4px}.dd:hover .menu,.dd:focus-within .menu{display:flex}
 .menu button{padding:8px 10px}.menu button.sel{background:#6ee7a0;color:#000;border-color:#6ee7a0}.menu button.sel[data-go=paid]{background:#ffd166;border-color:#ffd166}
-.info,.cost{background:none;border:none;color:var(--acc);cursor:pointer;font:inherit;padding:0;text-align:left;text-decoration:underline dotted}
-.info{margin-bottom:12px;display:block}.cost{font-size:13px}
+.tog{display:flex;align-items:center;cursor:pointer;user-select:none}.tog input{display:none}
+.tog span{display:flex;align-items:center;height:100%;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);white-space:nowrap}
+.tog input:checked+span{background:#6ee7a0;color:#000;border-color:#6ee7a0}.hint{margin:-6px 0 12px}
+.cost{font-size:12px;display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--line);padding-top:6px;margin-top:2px}.skill .cost{border-color:#0002}
 .warn{background:#2a2410;border:1px solid #ffd166;border-radius:12px;padding:14px;margin-top:12px}.warn p{margin:8px 0 0}
-dialog{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:12px;max-width:520px;width:calc(100% - 32px)}
-dialog::backdrop{background:#000a}dialog h3{margin-top:0}dialog button{background:var(--acc);border:none;border-radius:8px;padding:8px 16px;cursor:pointer;font:inherit}
 ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
 </head>
@@ -46,13 +46,14 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </nav>
 <main>
 <section id="offers"><div class="bar"><input placeholder="Search" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
-<section id="ai"><button class="info" data-i="ai">ⓘ Free or paid? What exactly costs money →</button><div class="bar"><input placeholder="Search" data-q="ai"><label class="upd"><input type="checkbox" id="nocard"> no card</label></div><div class="grid" id="g-ai"></div></section>
-<section id="skills"><button class="info" data-i="skills">ⓘ Free or paid? What exactly costs money →</button><div class="bar"><input placeholder="Search" data-q="skills"></div><div class="grid" id="g-skills"></div></section>
-<section id="patches"><button class="info" data-i="patches">ⓘ Free or paid? What exactly costs money →</button><div class="bar"><input placeholder="Search" data-q="patches"></div><div class="grid" id="g-patches"></div></section>
+<section id="ai"><div class="bar"><input placeholder="Search" data-q="ai"><label class="tog" title="Show only services you can sign up for without entering a bank card"><input type="checkbox" id="nocard"><span>💳 No card needed</span></label></div>
+<p class="upd hint">"No card needed" hides services that ask for a bank card at signup, even when they are free.</p><div class="grid" id="g-ai"></div></section>
+<section id="skills"><div class="bar"><input placeholder="Search" data-q="skills"></div><div class="grid" id="g-skills"></div></section>
+<section id="patches"><div class="bar"><input placeholder="Search" data-q="patches"></div><div class="grid" id="g-patches"></div></section>
 <section id="road" class="on">
 <div class="warn"><b>⚠ Before you start - "free" has two layers</b>
 <p>1. <b>The tool</b> (patch, skill, extension) - free and open source.<br>2. <b>The AI model behind it</b> - this is what can cost money. A free tool connected to a paid API (Claude, GPT, Gemini) is billed by that provider per token.</p>
-<p>Fully free = free tool + a model from <b>AI → Free</b> (Groq, OpenCode, OrcaRouter, MoonMath...) or a local model via Ollama. Every patch card has a <b>"When is it free?"</b> line with the exact details.</p></div>
+<p>Fully free = free tool + a model from <b>AI → Free</b> (Groq, OpenCode, OrcaRouter, MoonMath...) or a local model via Ollama. Every patch and skill card says which AIs make it free and which make it paid.</p></div>
 <h2>Skill color legend</h2><div id="legend"></div>
 <h2>Statuses</h2>
 <p><span class="st ok">● Active</span> - working &nbsp; <span class="st part">● Partial</span> - has limits &nbsp; <span class="st off">● Inactive</span> - not available now</p>
@@ -70,8 +71,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
-<dialog id="dlg"><div id="dlg-b"></div><button onclick="dlg.close()">Close</button></dialog>
-<script src="data.js?v=4"></script>
+<script src="data.js?v=5"></script>
 <script>
 const D=window.DATA,$=s=>document.querySelector(s);
 const G={text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
@@ -85,26 +85,19 @@ document.querySelector('[data-f="offers"]').innerHTML='<option value="">All</opt
 $("#legend").innerHTML=Object.entries(G).map(([k,v])=>`<div><span class="sw" style="background:var(--${k})"></span>${v}</div>`).join("");
 const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
 const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
+const cost=o=>`<div class="cost"><div>✅ <b>Free with:</b> ${esc(o.free)}</div><div>💲 <b>Paid with:</b> ${esc(o.paid)}</div></div>`;
 function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
  $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}</div>`).join("");
  const nc=$("#nocard").checked;
  $("#g-ai").innerHTML=D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}</div>`).join("");
- $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div><button class="cost" data-c="${D.patches.indexOf(o)}">💲 When is it free? →</button><a href="${esc(o.url)}" target="_blank">GitHub →</a></div>`).join("");
- $("#g-skills").innerHTML=D.skills.filter(o=>o.p==P.skills&&m(o,"skills")).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">Open →</a></div>`).join("");
+ $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div>${cost(o)}<a href="${esc(o.url)}" target="_blank">GitHub →</a></div>`).join("");
+ $("#g-skills").innerHTML=D.skills.filter(o=>o.p==P.skills&&m(o,"skills")).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${cost(o)}<a href="${esc(o.url)}" target="_blank">Open →</a></div>`).join("");
 }
 const P={ai:"free",skills:"free"};
 const LB={ai:"AI",skills:"Skills"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} · ${P[t]=="free"?"Free":"Paid"} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
-const INFO={
-ai:"<h3>AI - free or paid</h3><p><b>Free</b> - free forever tiers, daily limits and free credits/trials. You pay nothing, but trials end and some need a card on signup.</p><p><b>Paid</b> - costs real money, but very little.</p><p>Tick <b>no card</b> to see services that need no payment details at all.</p>",
-skills:"<h3>Skills - free or paid</h3><p><b>Free</b> - open-source skills from GitHub. The skill costs nothing, but it runs inside an AI tool: free if that tool uses a free model, paid if it uses a paid plan (e.g. Claude Pro).</p><p><b>Paid</b> - available only in a paid subscription.</p>",
-patches:"<h3>Patches - free or paid</h3><p>All patches are free and open source. You pay only for the AI model you connect to them.</p><p>Click <b>When is it free?</b> on any card to see which AIs make it fully free and when it costs money.</p>"};
-function show(h){$("#dlg-b").innerHTML=h;$("#dlg").showModal()}
-document.addEventListener("click",e=>{const i=e.target.closest(".info"),c=e.target.closest(".cost");
- if(i)show(INFO[i.dataset.i]);
- if(c){const o=D.patches[c.dataset.c];show(`<h3>${esc(o.n)}</h3><p><b>✅ Free with:</b> ${esc(o.free)}</p><p><b>💲 Paid when:</b> ${esc(o.paid)}</p>`)}});
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
  if(b.dataset.go){P[t]=b.dataset.go;mark();render();b.blur()}
