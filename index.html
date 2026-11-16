@@ -33,10 +33,10 @@ nav{padding-bottom:58px}nav:hover .dd:not(:hover) .menu{display:none}.dd{positio
 .cost{font-size:12px;display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--line);padding-top:6px;margin-top:2px}.skill .cost{border-color:#0002}
 .warn{background:#2a2410;border:1px solid #ffd166;border-radius:12px;padding:14px;margin-top:12px}.warn p{margin:8px 0 0}
 .book{display:flex;align-items:flex-start}
-.tabs{display:flex;flex-direction:column;gap:5px;padding-top:14px;flex:0 0 170px;margin-right:12px}
-.tabs button{display:flex;justify-content:space-between;align-items:center;gap:6px;border:none;border-radius:0;padding:10px 12px;cursor:pointer;font:600 13px/1.2 system-ui,sans-serif;color:#111;text-align:left;transition:filter .2s}
+.tabs{display:flex;flex-direction:column;gap:5px;padding-top:14px;flex:0 0 170px;margin-right:22px}
+.tabs button{display:flex;justify-content:space-between;align-items:center;gap:6px;border:2px solid #ffffffd9;border-radius:8px;padding:9px 11px;transform-origin:left center;cursor:pointer;font:600 13px/1.2 system-ui,sans-serif;color:#111;text-align:left;transition:transform .2s,box-shadow .2s,filter .2s}
 .tabs button:hover{filter:brightness(1.1)}
-.tabs button.on{opacity:1;box-shadow:inset 4px 0 0 #000a}
+.tabs button.on{transform:scale(1.06);border-color:#fff;box-shadow:0 0 10px 2px var(--c),0 0 26px 6px var(--c);z-index:1;position:relative}
 .tabs .cnt{font-size:11px;background:#0002;border-radius:99px;padding:1px 7px}
 .page{flex:1;min-width:0;background:var(--page);border:1px solid var(--line);border-left:6px solid var(--pc,#d6d9e0);border-radius:0 12px 12px 12px;padding:16px;min-height:420px;transform-origin:left center;box-shadow:6px 6px 0 #0005}
 .page h2{margin:0 0 12px;display:flex;align-items:center;gap:8px}
@@ -45,7 +45,7 @@ nav{padding-bottom:58px}nav:hover .dd:not(:hover) .menu{display:none}.dd{positio
 @media (prefers-reduced-motion:reduce){.page.flip{animation:none}}
 .pc{border-left:4px solid var(--pc)}.meta{font-size:12px;color:var(--mut)}.skill .meta{color:#333}
 @media (max-width:700px){.book{flex-direction:column}.tabs{flex-direction:row;flex:none;overflow-x:auto;padding:0;width:100%;margin:0 0 10px}
-.tabs button{margin:0;white-space:nowrap}.tabs button.on{box-shadow:inset 0 -4px 0 #000a}
+.tabs button{margin:0;white-space:nowrap;transform-origin:center bottom}
 .page{border-left:1px solid var(--line);border-top:6px solid var(--pc,#d6d9e0);border-radius:0 0 12px 12px;width:100%}}
 ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
@@ -133,7 +133,7 @@ function book(t,items,key,card,anim){
  const fold=FOLD[t],cnt={};items.forEach(o=>cnt[key(o)]=(cnt[key(o)]||0)+1);
  if(F[t]!="all"&&!cnt[F[t]])F[t]="all";
  const tabs=[["all","All","#d6d9e0",items.length],...Object.entries(fold).filter(([f])=>cnt[f]).map(([f,[n,c]])=>[f,n,c,cnt[f]])];
- $("#t-"+t).innerHTML=tabs.map(([f,n,c,x])=>`<button data-f="${f}" class="${F[t]==f?"on":""}" style="background:${c}"><span>${n}</span><span class="cnt">${x}</span></button>`).join("");
+ $("#t-"+t).innerHTML=tabs.map(([f,n,c,x])=>`<button data-f="${f}" class="${F[t]==f?"on":""}" style="background:${c};--c:${c}"><span>${n}</span><span class="cnt">${x}</span></button>`).join("");
  const cur=tabs.find(x=>x[0]==F[t]),pg=$("#p-"+t);
  pg.style.setProperty("--pc",cur[2]);$("#h-"+t).innerHTML=`<span class="sw" style="background:${cur[2]}"></span>${cur[1]} <span class="upd">${cur[3]} items</span>`;
  $("#g-"+t).innerHTML=items.filter(o=>F[t]=="all"||key(o)==F[t]).map(card).join("")||'<p class="upd">Nothing found.</p>';
