@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free AI Hub</title>
+<style>
+:root{--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--tx:#e8eaf0;--mut:#8a92a6;--acc:#7c9cff;
+--text:#ffe08a;--dev:#8ad4ff;--image:#ff9ad5;--docs:#b6f09c;--research:#c9a8ff;--data:#ffb87a;--media:#ff8a8a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,sans-serif}
+header{padding:20px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+h1{margin:0;font-size:22px}.upd{color:var(--mut);font-size:13px}
+nav{display:flex;gap:6px;flex-wrap:wrap;padding:12px 16px;border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:2}
+nav button{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px 14px;cursor:pointer;font:inherit}
+nav button.on{background:var(--acc);color:#000;border-color:var(--acc)}
+main{max-width:1200px;margin:0 auto;padding:16px}
+.bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.bar input,.bar select{background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px 10px;font:inherit}
+.bar input{flex:1;min-width:180px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.c{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.c h3{margin:0;font-size:16px}.v{font-weight:700;color:var(--acc)}.d{color:var(--mut);font-size:13px}
+.tags{display:flex;flex-wrap:wrap;gap:4px}.tag{font-size:11px;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
+.st{font-size:11px;font-weight:700}.st.ok{color:#6ee7a0}.st.part{color:#ffd166}.st.off{color:#ff6b6b}
+.skill{color:#111;border:none}.skill .d{color:#333}.skill a{color:#111}
+a{color:var(--acc)}h2{font-size:18px;margin:22px 0 10px}
+.sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
+ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
+</style>
+</head>
+<body>
+<header><h1>Free AI Hub</h1><div class="upd" id="upd"></div></header>
+<nav id="nav">
+<button data-t="offers">Офферы</button>
+<button data-t="ai" class="on">ИИ</button>
+<button data-t="patches">Патчи</button>
+<button data-t="sfree">Скилы - бесплатные</button>
+<button data-t="spaid">Скилы - платные</button>
+<button data-t="road">Роудмап и легенда</button>
+</nav>
+<main>
+<section id="offers"><div class="bar"><input placeholder="Поиск" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
+<section id="ai" class="on"><div class="bar"><input placeholder="Поиск" data-q="ai"><select data-f="ai">
+<option value="">Все</option><option value="free">Бесплатно навсегда</option><option value="trial">Кредиты / триал</option><option value="paid">Почти даром</option></select>
+<label class="upd"><input type="checkbox" id="nocard"> без карты</label></div><div class="grid" id="g-ai"></div></section>
+<section id="patches"><div class="bar"><input placeholder="Поиск" data-q="patches"></div><div class="grid" id="g-patches"></div></section>
+<section id="sfree"><div class="bar"><input placeholder="Поиск" data-q="sfree"></div><div class="grid" id="g-sfree"></div></section>
+<section id="spaid"><div class="bar"><input placeholder="Поиск" data-q="spaid"></div><div class="grid" id="g-spaid"></div></section>
+<section id="road">
+<h2>Легенда цветов скилов</h2><div id="legend"></div>
+<h2>Статусы</h2>
+<p><span class="st ok">● Активно</span> - работает &nbsp; <span class="st part">● Частично</span> - есть ограничения &nbsp; <span class="st off">● Неактивно</span> - сейчас не выдают</p>
+<h2>Типы ИИ-предложений</h2>
+<ul><li><b>Бесплатно навсегда</b> - постоянный free tier или дневной лимит</li><li><b>Кредиты / триал</b> - разовый или ежемесячный баланс</li><li><b>Почти даром</b> - платно, но копейки</li></ul>
+<h2>Как пользоваться сайтом</h2>
+<ol>
+<li><b>ИИ</b> - начни с "Бесплатно навсегда" и галочки "без карты"</li>
+<li><b>Патчи</b> - подключи бесплатные модели к своему инструменту (claude-code-router, LiteLLM)</li>
+<li><b>Скилы</b> - выбери по цвету направления, бесплатные отдельно от платных</li>
+<li><b>Офферы</b> - облака, VPS, прокси, поиск для агентов</li>
+</ol>
+<h2>Роудмап</h2>
+<ol><li>✅ Вкладки ИИ, патчи, скилы, офферы</li><li>✅ Автообновление данных раз в 3 дня</li><li>⏳ Отметка "новое" для свежих офферов</li><li>⏳ История изменений</li></ol>
+<p class="upd">Источник офферов - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
+</section>
+</main>
+<script src="data.js"></script>
+<script>
+const D=window.DATA,$=s=>document.querySelector(s);
+const G={text:"Текст / письмо",dev:"Код / разработка",image:"Картинки / дизайн",docs:"Документы",research:"Исследование / поиск",data:"Данные / таблицы",media:"Видео / звук"};
+const SN={ok:"Активно",part:"Частично",off:"Неактивно"},TN={free:"Бесплатно навсегда",trial:"Кредиты / триал",paid:"Почти даром"};
+const fresh=(Date.now()-new Date(D.updated))/864e5;
+$("#upd").textContent="Обновлено "+D.updated+(fresh>4?" (данные устарели)":"");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tags=a=>a&&a.length?`<div class="tags">${a.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:"";
+const cats=[...new Set(D.offers.map(o=>o.cat))];
+document.querySelector('[data-f="offers"]').innerHTML='<option value="">Все</option>'+cats.map(c=>`<option>${c}</option>`).join("");
+$("#legend").innerHTML=Object.entries(G).map(([k,v])=>`<div><span class="sw" style="background:var(--${k})"></span>${v}</div>`).join("");
+const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
+const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
+function render(){
+ const fo=document.querySelector('[data-f="offers"]').value;
+ $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}</div>`).join("");
+ const fa=document.querySelector('[data-f="ai"]').value,nc=$("#nocard").checked;
+ $("#g-ai").innerHTML=D.ai.filter(o=>(!fa||o.t==fa)&&(!nc||!o.req.includes("Карта"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Нужно: ${esc(o.req.join(", "))}</div>`:`<div class="d">Ничего не нужно</div>`}</div>`).join("");
+ $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">GitHub →</a></div>`).join("");
+ const sk=(p,t)=>D.skills.filter(o=>o.p==p&&m(o,t)).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">Открыть →</a></div>`).join("");
+ $("#g-sfree").innerHTML=sk("free","sfree");$("#g-spaid").innerHTML=sk("paid","spaid");
+}
+document.addEventListener("input",render);render();
+$("#nav").onclick=e=>{const t=e.target.dataset.t;if(!t)return;
+ document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));e.target.classList.add("on");$("#"+t).classList.add("on")};
+</script>
+</body>
+</html>
