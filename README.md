@@ -10,11 +10,13 @@ A catalog of free and nearly free AI services, open-source patches and AI skills
 - **Skills** - one tab with Free and Paid sub-tabs, color-coded by purpose (text, code, images, docs, research, data, media).
 - **Patches** - free open-source tools from GitHub that connect free models to Claude Code, VS Code and the terminal.
 - **Cloud & tools** - non-AI deals: cloud and VPS credits, proxies, SMS numbers, search APIs for agents.
-- **Auto-refresh** - a scheduled AI agent re-checks the sources every 3 days and rewrites `data.js`.
+- **Auto-refresh** - a GitHub Actions workflow runs every 3 days, re-checks every link and stamps each card with its check date. Dead links are flagged on the site.
 
 ## Tech
 - Vanilla HTML, CSS and JS, with no build step and no dependencies.
-- Data is kept apart from the UI: `data.js` holds it, `index.html` renders it.
+- Data is kept apart from the UI: `data.json` holds it, `index.html` fetches and renders it.
+- `scripts/check_links.py` - concurrent link checker on the Python standard library. It tells bot protection (403/429) apart from pages that are really gone (404/410, DNS errors).
+- `.github/workflows/refresh.yml` - scheduled CI job that commits refreshed data back to the repo.
 - Search, filters and a responsive grid that works at phone width.
 - XSS-safe rendering, because every value is escaped.
 

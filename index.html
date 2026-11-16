@@ -22,10 +22,10 @@ main{max-width:1200px;margin:0 auto;padding:16px}
 .c h3{margin:0;font-size:16px}.v{font-weight:700;color:var(--acc)}.d{color:var(--mut);font-size:13px}
 .tags{display:flex;flex-wrap:wrap;gap:4px}.tag{font-size:11px;padding:2px 7px;border-radius:99px;border:1px solid var(--line);color:var(--mut)}
 .st{font-size:11px;font-weight:700}.st.ok{color:#6ee7a0}.st.part{color:#ffd166}.st.off{color:#ff6b6b}
-.skill{color:#111;border:none}.skill .d{color:#333}.skill a{color:#111}
+.skill{color:#111;border:none}.skill .d{color:#333}.skill a{color:#111}.skill .upd{color:#333}
 a{color:var(--acc)}h2{font-size:18px;margin:22px 0 10px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
-nav{align-items:flex-start}.dd{display:flex;flex-direction:column;gap:4px}.menu{display:none;flex-direction:column;gap:4px}.dd:hover .menu,.dd:focus-within .menu{display:flex}
+nav{padding-bottom:58px}.dd{position:relative}.menu{display:none;position:absolute;top:100%;left:0;padding-top:8px;gap:4px;white-space:nowrap}.dd:hover .menu,.dd:focus-within .menu{display:flex}
 .menu button{padding:8px 10px}.menu button.sel{background:#6ee7a0;color:#000;border-color:#6ee7a0}.menu button.sel[data-go=paid]{background:#ffd166;border-color:#ffd166}
 .tog{display:flex;align-items:center;cursor:pointer;user-select:none}.tog input{display:none}
 .tog span{display:flex;align-items:center;height:100%;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);white-space:nowrap}
@@ -67,13 +67,13 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <li><b>Cloud & tools</b> - non-AI deals: cloud credits, VPS, proxies, SMS numbers, search APIs for agents</li>
 </ol>
 <h2>Roadmap</h2>
-<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh of data every 3 days</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
+<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
 <p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
-<script src="data.js?v=6"></script>
 <script>
-const D=window.DATA,$=s=>document.querySelector(s);
+(async()=>{
+const D=await (await fetch("data.json",{cache:"no-cache"})).json(),$=s=>document.querySelector(s);
 const G={text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
 const SN={ok:"Active",part:"Partial",off:"Inactive"},TN={free:"Free forever",trial:"Credits / trial",paid:"Nearly free"};
 const fresh=(Date.now()-new Date(D.updated))/864e5;
@@ -86,13 +86,15 @@ $("#legend").innerHTML=Object.entries(G).map(([k,v])=>`<div><span class="sw" sty
 const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
 const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
 const cost=o=>`<div class="cost"><div>✅ <b>Free with:</b> ${esc(o.free)}</div><div>💲 <b>Paid with:</b> ${esc(o.paid)}</div></div>`;
+const chk=o=>o.checked?`<div class="upd">${o.alive===false?"⚠ Link may be dead":"✓ Link checked"} ${esc(o.checked)}</div>`:"";
+const link=(o,l)=>o.url?`<a href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
 function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
- $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}</div>`).join("");
+ $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}${link(o,"Visit site")}</div>`).join("");
  const nc=$("#nocard").checked;
- $("#g-ai").innerHTML=D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}</div>`).join("");
- $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div>${cost(o)}<a href="${esc(o.url)}" target="_blank">GitHub →</a></div>`).join("");
- $("#g-skills").innerHTML=D.skills.filter(o=>o.p==P.skills&&m(o,"skills")).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${cost(o)}<a href="${esc(o.url)}" target="_blank">Open →</a></div>`).join("");
+ $("#g-ai").innerHTML=D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`).join("");
+ $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div>${cost(o)}${link(o,"GitHub")}</div>`).join("");
+ $("#g-skills").innerHTML=D.skills.filter(o=>o.p==P.skills&&m(o,"skills")).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${cost(o)}${link(o,"Open")}</div>`).join("");
 }
 const P={ai:"free",skills:"free"};
 const LB={ai:"AI",skills:"Skills"};
@@ -102,6 +104,7 @@ document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
  if(b.dataset.go){P[t]=b.dataset.go;mark();render();b.blur()}
  document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`nav > * > [data-t="${t}"],nav > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on")};
+})();
 </script>
 </body>
 </html>
