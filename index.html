@@ -120,7 +120,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </div>
 <div class="strip">
 <div class="seg" id="seg"></div>
-<label class="sort" id="sortbox"><select id="sort" title="Default: A → Z"><option value="def">⇅ Sort:</option><option value="az" hidden></option><option value="za">Z → A</option><option value="stars" title="Sorted by GitHub stars">★ Most GitHub stars</option><option value="top">Top rated</option><option value="most">Most voted</option></select></label>
+<label class="sort" id="sortbox"><select id="sort" title="Default: A → Z"><option value="def">⇅ Sort</option><option value="az" hidden></option><option value="za">Z → A</option><option value="stars" title="Sorted by GitHub stars">★ Most GitHub stars</option><option value="top">Top rated</option><option value="most">Most voted</option></select></label>
 </div>
 </nav>
 <main>
@@ -249,7 +249,7 @@ function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d
  $("#sortbox").classList.toggle("show",CUR in SORT);
  if(CUR in SORT){const sel=$("#sort");sel.querySelector('[value=stars]').hidden=!["skills","patches"].includes(CUR);sel.value=SORT[CUR]}
  if(!(CUR in P)){el.classList.remove("show");return}
- el.classList.add("show");el.innerHTML=`<span>Show:</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
+ el.classList.add("show");el.innerHTML=`<span>Show</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
 $("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};
 const ML=["waleriapolanska","gmail.com"].join("@");$("#mail").href="mailto:"+ML;
 $("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(ML);$("#copy").textContent="Copied ✓"}catch{$("#copy").textContent=ML}};
