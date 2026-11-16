@@ -43,7 +43,7 @@ nav{padding-bottom:58px}nav:hover .dd:not(:hover) .menu{display:none}.dd{positio
 .page.flip{animation:flip .55s cubic-bezier(.2,.7,.3,1)}
 @keyframes flip{0%{transform:perspective(1600px) rotateY(-75deg);opacity:.2}60%{opacity:1}100%{transform:perspective(1600px) rotateY(0)}}
 @media (prefers-reduced-motion:reduce){.page.flip{animation:none}}
-.pc{border-left:4px solid var(--pc)}.meta{font-size:12px;color:var(--mut)}.fp{font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;margin-right:4px;color:#000}.fp.f{background:#6ee7a0}.fp.p{background:#ffd166}.skill .meta{color:#333}
+.pc{border-left:4px solid var(--pc)}.meta{font-size:12px;color:var(--mut)}.skill .meta{color:#333}
 @media (max-width:700px){.book{flex-direction:column}.tabs{flex-direction:row;flex:none;overflow-x:auto;padding:0;width:100%}
 .tabs button{border-radius:8px 8px 0 0;transform:translateY(6px);margin:0 0 -1px;white-space:nowrap}.tabs button:hover{transform:translateY(3px)}.tabs button.on{transform:none}
 .page{border-left:1px solid var(--line);border-top:6px solid var(--pc,#d6d9e0);border-radius:0 0 12px 12px;width:100%}}
@@ -77,8 +77,8 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <ul><li><b>Free forever</b> - permanent free tier or daily limit</li><li><b>Credits / trial</b> - one-time or monthly balance</li><li><b>Nearly free</b> - paid, but pennies</li></ul>
 <h2>How to use this site</h2>
 <ol>
-<li><b>AI</b> - click the tab to see everything, or hover it and pick Free or Paid. Bookmarks split it into Free forever, Credits / trial and <b>Install yourself</b> (open models you download, run and fine-tune). Tick "no card" to see services that need nothing</li>
-<li><b>Skills</b> - click the tab to see everything, or hover it and pick Free or Paid, then open a colored bookmark on the left to flip to that folder</li>
+<li><b>AI</b> - hover the tab to pick Free or Paid. Bookmarks split it into Free forever, Credits / trial and <b>Install yourself</b> (open models you download, run and fine-tune). Tick "no card" to see services that need nothing</li>
+<li><b>Skills</b> - hover the tab to pick Free or Paid, then open a colored bookmark on the left to flip to that folder</li>
 <li><b>Patches</b> - bookmarks on the left split tools into folders: routers, CLI agents, IDE extensions, local models, chat UIs, MCP servers and more</li>
 <li>Every GitHub card shows its ★ stars and last update, refreshed automatically</li>
 <li><b>Cloud & tools</b> - non-AI deals: cloud credits, VPS, proxies, SMS numbers, search APIs for agents</li>
@@ -95,7 +95,6 @@ const G={catalog:"Catalogs / mixed",text:"Text / writing",dev:"Code / dev",image
 const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#b6f09c"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#ff9ad5"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#7ee0c3"]};
 const FOLD={skills:Object.fromEntries(Object.entries(G).map(([k,v])=>[k,[v,`var(--${k})`]])),patches:PF};
 const AF={free:{forever:["Free forever","#6ee7a0"],trial:["Credits / trial","#8ad4ff"],local:["Install yourself","#ffb87a"]},paid:{paid:["Nearly free","#ffd166"]}};
-AF.all={...AF.free,...AF.paid};
 Object.defineProperty(FOLD,"ai",{get:()=>AF[P.ai]});
 const F={ai:"all",skills:"all",patches:"all"};
 const SN={ok:"Active",part:"Partial",off:"Inactive"},TN={free:"Free forever",trial:"Credits / trial",paid:"Nearly free"};
@@ -112,21 +111,20 @@ const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
 const cost=o=>`<div class="cost"><div>✅ <b>Free with:</b> ${esc(o.free)}</div><div>💲 <b>Paid with:</b> ${esc(o.paid)}</div></div>`;
 const chk=o=>o.checked?`<div class="upd">${o.alive===false?"⚠ Link may be dead":"✓ Link checked"} ${esc(o.checked)}</div>`:"";
 const k=n=>n>=1000?(n/1000).toFixed(n>=1e5?0:1)+"k":n;
-const fp=free=>`<span class="fp ${free?"f":"p"}">${free?"✅ Free":"💲 Paid"}</span>`;
 const meta=o=>o.stars!=null?`<div class="meta">★ ${k(o.stars)} · updated ${esc(o.pushed)}${o.archived?" · ⚠ archived":""}</div>`:"";
 const link=(o,l)=>o.url?`<a href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
 const OPENLIC=["apache-2.0","mit"];
-const openCard=o=>`<div class="c pc" style="--pc:#ffb87a"><span class="st ok">${fp(true)} ● Open weights · Install yourself</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.model||"")}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}
+const openCard=o=>`<div class="c pc" style="--pc:#ffb87a"><span class="st ok">● Open weights · Install yourself</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.model||"")}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}
 <div class="meta">⬇ ${k(o.downloads||0)}/month · ♥ ${k(o.likes||0)} · updated ${esc(o.modified||"")}</div><div class="meta">License: <b>${esc(o.license||"unknown")}</b></div>
 ${cost({free:"Download and run it on your own computer (Ollama, llama.cpp, LM Studio, ComfyUI), fine-tune it and build on it",paid:"Only your hardware or a rented GPU. "+(OPENLIC.includes(o.license)?`${o.license} license allows commercial use and changes`:"Custom license - check its limits before commercial use")})}${link(o,"Hugging Face")}</div>`;
 function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
  $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}${link(o,"Visit site")}</div>`).join("");
  const nc=$("#nocard").checked,aik=o=>o.model!==undefined||o.author?"local":o.t=="free"?"forever":o.t;
- const ais=[...D.ai.filter(o=>(P.ai=="all"||(P.ai=="paid"?o.t=="paid":o.t!="paid"))&&(!nc||!o.req.includes("Card"))),...(P.ai!="paid"?D.open:[])].filter(o=>m(o,"ai"));
- book("ai",ais,aik,o=>aik(o)=="local"?openCard(o):`<div class="c pc" style="--pc:${FOLD.ai[aik(o)][1]}"><span class="st ${o.s}">${fp(o.t!="paid")} ● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`,flip);
+ const ais=[...D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))),...(P.ai=="free"?D.open:[])].filter(o=>m(o,"ai"));
+ book("ai",ais,aik,o=>aik(o)=="local"?openCard(o):`<div class="c pc" style="--pc:${FOLD.ai[aik(o)][1]}"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`,flip);
  book("patches",D.patches.filter(o=>m(o,"patches")),o=>o.f,o=>`<div class="c pc" style="--pc:${PF[o.f][1]}"><div class="d">${PF[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,"GitHub")}</div>`,flip);
- book("skills",D.skills.filter(o=>(P.skills=="all"||o.p==P.skills)&&m(o,"skills")),o=>o.g,o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${fp(o.p=="free")} ${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
+ book("skills",D.skills.filter(o=>o.p==P.skills&&m(o,"skills")),o=>o.g,o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
  flip=false;
 }
 let flip=false;
@@ -141,13 +139,13 @@ function book(t,items,key,card,anim){
  if(anim){pg.classList.remove("flip");void pg.offsetWidth;pg.classList.add("flip")}
 }
 ["ai","skills","patches"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
-const P={ai:"all",skills:"all"};
+const P={ai:"free",skills:"free"};
 const LB={ai:"AI",skills:"Skills"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
- if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v;F[t]="all";flip=true}mark();render();b.blur()}
+ if(b.dataset.go){P[t]=b.dataset.go;mark();flip=true;render();b.blur()}
  document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`nav > * > [data-t="${t}"],nav > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on")};
 })();
 </script>
