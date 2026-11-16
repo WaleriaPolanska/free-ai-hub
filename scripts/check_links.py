@@ -6,7 +6,7 @@ For each item with a url it sets:
             Bot protection (403/429) and other answers count as alive.
 Also sets the top-level "updated" date. Uses only the standard library.
 """
-import json, ssl, sys, datetime, urllib.request, urllib.error
+import json, os, ssl, sys, datetime, urllib.request, urllib.error
 from concurrent.futures import ThreadPoolExecutor
 
 PATH = sys.argv[1] if len(sys.argv) > 1 else "data.json"
@@ -37,9 +37,37 @@ def alive(url):
     return False
 
 
+def refresh_github(items):
+    """Update stars / last push / archived for GitHub repos (needs GITHUB_TOKEN)."""
+    token = os.environ.get("GITHUB_TOKEN")
+    repos = [o for o in items if o.get("repo")]
+    if not token or not repos:
+        return 0
+    n = 0
+    for i in range(0, len(repos), 40):
+        chunk = repos[i:i + 40]
+        parts = []
+        for j, o in enumerate(chunk):
+            owner, name = o["repo"].split("/")
+            parts.append(f'r{j}: repository(owner:"{owner}", name:"{name}") {{ stargazerCount pushedAt isArchived }}')
+        body = json.dumps({"query": "query {" + " ".join(parts) + "}"}).encode()
+        req = urllib.request.Request("https://api.github.com/graphql", data=body,
+                                     headers={"Authorization": f"bearer {token}", "User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=30) as r:
+            res = json.load(r).get("data") or {}
+        for j, o in enumerate(chunk):
+            m = res.get(f"r{j}")
+            if m:
+                o["stars"], o["pushed"] = m["stargazerCount"], m["pushedAt"][:10]
+                o["archived"] = m["isArchived"]
+                n += 1
+    return n
+
+
 def main():
     data = json.load(open(PATH, encoding="utf-8"))
     today = datetime.date.today().isoformat()
+    print("github repos refreshed:", refresh_github(data["patches"] + data["skills"]))
     items = [o for k in ("offers", "ai", "patches", "skills") for o in data[k] if o.get("url")]
     with ThreadPoolExecutor(16) as ex:
         results = list(ex.map(lambda o: alive(o["url"]), items))

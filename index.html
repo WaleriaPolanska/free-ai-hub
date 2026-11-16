@@ -6,7 +6,7 @@
 <title>Free AI Hub</title>
 <style>
 :root{--bg:#0f1115;--card:#181b22;--line:#2a2f3a;--tx:#e8eaf0;--mut:#8a92a6;--acc:#7c9cff;
---text:#ffe08a;--dev:#8ad4ff;--image:#ff9ad5;--docs:#b6f09c;--research:#c9a8ff;--data:#ffb87a;--media:#ff8a8a}
+--text:#ffe08a;--dev:#8ad4ff;--image:#ff9ad5;--docs:#b6f09c;--research:#c9a8ff;--data:#ffb87a;--media:#ff8a8a;--catalog:#d6d9e0;--page:#14171d}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,sans-serif}
 header{padding:20px 16px;border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
 h1{margin:0;font-size:22px}.upd{color:var(--mut);font-size:13px}
@@ -25,13 +25,28 @@ main{max-width:1200px;margin:0 auto;padding:16px}
 .skill{color:#111;border:none}.skill .d{color:#333}.skill a{color:#111}.skill .upd{color:#333}
 a{color:var(--acc)}h2{font-size:18px;margin:22px 0 10px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
-nav{padding-bottom:58px}.dd{position:relative}.menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:8px;gap:4px;white-space:nowrap}.dd:hover .menu,.dd:focus-within .menu{display:flex}
+nav{padding-bottom:58px}nav:hover .dd:not(:hover) .menu{display:none}.dd{position:relative}.menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:8px;gap:4px;white-space:nowrap}.dd:hover .menu{display:flex}
 .menu button{padding:8px 10px}.menu button.sel{background:#6ee7a0;color:#000;border-color:#6ee7a0}.menu button.sel[data-go=paid]{background:#ffd166;border-color:#ffd166}
 .tog{display:flex;align-items:center;cursor:pointer;user-select:none}.tog input{display:none}
 .tog span{display:flex;align-items:center;height:100%;padding:8px 14px;border:1px solid var(--line);border-radius:8px;background:var(--card);white-space:nowrap}
 .tog input:checked+span{background:#6ee7a0;color:#000;border-color:#6ee7a0}.hint{margin:-6px 0 12px}
 .cost{font-size:12px;display:flex;flex-direction:column;gap:3px;border-top:1px solid var(--line);padding-top:6px;margin-top:2px}.skill .cost{border-color:#0002}
 .warn{background:#2a2410;border:1px solid #ffd166;border-radius:12px;padding:14px;margin-top:12px}.warn p{margin:8px 0 0}
+.book{display:flex;align-items:flex-start}
+.tabs{display:flex;flex-direction:column;gap:5px;padding-top:14px;flex:0 0 170px;position:relative;z-index:1}
+.tabs button{display:flex;justify-content:space-between;align-items:center;gap:6px;border:none;border-radius:8px 0 0 8px;padding:10px 12px;margin-right:-1px;cursor:pointer;font:600 13px/1.2 system-ui,sans-serif;color:#111;text-align:left;opacity:.72;transform:translateX(10px);transition:transform .2s,opacity .2s;box-shadow:-2px 2px 0 #0004}
+.tabs button:hover{opacity:.9;transform:translateX(4px)}
+.tabs button.on{opacity:1;transform:none;box-shadow:-3px 3px 0 #0006}
+.tabs .cnt{font-size:11px;background:#0002;border-radius:99px;padding:1px 7px}
+.page{flex:1;min-width:0;background:var(--page);border:1px solid var(--line);border-left:6px solid var(--pc,#d6d9e0);border-radius:0 12px 12px 12px;padding:16px;min-height:420px;transform-origin:left center;box-shadow:6px 6px 0 #0005}
+.page h2{margin:0 0 12px;display:flex;align-items:center;gap:8px}
+.page.flip{animation:flip .55s cubic-bezier(.2,.7,.3,1)}
+@keyframes flip{0%{transform:perspective(1600px) rotateY(-75deg);opacity:.2}60%{opacity:1}100%{transform:perspective(1600px) rotateY(0)}}
+@media (prefers-reduced-motion:reduce){.page.flip{animation:none}}
+.pc{border-left:4px solid var(--pc)}.meta{font-size:12px;color:var(--mut)}.skill .meta{color:#333}
+@media (max-width:700px){.book{flex-direction:column}.tabs{flex-direction:row;flex:none;overflow-x:auto;padding:0;width:100%}
+.tabs button{border-radius:8px 8px 0 0;transform:translateY(6px);margin:0 0 -1px;white-space:nowrap}.tabs button:hover{transform:translateY(3px)}.tabs button.on{transform:none}
+.page{border-left:1px solid var(--line);border-top:6px solid var(--pc,#d6d9e0);border-radius:0 0 12px 12px;width:100%}}
 ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
 </head>
@@ -48,13 +63,14 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <section id="offers"><div class="bar"><input placeholder="Search" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
 <section id="ai"><div class="bar"><input placeholder="Search" data-q="ai"><label class="tog" title="Show only services you can sign up for without entering a bank card"><input type="checkbox" id="nocard"><span>💳 No card needed</span></label></div>
 <p class="upd hint">"No card needed" hides services that ask for a bank card at signup, even when they are free.</p><div class="grid" id="g-ai"></div></section>
-<section id="skills"><div class="bar"><input placeholder="Search" data-q="skills"></div><div class="grid" id="g-skills"></div></section>
-<section id="patches"><div class="bar"><input placeholder="Search" data-q="patches"></div><div class="grid" id="g-patches"></div></section>
+<section id="skills"><div class="bar"><input placeholder="Search skills" data-q="skills"></div><div class="book"><div class="tabs" id="t-skills"></div><div class="page" id="p-skills"><h2 id="h-skills"></h2><div class="grid" id="g-skills"></div></div></div></section>
+<section id="patches"><div class="bar"><input placeholder="Search patches" data-q="patches"></div><div class="book"><div class="tabs" id="t-patches"></div><div class="page" id="p-patches"><h2 id="h-patches"></h2><div class="grid" id="g-patches"></div></div></div></section>
 <section id="road" class="on">
 <div class="warn"><b>⚠ Before you start - "free" has two layers</b>
 <p>1. <b>The tool</b> (patch, skill, extension) - free and open source.<br>2. <b>The AI model behind it</b> - this is what can cost money. A free tool connected to a paid API (Claude, GPT, Gemini) is billed by that provider per token.</p>
 <p>Fully free = free tool + a model from <b>AI → Free</b> (Groq, OpenCode, OrcaRouter, MoonMath...) or a local model via Ollama. Every patch and skill card says which AIs make it free and which make it paid.</p></div>
-<h2>Skill color legend</h2><div id="legend"></div>
+<h2>Skill folders (bookmark colors)</h2><div id="legend"></div>
+<h2>Patch folders</h2><div id="legend-p"></div>
 <h2>Statuses</h2>
 <p><span class="st ok">● Active</span> - working &nbsp; <span class="st part">● Partial</span> - has limits &nbsp; <span class="st off">● Inactive</span> - not available now</p>
 <h2>AI offer types</h2>
@@ -62,19 +78,23 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <h2>How to use this site</h2>
 <ol>
 <li><b>AI</b> - hover the tab to pick Free or Paid, tick "no card" to see services that need nothing</li>
-<li><b>Skills</b> - hover the tab to pick Free or Paid, then pick by purpose color</li>
-<li><b>Patches</b> - plug free models into your tools (claude-code-router, LiteLLM)</li>
+<li><b>Skills</b> - hover the tab to pick Free or Paid, then open a colored bookmark on the left to flip to that folder</li>
+<li><b>Patches</b> - bookmarks on the left split tools into folders: routers, CLI agents, IDE extensions, local models, chat UIs, MCP servers and more</li>
+<li>Every GitHub card shows its ★ stars and last update, refreshed automatically</li>
 <li><b>Cloud & tools</b> - non-AI deals: cloud credits, VPS, proxies, SMS numbers, search APIs for agents</li>
 </ol>
 <h2>Roadmap</h2>
-<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
+<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
 <p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
 <script>
 (async()=>{
 const D=await (await fetch("data.json",{cache:"no-cache"})).json(),$=s=>document.querySelector(s);
-const G={text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
+const G={catalog:"Catalogs / mixed",text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
+const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#b6f09c"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#ff9ad5"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#7ee0c3"]};
+const FOLD={skills:Object.fromEntries(Object.entries(G).map(([k,v])=>[k,[v,`var(--${k})`]])),patches:PF};
+const F={skills:"all",patches:"all"};
 const SN={ok:"Active",part:"Partial",off:"Inactive"},TN={free:"Free forever",trial:"Credits / trial",paid:"Nearly free"};
 const fresh=(Date.now()-new Date(D.updated))/864e5;
 $("#upd").textContent="Updated "+D.updated+(fresh>4?" (data is stale)":"");
@@ -82,27 +102,43 @@ const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",
 const tags=a=>a&&a.length?`<div class="tags">${a.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:"";
 const cats=[...new Set(D.offers.map(o=>o.cat))];
 document.querySelector('[data-f="offers"]').innerHTML='<option value="">All</option>'+cats.map(c=>`<option>${c}</option>`).join("");
-$("#legend").innerHTML=Object.entries(G).map(([k,v])=>`<div><span class="sw" style="background:var(--${k})"></span>${v}</div>`).join("");
+const lg=o=>Object.values(o).map(([n,c])=>`<div><span class="sw" style="background:${c}"></span>${n}</div>`).join("");
+$("#legend").innerHTML=lg(FOLD.skills);$("#legend-p").innerHTML=lg(PF);
 const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
 const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
 const cost=o=>`<div class="cost"><div>✅ <b>Free with:</b> ${esc(o.free)}</div><div>💲 <b>Paid with:</b> ${esc(o.paid)}</div></div>`;
 const chk=o=>o.checked?`<div class="upd">${o.alive===false?"⚠ Link may be dead":"✓ Link checked"} ${esc(o.checked)}</div>`:"";
+const k=n=>n>=1000?(n/1000).toFixed(n>=1e5?0:1)+"k":n;
+const meta=o=>o.stars!=null?`<div class="meta">★ ${k(o.stars)} · updated ${esc(o.pushed)}${o.archived?" · ⚠ archived":""}</div>`:"";
 const link=(o,l)=>o.url?`<a href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
 function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
  $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}${link(o,"Visit site")}</div>`).join("");
  const nc=$("#nocard").checked;
  $("#g-ai").innerHTML=D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`).join("");
- $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div>${cost(o)}${link(o,"GitHub")}</div>`).join("");
- $("#g-skills").innerHTML=D.skills.filter(o=>o.p==P.skills&&m(o,"skills")).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${cost(o)}${link(o,"Open")}</div>`).join("");
+ book("patches",D.patches.filter(o=>m(o,"patches")),o=>o.f,o=>`<div class="c pc" style="--pc:${PF[o.f][1]}"><div class="d">${PF[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,"GitHub")}</div>`,flip);
+ book("skills",D.skills.filter(o=>o.p==P.skills&&m(o,"skills")),o=>o.g,o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
+ flip=false;
 }
+let flip=false;
+function book(t,items,key,card,anim){
+ const fold=FOLD[t],cnt={};items.forEach(o=>cnt[key(o)]=(cnt[key(o)]||0)+1);
+ if(F[t]!="all"&&!cnt[F[t]])F[t]="all";
+ const tabs=[["all","All","#d6d9e0",items.length],...Object.entries(fold).filter(([f])=>cnt[f]).map(([f,[n,c]])=>[f,n,c,cnt[f]])];
+ $("#t-"+t).innerHTML=tabs.map(([f,n,c,x])=>`<button data-f="${f}" class="${F[t]==f?"on":""}" style="background:${c}"><span>${n}</span><span class="cnt">${x}</span></button>`).join("");
+ const cur=tabs.find(x=>x[0]==F[t]),pg=$("#p-"+t);
+ pg.style.setProperty("--pc",cur[2]);$("#h-"+t).innerHTML=`<span class="sw" style="background:${cur[2]}"></span>${cur[1]} <span class="upd">${cur[3]} items</span>`;
+ $("#g-"+t).innerHTML=items.filter(o=>F[t]=="all"||key(o)==F[t]).map(card).join("")||'<p class="upd">Nothing found.</p>';
+ if(anim){pg.classList.remove("flip");void pg.offsetWidth;pg.classList.add("flip")}
+}
+["skills","patches"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
 const P={ai:"free",skills:"free"};
 const LB={ai:"AI",skills:"Skills"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
- if(b.dataset.go){P[t]=b.dataset.go;mark();render();b.blur()}
+ if(b.dataset.go){P[t]=b.dataset.go;mark();flip=true;render();b.blur()}
  document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`nav > * > [data-t="${t}"],nav > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on")};
 })();
 </script>

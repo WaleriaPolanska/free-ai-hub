@@ -7,10 +7,11 @@ A catalog of free and nearly free AI services, open-source patches and AI skills
 ## Features
 - **Roadmap & legend** - opens first and explains the color legend, statuses and plans.
 - **AI** - 30+ AI APIs and agents, split into Free and Paid sub-tabs. Each card shows status, what it gives, what it can do and what signup needs. You can filter by "no card needed".
-- **Skills** - one tab with Free and Paid sub-tabs, color-coded by purpose (text, code, images, docs, research, data, media).
-- **Patches** - free open-source tools from GitHub that connect free models to Claude Code, VS Code and the terminal.
+- **Skills** - 70 skills (52 free from real GitHub repos, 18 paid services) in color-coded folders. Notebook-style bookmarks on the left flip the page with a 3D page-turn.
+- **Patches** - 54 free open-source tools in 8 folders: routers and proxies, CLI agents, IDE extensions, local models, chat UIs, MCP servers, usage and hooks, free API lists.
+- Every GitHub card shows live ★ stars and last update. Each card also says which AIs make it free and which make it paid.
 - **Cloud & tools** - non-AI deals: cloud and VPS credits, proxies, SMS numbers, search APIs for agents.
-- **Auto-refresh** - a GitHub Actions workflow runs every 3 days, re-checks every link and stamps each card with its check date. Dead links are flagged on the site.
+- **Auto-refresh** - a GitHub Actions workflow runs every 3 days, re-checks every link, refreshes GitHub stars and activity through the GraphQL API, and stamps each card with its check date. Dead links are flagged on the site.
 
 ## Tech
 - Vanilla HTML, CSS and JS, with no build step and no dependencies.
