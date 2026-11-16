@@ -132,11 +132,11 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <div class="dd"><button data-t="ai">AI ▾</button><div class="menu"><button data-t="ai" data-go="free">✅ Free</button><button data-t="ai" data-go="paid">💲 Paid</button></div></div>
 <div class="dd"><button data-t="skills">Skills ▾</button><div class="menu"><button data-t="skills" data-go="free">✅ Free</button><button data-t="skills" data-go="paid">💲 Paid</button></div></div>
 <div class="dd"><button data-t="patches">Patches ▾</button><div class="menu"><button data-t="patches" data-go="free">✅ Free</button><button data-t="patches" data-go="paid">💲 Paid</button></div></div>
+<div class="dd"><button data-t="offers">Bonuses & Services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
 <button data-t="kits">Starter Kits</button>
 <button data-t="gpu">Free GPU</button>
 <button data-t="learn">Learn</button>
 <button data-t="prompts">Prompts</button>
-<div class="dd"><button data-t="offers">Bonuses & Services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
 </div>
 <div class="strip">
 <div class="seg" id="seg"></div>
@@ -213,8 +213,8 @@ const tags=a=>a&&a.length?`<div class="tags">${a.map(t=>`<span class="tag">${esc
 const OF={cloud:["Cloud credits","#8ad4ff"],vps:["VPS & VMs","#c9a8ff"],search:["Search APIs","#ffe08a"],proxy:["Proxies","#ffb87a"],sms:["SMS numbers","#ff8a8a"],cards:["Virtual cards","#c6ff3d"]};
 const OK={"Cloud":"cloud","VPS":"vps","Cloud VM":"vps","Search":"search","Proxy":"proxy","SMS":"sms","Cards":"cards"};
 FOLD.offers=OF;F.offers="all";
-FOLD.kits={code:["Coding","#8ad4ff"],chat:["Chat","#c9a8ff"],voice:["Voice & audio","#ff8a8a"],images:["Images","#e85cf0"],agents:["Agents","#ffe08a"],train:["Fine-tuning","#ffb87a"]};
-FOLD.gpu={notebook:["Notebooks","#ffb87a"],host:["App hosting","#c9a8ff"],cloud:["Cloud credits","#8ad4ff"]};
+FOLD.kits={code:["Coding","#8ad4ff"],chat:["Chat","#c9a8ff"],voice:["Voice & audio","#ff8a8a"],images:["Images","#e85cf0"],video:["Video","#ff6a8a"],docs:["Documents","#3fae7f"],agents:["Agents","#ffe08a"],train:["Fine-tuning","#ffb87a"]};
+FOLD.gpu={notebook:["Notebooks","#ffb87a"],host:["App hosting","#c9a8ff"],cloud:["Cloud credits","#8ad4ff"],research:["For research","#c6ff3d"]};
 FOLD.learn={beginner:["Beginner","#3fae7f"],intermediate:["Intermediate","#ffe08a"],advanced:["Advanced","#ff8a8a"]};
 FOLD.prompts={code:["Code","#8ad4ff"],text:["Text","#ffe08a"],image:["Images","#e85cf0"],study:["Study","#3fae7f"],agent:["Agents","#c9a8ff"]};
 Object.assign(F,{kits:"all",gpu:"all",learn:"all",prompts:"all"});
