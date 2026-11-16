@@ -6,7 +6,7 @@ For each item with a url it sets:
             Bot protection (403/429) and other answers count as alive.
 Also sets the top-level "updated" date. Uses only the standard library.
 """
-import json, os, ssl, sys, datetime, urllib.request, urllib.error
+import json, os, ssl, sys, datetime, urllib.request, urllib.error, urllib.parse
 from concurrent.futures import ThreadPoolExecutor
 
 PATH = sys.argv[1] if len(sys.argv) > 1 else "data.json"
@@ -64,11 +64,35 @@ def refresh_github(items):
     return n
 
 
+def refresh_hf(models):
+    """For each open model family, pick its current trending model on Hugging Face."""
+    n = 0
+    for o in models:
+        q = urllib.parse.urlencode({"author": o["author"], "search": o["q"], "sort": "trendingScore",
+                                    "direction": -1, "limit": 1, "full": "true"})
+        try:
+            with urllib.request.urlopen(urllib.request.Request(
+                    f"https://huggingface.co/api/models?{q}", headers={"User-Agent": UA}), timeout=30) as r:
+                res = json.load(r)
+        except Exception as e:
+            print("  HF fail", o["n"], e)
+            continue
+        if not res:
+            continue
+        m = res[0]
+        lic = [t[8:] for t in m.get("tags", []) if t.startswith("license:")]
+        o.update(model=m["id"], url=f"https://huggingface.co/{m['id']}", license=lic[0] if lic else "unknown",
+                 downloads=m.get("downloads", 0), likes=m.get("likes", 0), modified=m.get("lastModified", "")[:10])
+        n += 1
+    return n
+
+
 def main():
     data = json.load(open(PATH, encoding="utf-8"))
     today = datetime.date.today().isoformat()
     print("github repos refreshed:", refresh_github(data["patches"] + data["skills"]))
-    items = [o for k in ("offers", "ai", "patches", "skills") for o in data[k] if o.get("url")]
+    print("open models refreshed:", refresh_hf(data.get("open", [])))
+    items = [o for k in ("offers", "ai", "patches", "skills", "open") for o in data.get(k, []) if o.get("url")]
     with ThreadPoolExecutor(16) as ex:
         results = list(ex.map(lambda o: alive(o["url"]), items))
     for o, ok in zip(items, results):

@@ -62,7 +62,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <main>
 <section id="offers"><div class="bar"><input placeholder="Search" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
 <section id="ai"><div class="bar"><input placeholder="Search" data-q="ai"><label class="tog" title="Show only services you can sign up for without entering a bank card"><input type="checkbox" id="nocard"><span>💳 No card needed</span></label></div>
-<p class="upd hint">"No card needed" hides services that ask for a bank card at signup, even when they are free.</p><div class="grid" id="g-ai"></div></section>
+<p class="upd hint">"No card needed" hides services that ask for a bank card at signup, even when they are free.</p><div class="book"><div class="tabs" id="t-ai"></div><div class="page" id="p-ai"><h2 id="h-ai"></h2><div class="grid" id="g-ai"></div></div></div></section>
 <section id="skills"><div class="bar"><input placeholder="Search skills" data-q="skills"></div><div class="book"><div class="tabs" id="t-skills"></div><div class="page" id="p-skills"><h2 id="h-skills"></h2><div class="grid" id="g-skills"></div></div></div></section>
 <section id="patches"><div class="bar"><input placeholder="Search patches" data-q="patches"></div><div class="book"><div class="tabs" id="t-patches"></div><div class="page" id="p-patches"><h2 id="h-patches"></h2><div class="grid" id="g-patches"></div></div></div></section>
 <section id="road" class="on">
@@ -77,14 +77,14 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <ul><li><b>Free forever</b> - permanent free tier or daily limit</li><li><b>Credits / trial</b> - one-time or monthly balance</li><li><b>Nearly free</b> - paid, but pennies</li></ul>
 <h2>How to use this site</h2>
 <ol>
-<li><b>AI</b> - hover the tab to pick Free or Paid, tick "no card" to see services that need nothing</li>
+<li><b>AI</b> - hover the tab to pick Free or Paid. Bookmarks split it into Free forever, Credits / trial and <b>Install yourself</b> (open models you download, run and fine-tune). Tick "no card" to see services that need nothing</li>
 <li><b>Skills</b> - hover the tab to pick Free or Paid, then open a colored bookmark on the left to flip to that folder</li>
 <li><b>Patches</b> - bookmarks on the left split tools into folders: routers, CLI agents, IDE extensions, local models, chat UIs, MCP servers and more</li>
 <li>Every GitHub card shows its ★ stars and last update, refreshed automatically</li>
 <li><b>Cloud & tools</b> - non-AI deals: cloud credits, VPS, proxies, SMS numbers, search APIs for agents</li>
 </ol>
 <h2>Roadmap</h2>
-<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
+<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>✅ AI → Install yourself: open-weight models you can run locally and fine-tune, refreshed from Hugging Face</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
 <p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
@@ -94,7 +94,9 @@ const D=await (await fetch("data.json",{cache:"no-cache"})).json(),$=s=>document
 const G={catalog:"Catalogs / mixed",text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
 const PF={router:["Routers & proxies","#8ad4ff"],agent:["CLI agents","#b6f09c"],ide:["IDE extensions","#c9a8ff"],local:["Local models","#ffb87a"],ui:["Chat UIs","#ff9ad5"],mcp:["MCP servers","#ffe08a"],usage:["Usage, hooks & memory","#ff8a8a"],freeapi:["Free API lists","#7ee0c3"]};
 const FOLD={skills:Object.fromEntries(Object.entries(G).map(([k,v])=>[k,[v,`var(--${k})`]])),patches:PF};
-const F={skills:"all",patches:"all"};
+const AF={free:{forever:["Free forever","#6ee7a0"],trial:["Credits / trial","#8ad4ff"],local:["Install yourself","#ffb87a"]},paid:{paid:["Nearly free","#ffd166"]}};
+Object.defineProperty(FOLD,"ai",{get:()=>AF[P.ai]});
+const F={ai:"all",skills:"all",patches:"all"};
 const SN={ok:"Active",part:"Partial",off:"Inactive"},TN={free:"Free forever",trial:"Credits / trial",paid:"Nearly free"};
 const fresh=(Date.now()-new Date(D.updated))/864e5;
 $("#upd").textContent="Updated "+D.updated+(fresh>4?" (data is stale)":"");
@@ -111,11 +113,16 @@ const chk=o=>o.checked?`<div class="upd">${o.alive===false?"⚠ Link may be dead
 const k=n=>n>=1000?(n/1000).toFixed(n>=1e5?0:1)+"k":n;
 const meta=o=>o.stars!=null?`<div class="meta">★ ${k(o.stars)} · updated ${esc(o.pushed)}${o.archived?" · ⚠ archived":""}</div>`:"";
 const link=(o,l)=>o.url?`<a href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
+const OPENLIC=["apache-2.0","mit"];
+const openCard=o=>`<div class="c pc" style="--pc:#ffb87a"><span class="st ok">● Open weights · Install yourself</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.model||"")}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}
+<div class="meta">⬇ ${k(o.downloads||0)}/month · ♥ ${k(o.likes||0)} · updated ${esc(o.modified||"")}</div><div class="meta">License: <b>${esc(o.license||"unknown")}</b></div>
+${cost({free:"Download and run it on your own computer (Ollama, llama.cpp, LM Studio, ComfyUI), fine-tune it and build on it",paid:"Only your hardware or a rented GPU. "+(OPENLIC.includes(o.license)?`${o.license} license allows commercial use and changes`:"Custom license - check its limits before commercial use")})}${link(o,"Hugging Face")}</div>`;
 function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
  $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}${link(o,"Visit site")}</div>`).join("");
- const nc=$("#nocard").checked;
- $("#g-ai").innerHTML=D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`).join("");
+ const nc=$("#nocard").checked,aik=o=>o.model!==undefined||o.author?"local":o.t=="free"?"forever":o.t;
+ const ais=[...D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))),...(P.ai=="free"?D.open:[])].filter(o=>m(o,"ai"));
+ book("ai",ais,aik,o=>aik(o)=="local"?openCard(o):`<div class="c pc" style="--pc:${FOLD.ai[aik(o)][1]}"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`,flip);
  book("patches",D.patches.filter(o=>m(o,"patches")),o=>o.f,o=>`<div class="c pc" style="--pc:${PF[o.f][1]}"><div class="d">${PF[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,"GitHub")}</div>`,flip);
  book("skills",D.skills.filter(o=>o.p==P.skills&&m(o,"skills")),o=>o.g,o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
  flip=false;
@@ -131,7 +138,7 @@ function book(t,items,key,card,anim){
  $("#g-"+t).innerHTML=items.filter(o=>F[t]=="all"||key(o)==F[t]).map(card).join("")||'<p class="upd">Nothing found.</p>';
  if(anim){pg.classList.remove("flip");void pg.offsetWidth;pg.classList.add("flip")}
 }
-["skills","patches"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
+["ai","skills","patches"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
 const P={ai:"free",skills:"free"};
 const LB={ai:"AI",skills:"Skills"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
