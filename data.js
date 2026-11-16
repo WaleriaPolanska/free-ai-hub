@@ -67,20 +67,33 @@ window.DATA = {
     {n:"InternAI",t:"trial",v:"$10 one-time",d:"Kimi K3.1 Pro, GLM 5.3, DeepSeek",cap:["text","code"],req:[],s:"off"}
   ],
 
-  // Free open-source patches / mods / wrappers for AI
+  // Free open-source patches / mods / wrappers for AI.
+  // free = AIs/setups where using it costs nothing, paid = when you end up paying
   patches: [
-    {n:"claude-code-router",for:"Claude Code",d:"Plug any model (DeepSeek, GLM, Groq, etc.) into Claude Code",url:"https://github.com/musistudio/claude-code-router"},
-    {n:"LiteLLM",for:"Any API",d:"One OpenAI-compatible proxy for 100+ providers, key rotation",url:"https://github.com/BerriAI/litellm"},
-    {n:"one-api",for:"Any API",d:"Merge free keys into a single endpoint",url:"https://github.com/songquanpeng/one-api"},
-    {n:"ccusage",for:"Claude Code",d:"Track token usage and limits",url:"https://github.com/ryoppippi/ccusage"},
-    {n:"SuperClaude",for:"Claude Code",d:"Commands, personas and modes",url:"https://github.com/SuperClaude-Org/SuperClaude_Framework"},
-    {n:"Aider",for:"Any LLM",d:"AI pair programmer in the terminal, works with free models",url:"https://github.com/Aider-AI/aider"},
-    {n:"Cline",for:"VS Code",d:"In-editor agent with any provider",url:"https://github.com/cline/cline"},
-    {n:"Continue",for:"VS Code / JetBrains",d:"Autocomplete and chat on your own keys",url:"https://github.com/continuedev/continue"},
-    {n:"OpenCode",for:"Terminal",d:"Open-source agent with built-in free models",url:"https://github.com/sst/opencode"},
-    {n:"Ollama",for:"Local",d:"Run models on your own machine for free",url:"https://github.com/ollama/ollama"},
-    {n:"Open WebUI",for:"Local / API",d:"Your own ChatGPT-style UI for any model",url:"https://github.com/open-webui/open-webui"},
-    {n:"MCP servers (official)",for:"Claude / agents",d:"Connectors to files, GitHub, databases, browser",url:"https://github.com/modelcontextprotocol/servers"}
+    {n:"claude-code-router",for:"Claude Code",d:"Plug any model (DeepSeek, GLM, Groq, etc.) into Claude Code",url:"https://github.com/musistudio/claude-code-router",
+     free:"Groq, OpenCode free models, OrcaRouter, MoonMath, local models via Ollama",paid:"Routing to paid APIs (Anthropic, OpenAI, DeepSeek paid tier) - you pay that provider per token"},
+    {n:"LiteLLM",for:"Any API",d:"One OpenAI-compatible proxy for 100+ providers, key rotation",url:"https://github.com/BerriAI/litellm",
+     free:"Self-hosted open-source version with any free API from the AI tab or Ollama",paid:"Enterprise license (SSO, support) for companies; any paid model you route through it"},
+    {n:"one-api",for:"Any API",d:"Merge free keys into a single endpoint",url:"https://github.com/songquanpeng/one-api",
+     free:"Fully free self-hosted; free with any free-tier keys you add",paid:"Only the providers behind the keys you add, if they are paid"},
+    {n:"ccusage",for:"Claude Code",d:"Track token usage and limits",url:"https://github.com/ryoppippi/ccusage",
+     free:"The tool itself is fully free, it only reads local logs",paid:"Claude Code itself needs a paid Claude plan or API key (unless routed to free models)"},
+    {n:"SuperClaude",for:"Claude Code",d:"Commands, personas and modes",url:"https://github.com/SuperClaude-Org/SuperClaude_Framework",
+     free:"The framework is free; free if Claude Code is routed to free models",paid:"Claude Code with Claude models needs a paid Claude plan or API key"},
+    {n:"Aider",for:"Any LLM",d:"AI pair programmer in the terminal, works with free models",url:"https://github.com/Aider-AI/aider",
+     free:"Groq, OpenRouter free models, Cerebras credits, local Ollama",paid:"Claude, GPT, Gemini paid APIs - billed per token by the provider"},
+    {n:"Cline",for:"VS Code",d:"In-editor agent with any provider",url:"https://github.com/cline/cline",
+     free:"Local Ollama, Groq, OpenRouter free models, any free key from the AI tab",paid:"Cline provider credits or paid Anthropic/OpenAI keys"},
+    {n:"Continue",for:"VS Code / JetBrains",d:"Autocomplete and chat on your own keys",url:"https://github.com/continuedev/continue",
+     free:"Extension is free; free with Ollama or free API keys",paid:"Team/hub plans for companies; paid model APIs"},
+    {n:"OpenCode",for:"Terminal",d:"Open-source agent with built-in free models",url:"https://github.com/sst/opencode",
+     free:"Built-in free models (GLM Flash, DeepSeek Flash), local Ollama",paid:"Your own Claude/GPT keys, or its paid premium models"},
+    {n:"Ollama",for:"Local",d:"Run models on your own machine for free",url:"https://github.com/ollama/ollama",
+     free:"Every local model - costs only your hardware and electricity",paid:"Optional Ollama cloud models / subscription"},
+    {n:"Open WebUI",for:"Local / API",d:"Your own ChatGPT-style UI for any model",url:"https://github.com/open-webui/open-webui",
+     free:"Self-hosted with Ollama or free API keys",paid:"Paid APIs you connect; enterprise license for branding/support"},
+    {n:"MCP servers (official)",for:"Claude / agents",d:"Connectors to files, GitHub, databases, browser",url:"https://github.com/modelcontextprotocol/servers",
+     free:"The servers are free; free with any client on free models",paid:"Paid services they connect to, and the paid AI client you use"}
   ],
 
   // Skills. g = purpose (sets the color), p = free | paid
