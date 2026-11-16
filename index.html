@@ -66,6 +66,9 @@ nav{padding-bottom:58px}
 .arena{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:99px;background:#4fb3e822;border:1px solid #4fb3e888;color:#8fd3ff;font:700 13px "JetBrains Mono",monospace;cursor:help;z-index:2}
 .arena::after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;width:230px;padding:9px 11px;border-radius:10px;background:#1d212b;border:1px solid #4fb3e888;color:var(--tx);font:500 12px/1.4 "Inter",sans-serif;box-shadow:0 8px 24px #000a;opacity:0;pointer-events:none;transition:opacity .15s}
 .arena:hover::after,.arena:focus::after{opacity:1}
+.seg span,.seg button.sel[data-v=all],.seg button.sel[data-v=paid],.seg button[data-v=all],.seg button[data-v=paid]{text-shadow:none}
+.navrow [data-t=contacts]{background:linear-gradient(180deg,#16405e,#0f2c44);border:2px solid #4fb3e8;box-shadow:0 0 8px #4fb3e877,0 0 18px #4fb3e833;color:#fff}
+.navrow [data-t=contacts].on{background:#4fb3e8;color:#08121c}
 .vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
 .vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
 @media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
