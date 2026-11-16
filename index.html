@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -31,50 +31,50 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <body>
 <header><h1>Free AI Hub</h1><div class="upd" id="upd"></div></header>
 <nav id="nav">
-<button data-t="offers">Офферы</button>
-<button data-t="ai" class="on">ИИ</button>
-<button data-t="patches">Патчи</button>
-<button data-t="sfree">Скилы - бесплатные</button>
-<button data-t="spaid">Скилы - платные</button>
-<button data-t="road">Роудмап и легенда</button>
+<button data-t="offers">Offers</button>
+<button data-t="ai" class="on">AI</button>
+<button data-t="patches">Patches</button>
+<button data-t="sfree">Free skills</button>
+<button data-t="spaid">Paid skills</button>
+<button data-t="road">Roadmap & legend</button>
 </nav>
 <main>
-<section id="offers"><div class="bar"><input placeholder="Поиск" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
-<section id="ai" class="on"><div class="bar"><input placeholder="Поиск" data-q="ai"><select data-f="ai">
-<option value="">Все</option><option value="free">Бесплатно навсегда</option><option value="trial">Кредиты / триал</option><option value="paid">Почти даром</option></select>
-<label class="upd"><input type="checkbox" id="nocard"> без карты</label></div><div class="grid" id="g-ai"></div></section>
-<section id="patches"><div class="bar"><input placeholder="Поиск" data-q="patches"></div><div class="grid" id="g-patches"></div></section>
-<section id="sfree"><div class="bar"><input placeholder="Поиск" data-q="sfree"></div><div class="grid" id="g-sfree"></div></section>
-<section id="spaid"><div class="bar"><input placeholder="Поиск" data-q="spaid"></div><div class="grid" id="g-spaid"></div></section>
+<section id="offers"><div class="bar"><input placeholder="Search" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
+<section id="ai" class="on"><div class="bar"><input placeholder="Search" data-q="ai"><select data-f="ai">
+<option value="">All</option><option value="free">Free forever</option><option value="trial">Credits / trial</option><option value="paid">Nearly free</option></select>
+<label class="upd"><input type="checkbox" id="nocard"> no card</label></div><div class="grid" id="g-ai"></div></section>
+<section id="patches"><div class="bar"><input placeholder="Search" data-q="patches"></div><div class="grid" id="g-patches"></div></section>
+<section id="sfree"><div class="bar"><input placeholder="Search" data-q="sfree"></div><div class="grid" id="g-sfree"></div></section>
+<section id="spaid"><div class="bar"><input placeholder="Search" data-q="spaid"></div><div class="grid" id="g-spaid"></div></section>
 <section id="road">
-<h2>Легенда цветов скилов</h2><div id="legend"></div>
-<h2>Статусы</h2>
-<p><span class="st ok">● Активно</span> - работает &nbsp; <span class="st part">● Частично</span> - есть ограничения &nbsp; <span class="st off">● Неактивно</span> - сейчас не выдают</p>
-<h2>Типы ИИ-предложений</h2>
-<ul><li><b>Бесплатно навсегда</b> - постоянный free tier или дневной лимит</li><li><b>Кредиты / триал</b> - разовый или ежемесячный баланс</li><li><b>Почти даром</b> - платно, но копейки</li></ul>
-<h2>Как пользоваться сайтом</h2>
+<h2>Skill color legend</h2><div id="legend"></div>
+<h2>Statuses</h2>
+<p><span class="st ok">● Active</span> - working &nbsp; <span class="st part">● Partial</span> - has limits &nbsp; <span class="st off">● Inactive</span> - not available now</p>
+<h2>AI offer types</h2>
+<ul><li><b>Free forever</b> - permanent free tier or daily limit</li><li><b>Credits / trial</b> - one-time or monthly balance</li><li><b>Nearly free</b> - paid, but pennies</li></ul>
+<h2>How to use this site</h2>
 <ol>
-<li><b>ИИ</b> - начни с "Бесплатно навсегда" и галочки "без карты"</li>
-<li><b>Патчи</b> - подключи бесплатные модели к своему инструменту (claude-code-router, LiteLLM)</li>
-<li><b>Скилы</b> - выбери по цвету направления, бесплатные отдельно от платных</li>
-<li><b>Офферы</b> - облака, VPS, прокси, поиск для агентов</li>
+<li><b>AI</b> - start with "Free forever" and the "no card" checkbox</li>
+<li><b>Patches</b> - plug free models into your tools (claude-code-router, LiteLLM)</li>
+<li><b>Skills</b> - pick by purpose color, free and paid on separate tabs</li>
+<li><b>Offers</b> - cloud, VPS, proxies, search for agents</li>
 </ol>
-<h2>Роудмап</h2>
-<ol><li>✅ Вкладки ИИ, патчи, скилы, офферы</li><li>✅ Автообновление данных раз в 3 дня</li><li>⏳ Отметка "новое" для свежих офферов</li><li>⏳ История изменений</li></ol>
-<p class="upd">Источник офферов - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
+<h2>Roadmap</h2>
+<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh of data every 3 days</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
+<p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
 <script src="data.js"></script>
 <script>
 const D=window.DATA,$=s=>document.querySelector(s);
-const G={text:"Текст / письмо",dev:"Код / разработка",image:"Картинки / дизайн",docs:"Документы",research:"Исследование / поиск",data:"Данные / таблицы",media:"Видео / звук"};
-const SN={ok:"Активно",part:"Частично",off:"Неактивно"},TN={free:"Бесплатно навсегда",trial:"Кредиты / триал",paid:"Почти даром"};
+const G={text:"Text / writing",dev:"Code / dev",image:"Images / design",docs:"Documents",research:"Research / search",data:"Data / spreadsheets",media:"Video / audio"};
+const SN={ok:"Active",part:"Partial",off:"Inactive"},TN={free:"Free forever",trial:"Credits / trial",paid:"Nearly free"};
 const fresh=(Date.now()-new Date(D.updated))/864e5;
-$("#upd").textContent="Обновлено "+D.updated+(fresh>4?" (данные устарели)":"");
+$("#upd").textContent="Updated "+D.updated+(fresh>4?" (data is stale)":"");
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const tags=a=>a&&a.length?`<div class="tags">${a.map(t=>`<span class="tag">${esc(t)}</span>`).join("")}</div>`:"";
 const cats=[...new Set(D.offers.map(o=>o.cat))];
-document.querySelector('[data-f="offers"]').innerHTML='<option value="">Все</option>'+cats.map(c=>`<option>${c}</option>`).join("");
+document.querySelector('[data-f="offers"]').innerHTML='<option value="">All</option>'+cats.map(c=>`<option>${c}</option>`).join("");
 $("#legend").innerHTML=Object.entries(G).map(([k,v])=>`<div><span class="sw" style="background:var(--${k})"></span>${v}</div>`).join("");
 const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
 const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
@@ -82,9 +82,9 @@ function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
  $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}</div>`).join("");
  const fa=document.querySelector('[data-f="ai"]').value,nc=$("#nocard").checked;
- $("#g-ai").innerHTML=D.ai.filter(o=>(!fa||o.t==fa)&&(!nc||!o.req.includes("Карта"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Нужно: ${esc(o.req.join(", "))}</div>`:`<div class="d">Ничего не нужно</div>`}</div>`).join("");
+ $("#g-ai").innerHTML=D.ai.filter(o=>(!fa||o.t==fa)&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}</div>`).join("");
  $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">GitHub →</a></div>`).join("");
- const sk=(p,t)=>D.skills.filter(o=>o.p==p&&m(o,t)).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">Открыть →</a></div>`).join("");
+ const sk=(p,t)=>D.skills.filter(o=>o.p==p&&m(o,t)).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">Open →</a></div>`).join("");
  $("#g-sfree").innerHTML=sk("free","sfree");$("#g-spaid").innerHTML=sk("paid","spaid");
 }
 document.addEventListener("input",render);render();
