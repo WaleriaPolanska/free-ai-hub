@@ -192,6 +192,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </ol>
 <h2>Roadmap</h2>
 <ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>✅ AI → Install yourself: open-weight models you can run locally and fine-tune, refreshed from Hugging Face</li><li>✅ 👍 / 👎 votes on every card, stored in a shared database, and sorting by rating</li><li>✅ Starter Kits, Free GPU, Learn and Prompts sections</li><li>✅ Sort AI by LMArena rating</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
+<p class="upd">Free tiers, prices and paid plans were checked on the official sites on 2026-11-16. Links, GitHub stars and open models refresh automatically every 3 days.</p>
 <p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
@@ -225,7 +226,7 @@ const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
 const cost=o=>`<div class="cost"><div>✅ <b class="fw">Free with:</b> ${esc(o.free)}</div><div><span class="usd">$</span> <b class="pw">Paid with:</b> ${esc(o.paid)}</div></div>`;
 const chk=o=>o.checked?`<div class="upd">${o.alive===false?'<span class="i-warn">⚠</span> Link may be dead':'<span class="i-ok">✓</span> Link checked'} ${esc(o.checked)}</div>`:"";
 const k=n=>n>=1000?(n/1000).toFixed(n>=1e5?0:1)+"k":n;
-const meta=o=>o.stars!=null?`<div class="meta">updated ${esc(o.pushed)}${o.archived?' · <span class="i-warn">⚠ archived</span>':""}</div>`:"";
+const meta=o=>o.stars!=null?`<div class="meta">updated ${esc(o.pushed)}${(Date.now()-new Date(o.pushed))/864e5>365?' · <span class="i-warn">⚠ no updates for 1+ year</span>':""}${o.archived?' · <span class="i-warn">⚠ archived</span>':""}</div>`:"";
 const link=(o,l)=>o.url?`<a class="go" href="${esc(o.url)}" target="_blank" rel="noopener">${l} →</a>${chk(o)}`:`<a class="go alt" href="${esc(D.source)}" target="_blank" rel="noopener">Details on vldtech →</a>`;
 const OPENLIC=["apache-2.0","mit"];
 const openCard=o=>`<div class="c pc" style="--pc:#ffb87a"><span class="st ok">● Open weights · Install yourself</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.model||"")}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}
@@ -265,7 +266,7 @@ function book(t,items,key,card,anim){
 }
 ["ai","skills","patches","offers","kits","gpu","learn","prompts"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=t;render()});
 const P={ai:"all",skills:"all",offers:"all",patches:"all"};
-const PAIDPLAN=new Set(["BerriAI/litellm","Portkey-AI/gateway","continuedev/continue","cline/cline","Kilo-Org/kilocode","RooCodeInc/Roo-Code","anomalyco/opencode","ollama/ollama","open-webui/open-webui","Mintplex-Labs/anything-llm","TabbyML/tabby","lobehub/lobehub","czlonkowski/n8n-mcp","upstash/context7","openai/codex","google-gemini/gemini-cli","OpenHands/OpenHands"]);
+const PAIDPLAN=new Set(["BerriAI/litellm","Portkey-AI/gateway","cline/cline","Kilo-Org/kilocode","anomalyco/opencode","ollama/ollama","open-webui/open-webui","Mintplex-Labs/anything-llm","lobehub/lobehub","czlonkowski/n8n-mcp","upstash/context7","openai/codex","google-gemini/gemini-cli","OpenHands/OpenHands","CherryHQ/cherry-studio","Kilo-Org/kilocode"]);
 const LB={ai:"AI",skills:"Skills",offers:"Bonuses & Services",patches:"Patches"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=LB[t];
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
