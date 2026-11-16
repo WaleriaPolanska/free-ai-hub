@@ -25,28 +25,28 @@ main{max-width:1200px;margin:0 auto;padding:16px}
 .skill{color:#111;border:none}.skill .d{color:#333}.skill a{color:#111}
 a{color:var(--acc)}h2{font-size:18px;margin:22px 0 10px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
+.sub{display:flex;gap:6px;margin-bottom:12px}.sub button{flex:1;max-width:160px;background:var(--card);color:var(--tx);border:1px solid var(--line);border-radius:8px;padding:8px;cursor:pointer;font:inherit;font-weight:600}
+.sub button.on{background:#6ee7a0;color:#000;border-color:#6ee7a0}.sub button[data-p=paid].on{background:#ffd166;border-color:#ffd166}
 ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
 </head>
 <body>
 <header><h1>Free AI Hub</h1><div class="upd" id="upd"></div></header>
 <nav id="nav">
-<button data-t="offers">Offers</button>
-<button data-t="ai" class="on">AI</button>
+<button data-t="road" class="on">Roadmap & legend</button>
+<button data-t="ai">AI</button>
+<button data-t="skills">Skills</button>
 <button data-t="patches">Patches</button>
-<button data-t="sfree">Free skills</button>
-<button data-t="spaid">Paid skills</button>
-<button data-t="road">Roadmap & legend</button>
+<button data-t="offers">Cloud & tools</button>
 </nav>
 <main>
 <section id="offers"><div class="bar"><input placeholder="Search" data-q="offers"><select data-f="offers"></select></div><div class="grid" id="g-offers"></div></section>
-<section id="ai" class="on"><div class="bar"><input placeholder="Search" data-q="ai"><select data-f="ai">
-<option value="">All</option><option value="free">Free forever</option><option value="trial">Credits / trial</option><option value="paid">Nearly free</option></select>
-<label class="upd"><input type="checkbox" id="nocard"> no card</label></div><div class="grid" id="g-ai"></div></section>
+<section id="ai"><div class="sub" data-s="ai"><button data-p="free" class="on">Free</button><button data-p="paid">Paid</button></div>
+<div class="bar"><input placeholder="Search" data-q="ai"><label class="upd"><input type="checkbox" id="nocard"> no card</label></div><div class="grid" id="g-ai"></div></section>
+<section id="skills"><div class="sub" data-s="skills"><button data-p="free" class="on">Free</button><button data-p="paid">Paid</button></div>
+<div class="bar"><input placeholder="Search" data-q="skills"></div><div class="grid" id="g-skills"></div></section>
 <section id="patches"><div class="bar"><input placeholder="Search" data-q="patches"></div><div class="grid" id="g-patches"></div></section>
-<section id="sfree"><div class="bar"><input placeholder="Search" data-q="sfree"></div><div class="grid" id="g-sfree"></div></section>
-<section id="spaid"><div class="bar"><input placeholder="Search" data-q="spaid"></div><div class="grid" id="g-spaid"></div></section>
-<section id="road">
+<section id="road" class="on">
 <h2>Skill color legend</h2><div id="legend"></div>
 <h2>Statuses</h2>
 <p><span class="st ok">● Active</span> - working &nbsp; <span class="st part">● Partial</span> - has limits &nbsp; <span class="st off">● Inactive</span> - not available now</p>
@@ -54,10 +54,10 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <ul><li><b>Free forever</b> - permanent free tier or daily limit</li><li><b>Credits / trial</b> - one-time or monthly balance</li><li><b>Nearly free</b> - paid, but pennies</li></ul>
 <h2>How to use this site</h2>
 <ol>
-<li><b>AI</b> - start with "Free forever" and the "no card" checkbox</li>
+<li><b>AI</b> - switch between Free and Paid, tick "no card" to see services that need nothing</li>
+<li><b>Skills</b> - switch between Free and Paid, pick by purpose color</li>
 <li><b>Patches</b> - plug free models into your tools (claude-code-router, LiteLLM)</li>
-<li><b>Skills</b> - pick by purpose color, free and paid on separate tabs</li>
-<li><b>Offers</b> - cloud, VPS, proxies, search for agents</li>
+<li><b>Cloud & tools</b> - non-AI deals: cloud credits, VPS, proxies, SMS numbers, search APIs for agents</li>
 </ol>
 <h2>Roadmap</h2>
 <ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh of data every 3 days</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
@@ -81,12 +81,14 @@ const m=(o,t)=>JSON.stringify(o).toLowerCase().includes(q(t));
 function render(){
  const fo=document.querySelector('[data-f="offers"]').value;
  $("#g-offers").innerHTML=D.offers.filter(o=>(!fo||o.cat==fo)&&m(o,"offers")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}</div>`).join("");
- const fa=document.querySelector('[data-f="ai"]').value,nc=$("#nocard").checked;
- $("#g-ai").innerHTML=D.ai.filter(o=>(!fa||o.t==fa)&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}</div>`).join("");
+ const nc=$("#nocard").checked;
+ $("#g-ai").innerHTML=D.ai.filter(o=>(P.ai=="paid"?o.t=="paid":o.t!="paid")&&(!nc||!o.req.includes("Card"))&&m(o,"ai")).map(o=>`<div class="c"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}</div>`).join("");
  $("#g-patches").innerHTML=D.patches.filter(o=>m(o,"patches")).map(o=>`<div class="c"><h3>${esc(o.n)}</h3><div class="v">${esc(o.for)}</div><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">GitHub →</a></div>`).join("");
- const sk=(p,t)=>D.skills.filter(o=>o.p==p&&m(o,t)).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">Open →</a></div>`).join("");
- $("#g-sfree").innerHTML=sk("free","sfree");$("#g-spaid").innerHTML=sk("paid","spaid");
+ $("#g-skills").innerHTML=D.skills.filter(o=>o.p==P.skills&&m(o,"skills")).map(o=>`<div class="c skill" style="background:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div><a href="${esc(o.url)}" target="_blank">Open →</a></div>`).join("");
 }
+const P={ai:"free",skills:"free"};
+document.querySelectorAll(".sub").forEach(b=>b.onclick=e=>{const p=e.target.dataset.p;if(!p)return;
+ P[b.dataset.s]=p;b.querySelectorAll("button").forEach(x=>x.classList.toggle("on",x==e.target));render()});
 document.addEventListener("input",render);render();
 $("#nav").onclick=e=>{const t=e.target.dataset.t;if(!t)return;
  document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));e.target.classList.add("on");$("#"+t).classList.add("on")};

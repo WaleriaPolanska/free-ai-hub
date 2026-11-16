@@ -5,11 +5,11 @@
 A catalog of free and nearly free AI services, open-source patches and AI skills, with data that refreshes itself every 3 days.
 
 ## Features
-- **AI tab** - 30+ AI APIs and agents. Each one shows its status, what it gives, what it can do and what signup needs (card, phone, KYC). You can filter by type and by "no card needed".
-- **Offers tab** - cloud and VPS credits, proxies, SMS numbers and search APIs for agents.
-- **Patches tab** - free open-source tools from GitHub that connect free models to Claude Code, VS Code and the terminal.
-- **Skills tabs** - free and paid skills on separate tabs, color-coded by purpose (text, code, images, docs, research, data, media).
-- **Roadmap and legend** - what the colors and statuses mean, and plans for the project.
+- **Roadmap & legend** - opens first and explains the color legend, statuses and plans.
+- **AI** - 30+ AI APIs and agents, split into Free and Paid sub-tabs. Each card shows status, what it gives, what it can do and what signup needs. You can filter by "no card needed".
+- **Skills** - one tab with Free and Paid sub-tabs, color-coded by purpose (text, code, images, docs, research, data, media).
+- **Patches** - free open-source tools from GitHub that connect free models to Claude Code, VS Code and the terminal.
+- **Cloud & tools** - non-AI deals: cloud and VPS credits, proxies, SMS numbers, search APIs for agents.
 - **Auto-refresh** - a scheduled AI agent re-checks the sources every 3 days and rewrites `data.js`.
 
 ## Tech
