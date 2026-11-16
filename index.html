@@ -261,9 +261,9 @@ function book(t,items,key,card,anim){
  const cur=tabs.find(x=>x[0]==F[t]),pg=$("#p-"+t);
  pg.style.setProperty("--pc",cur[2]);$("#h-"+t).innerHTML=`<span class="sw" style="background:${cur[2]}"></span>${cur[1]} <span class="upd">${cur[3]} items</span>`;
  $("#g-"+t).innerHTML=items.filter(o=>F[t]=="all"||key(o)==F[t]).map(card).join("")||'<p class="upd">Nothing found.</p>';
- if(anim){pg.classList.remove("flip");void pg.offsetWidth;pg.classList.add("flip")}
+ pg.classList.remove("flip");if(anim===t){void pg.offsetWidth;pg.classList.add("flip");clearTimeout(pg._ft);pg._ft=setTimeout(()=>pg.classList.remove("flip"),650)}
 }
-["ai","skills","patches","offers","kits","gpu","learn","prompts"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
+["ai","skills","patches","offers","kits","gpu","learn","prompts"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=t;render()});
 const P={ai:"all",skills:"all",offers:"all",patches:"all"};
 const PAIDPLAN=new Set(["BerriAI/litellm","Portkey-AI/gateway","continuedev/continue","cline/cline","Kilo-Org/kilocode","RooCodeInc/Roo-Code","anomalyco/opencode","ollama/ollama","open-webui/open-webui","Mintplex-Labs/anything-llm","TabbyML/tabby","lobehub/lobehub","czlonkowski/n8n-mcp","upstash/context7","openai/codex","google-gemini/gemini-cli","OpenHands/OpenHands"]);
 const LB={ai:"AI",skills:"Skills",offers:"Bonuses & Services",patches:"Patches"};
@@ -284,7 +284,7 @@ document.addEventListener("click",async e=>{const b=e.target.closest(".vote butt
 const sbox=$("#sortbox");
 function sortUI(){const v=SORT[CUR];sbox.querySelectorAll("li").forEach(li=>li.classList.toggle("sel",li.dataset.v==v));const cur=sbox.querySelector(`li[data-v="${v}"]`);$("#sortbtn").innerHTML=(v=="def"||!cur?"⇅ Sort":"⇅ "+cur.textContent)+' <span class="chev">▾</span>'}
 $("#sortbtn").onclick=e=>{e.stopPropagation();const o=sbox.classList.toggle("open");$("#sortbtn").setAttribute("aria-expanded",o)};
-$("#sortlist").onclick=e=>{e.stopPropagation();const li=e.target.closest("li");if(!li)return;sbox.classList.remove("open");{SORT[CUR]=SORT[CUR]==li.dataset.v?"def":li.dataset.v;flip=true;render()}sortUI()};
+$("#sortlist").onclick=e=>{e.stopPropagation();const li=e.target.closest("li");if(!li)return;sbox.classList.remove("open");{SORT[CUR]=SORT[CUR]==li.dataset.v?"def":li.dataset.v;render()}sortUI()};
 document.addEventListener("click",()=>sbox.classList.remove("open"));
 Promise.all([rpc("vote_counts").then(r=>r.json()),rpc("my_votes",{p_voter:VOTER}).then(r=>r.json())]).then(([a,b])=>{a.forEach(x=>VC[x.item]=[+x.likes,+x.dislikes]);b.forEach(x=>MY[x.item]=x.v);render()}).catch(()=>{});
 function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d=>d.classList.toggle("cur",d.querySelector("[data-t]").dataset.t==CUR));
@@ -292,14 +292,14 @@ function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d
  if(CUR in SORT){sbox.querySelector('[data-v=stars]').hidden=!["skills","patches"].includes(CUR);sbox.querySelector('[data-v=arena]').hidden=CUR!="ai";sbox.classList.remove("open");sortUI()}
  if(!(CUR in P)){el.classList.remove("show");return}
  el.classList.add("show");el.innerHTML=`<span>Show</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
-$("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};
+$("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;mark();render();seg()};
 const ML=["waleriapolanska","gmail.com"].join("@");$("#mail").href="mailto:"+ML;
 $("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(ML);$("#copy").textContent="Copied ✓"}catch{$("#copy").textContent=ML}};
 $("#mailtxt").textContent=ML;
 document.addEventListener("input",render);render();
 $("header .cbtn").onclick=e=>{document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));e.currentTarget.classList.add("on");$("#contacts").classList.add("on");CUR="contacts";seg();window.scrollTo(0,0)};
 $("#nav").onclick=e=>{$("header .cbtn").classList.remove("on");const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
- if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v;flip=true}mark();render();b.blur()}
+ if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v}mark();render();b.blur()}
  document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`.navrow > [data-t="${t}"],.navrow > .dd > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on");CUR=t;seg()};
 })();
 </script>
