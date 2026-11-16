@@ -20,6 +20,8 @@ jobs:
         run: python scripts/check_links.py data.json
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Keep Supabase votes database awake
+        run: curl -fsS -X POST "https://ghztrdkufbgggbzwwtlf.supabase.co/rest/v1/rpc/vote_counts" -H "apikey: sb_publishable_yzOV4c3b4f7f2PxkN2n9kg_v6b_qAae" -H "Content-Type: application/json" -d '{}' > /dev/null
       - name: Commit if changed
         run: |
           git config user.name "github-actions[bot]"

@@ -45,6 +45,11 @@ a{color:#8fb0ff;text-decoration-color:#8fb0ff66;text-underline-offset:3px}a:hove
 .c{transition:transform .15s,box-shadow .15s}.c:hover{transform:translateY(-2px);box-shadow:0 8px 24px #0006}h2{font-size:18px;margin:22px 0 10px}
 .sw{display:inline-block;width:14px;height:14px;border-radius:4px;vertical-align:middle;margin-right:8px}
 nav{padding-bottom:58px}
+.sort{position:absolute;right:16px;bottom:10px;display:none;align-items:center;gap:6px;padding:4px 8px;border:2px solid var(--line);border-radius:10px;background:var(--card);font:600 13px "JetBrains Mono",monospace;color:var(--mut)}.sort.show{display:flex}
+.sort select{background:transparent;color:var(--tx);border:none;font:600 13px "Space Grotesk",sans-serif;cursor:pointer}.sort option{background:var(--card)}
+.vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
+.vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
+@media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
 .seg{position:absolute;left:16px;bottom:10px;display:none;align-items:stretch;border:2px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card)}.seg.show{display:flex}
 .seg span{display:flex;align-items:center;padding:0 10px;font:600 12px "JetBrains Mono",monospace;color:var(--mut)}
 .seg button{border:none;border-radius:0;border-left:1px solid var(--line);padding:6px 14px;background:transparent;font-weight:600}
@@ -86,6 +91,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <button data-t="offers">Bonuses & services</button>
 <button data-t="contacts">Contacts</button>
 <div class="seg" id="seg"></div>
+<label class="sort" id="sortbox">⇅ <select id="sort"><option value="def">Default order</option><option value="top">Top rated</option><option value="most">Most voted</option></select></label>
 </nav>
 <main>
 <section id="offers"><div class="bar"><input placeholder="Search servers, proxies, numbers..." data-q="offers"></div><div class="book"><div class="tabs" id="t-offers"></div><div class="page" id="p-offers"><h2 id="h-offers"></h2><div class="grid" id="g-offers"></div></div></div></section>
@@ -128,7 +134,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <li><b>Bonuses & services</b> - everything around AI that is not a model: free cloud credits and VPS to host bots and agents, search APIs for agents, proxies, SMS numbers and virtual cards for signups. Bookmarks on the left split them by type</li>
 </ol>
 <h2>Roadmap</h2>
-<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>✅ AI → Install yourself: open-weight models you can run locally and fine-tune, refreshed from Hugging Face</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
+<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>✅ AI → Install yourself: open-weight models you can run locally and fine-tune, refreshed from Hugging Face</li><li>✅ 👍 / 👎 votes on every card, stored in a shared database, and sorting by rating</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
 <p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
@@ -174,6 +180,8 @@ function render(){
 }
 let flip=false;
 function book(t,items,key,card,anim){
+ if(SORT!="def"){const sc=o=>{const c=VC[vid(t,o)]||[0,0],n=c[0]+c[1];return SORT=="most"?n:wilson(c[0],n)};items=items.map((o,i)=>[o,i]).sort((a,b)=>sc(b[0])-sc(a[0])||a[1]-b[1]).map(x=>x[0])}
+ const card0=card;card=o=>card0(o).replace(/<\/div>\s*$/,vbar(t,o)+"</div>");
  const fold=FOLD[t],cnt={};items.forEach(o=>cnt[key(o)]=(cnt[key(o)]||0)+1);
  if(F[t]!="all"&&!cnt[F[t]])F[t]="all";
  const AL={all:["All","#d6d9e0"],free:["All free","#2f8f5f"],paid:["All paid","#ffd166"]}[P[t]||"all"];
@@ -190,7 +198,20 @@ const LB={ai:"AI",skills:"Skills"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 let CUR="road";
+const SB="https://ghztrdkufbgggbzwwtlf.supabase.co/rest/v1/rpc/",SK="sb_publishable_yzOV4c3b4f7f2PxkN2n9kg_v6b_qAae";
+const rpc=(f,b)=>fetch(SB+f,{method:"POST",headers:{apikey:SK,"Content-Type":"application/json"},body:JSON.stringify(b||{})});
+let VOTER;try{VOTER=localStorage.getItem("fah-voter")||crypto.randomUUID();localStorage.setItem("fah-voter",VOTER)}catch{VOTER=crypto.randomUUID()}
+const VC={},MY={};let SORT="def";
+function vid(t,o){return (t=="ai"&&o.author?"open":t)+":"+(o.repo||o.n)}
+function wilson(up,n){if(!n)return 0;const z=1.96,p=up/n;return (p+z*z/(2*n)-z*Math.sqrt((p*(1-p)+z*z/(4*n))/n))/(1+z*z/n)}
+function vbar(t,o){const id=vid(t,o),c=VC[id]||[0,0],m=MY[id]||0;return `<div class="vote" data-id="${esc(id)}"><button class="up${m==1?" on":""}" title="Like">👍 <b>${c[0]}</b></button><button class="down${m==-1?" on":""}" title="Dislike">👎 <b>${c[1]}</b></button></div>`}
+document.addEventListener("click",async e=>{const b=e.target.closest(".vote button");if(!b)return;const box=b.parentElement,id=box.dataset.id,want=b.classList.contains("up")?1:-1,old=MY[id]||0,nv=old==want?0:want,c=VC[id]=VC[id]||[0,0];
+ const apply=(from,to)=>{if(from==1)c[0]--;if(from==-1)c[1]--;if(to==1)c[0]++;if(to==-1)c[1]++;MY[id]=to;document.querySelectorAll(`.vote[data-id="${CSS.escape(id)}"]`).forEach(v=>{v.querySelector(".up").classList.toggle("on",to==1);v.querySelector(".down").classList.toggle("on",to==-1);v.querySelector(".up b").textContent=c[0];v.querySelector(".down b").textContent=c[1]})};
+ apply(old,nv);try{const r=await rpc("vote",{p_item:id,p_voter:VOTER,p_v:nv});if(!r.ok)throw 0}catch{apply(nv,old)}});
+$("#sort").onchange=e=>{SORT=e.target.value;flip=true;render()};
+Promise.all([rpc("vote_counts").then(r=>r.json()),rpc("my_votes",{p_voter:VOTER}).then(r=>r.json())]).then(([a,b])=>{a.forEach(x=>VC[x.item]=[+x.likes,+x.dislikes]);b.forEach(x=>MY[x.item]=x.v);render()}).catch(()=>{});
 function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d=>d.classList.toggle("cur",d.querySelector("[data-t]").dataset.t==CUR));
+ $("#sortbox").classList.toggle("show",["ai","skills","patches","offers"].includes(CUR));
  if(!(CUR in P)){el.classList.remove("show");return}
  el.classList.add("show");el.innerHTML=`<span>Show:</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
 $("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};
