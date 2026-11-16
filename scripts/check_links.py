@@ -21,11 +21,9 @@ def alive(url):
             with urllib.request.urlopen(req, timeout=20):
                 return True
         except urllib.error.HTTPError as e:
-            if e.code in DEAD:
-                return False
-            if method == "HEAD" and e.code in (405, 501):
-                continue  # server does not support HEAD, retry with GET
-            return True
+            if method == "HEAD":
+                continue  # some servers mishandle HEAD (405/501, even 404), confirm with GET
+            return e.code not in DEAD
         except urllib.error.URLError as e:
             if isinstance(e.reason, ssl.SSLError):
                 return True  # TLS mismatch on our side, not proof the page is gone
@@ -92,7 +90,7 @@ def main():
     today = datetime.date.today().isoformat()
     print("github repos refreshed:", refresh_github(data["patches"] + data["skills"]))
     print("open models refreshed:", refresh_hf(data.get("open", [])))
-    items = [o for k in ("offers", "ai", "patches", "skills", "open") for o in data.get(k, []) if o.get("url")]
+    items = [o for k in ("offers", "ai", "patches", "skills", "open", "gpu", "learn", "kits") for o in data.get(k, []) if o.get("url")]
     with ThreadPoolExecutor(16) as ex:
         results = list(ex.map(lambda o: alive(o["url"]), items))
     for o, ok in zip(items, results):

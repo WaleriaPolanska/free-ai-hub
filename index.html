@@ -60,6 +60,12 @@ nav{padding-bottom:58px}
 .starb:hover::after,.starb:focus::after{opacity:1;transform:none}
 .usd{display:inline-block;width:1.1em;text-align:center;font:800 15px "Space Grotesk",sans-serif;color:#ffd34d;text-shadow:0 0 4px #ffcc33,0 0 10px #ffb30099,0 0 16px #ffb30066}
 .note{margin:0 0 12px;padding:10px 14px;border-radius:10px;background:#ffffff08;border:1px solid var(--line);font-size:14px;color:#cfd5e2}
+.steps{margin:4px 0;padding-left:20px;font-size:13px;color:#d6dbe6}.steps li{margin:3px 0}
+.pr{margin:4px 0;padding:10px 12px;border-radius:8px;background:color-mix(in srgb,var(--pc) 22%,var(--card));box-shadow:0 2px 6px #0006;white-space:pre-wrap;font:13px/1.5 "JetBrains Mono",monospace;color:#e8eaf0;max-height:180px;overflow:auto}
+.copyp{border:none;cursor:pointer}
+.arena{position:absolute;top:10px;right:10px;padding:3px 10px;border-radius:99px;background:#4fb3e822;border:1px solid #4fb3e888;color:#8fd3ff;font:700 13px "JetBrains Mono",monospace;cursor:help;z-index:2}
+.arena::after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;width:230px;padding:9px 11px;border-radius:10px;background:#1d212b;border:1px solid #4fb3e888;color:var(--tx);font:500 12px/1.4 "Inter",sans-serif;box-shadow:0 8px 24px #000a;opacity:0;pointer-events:none;transition:opacity .15s}
+.arena:hover::after,.arena:focus::after{opacity:1}
 .vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
 .vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
 @media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
@@ -123,6 +129,10 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <div class="dd"><button data-t="ai">AI ▾</button><div class="menu"><button data-t="ai" data-go="free">✅ Free</button><button data-t="ai" data-go="paid">💲 Paid</button></div></div>
 <div class="dd"><button data-t="skills">Skills ▾</button><div class="menu"><button data-t="skills" data-go="free">✅ Free</button><button data-t="skills" data-go="paid">💲 Paid</button></div></div>
 <div class="dd"><button data-t="patches">Patches ▾</button><div class="menu"><button data-t="patches" data-go="free">✅ Free</button><button data-t="patches" data-go="paid">💲 Paid</button></div></div>
+<button data-t="kits">Starter kits</button>
+<button data-t="gpu">Free GPU</button>
+<button data-t="learn">Learn</button>
+<button data-t="prompts">Prompts</button>
 <div class="dd"><button data-t="offers">Bonuses & services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
 <button data-t="contacts">Contacts</button>
 </div>
@@ -130,7 +140,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <div class="seg" id="seg"></div>
 <div class="sort" id="sortbox"><button type="button" id="sortbtn" aria-haspopup="listbox" aria-expanded="false">⇅ Sort <span class="chev">▾</span></button>
 <ul id="sortlist" role="listbox">
-<li data-v="def">⇅ Sort <small>A → Z</small></li><li data-v="za">Z → A</li><li data-v="stars" title="Sorted by GitHub stars">★ Most GitHub stars</li><li data-v="top">Top rated</li><li data-v="most">Most voted</li>
+<li data-v="def">⇅ Sort <small>A → Z</small></li><li data-v="za">Z → A</li><li data-v="stars" title="Sorted by GitHub stars">★ Most GitHub stars</li><li data-v="arena" title="LMArena human-preference rating">🏆 LLM Arena rating</li><li data-v="top">Top rated</li><li data-v="most">Most voted</li>
 </ul></div>
 </div>
 </nav>
@@ -140,6 +150,10 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <p class="upd hint">"No card needed" hides services that ask for a bank card at signup, even when they are free.</p><div class="book"><div class="tabs" id="t-ai"></div><div class="page" id="p-ai"><h2 id="h-ai"></h2><div class="grid" id="g-ai"></div></div></div></section>
 <section id="skills"><div class="bar"><input placeholder="Search skills" data-q="skills"></div><div class="book"><div class="tabs" id="t-skills"></div><div class="page" id="p-skills"><h2 id="h-skills"></h2><div class="grid" id="g-skills"></div></div></div></section>
 <section id="patches"><p class="note">🔓 Every patch is free and open source. <b class="fw">✅ Free</b> means there is no paid plan at all. <b class="pw">💲 Paid</b> means the core is free, but the project also sells an optional paid plan or cloud. You pay only for the AI model you connect.</p><div class="bar"><input placeholder="Search patches" data-q="patches"></div><div class="book"><div class="tabs" id="t-patches"></div><div class="page" id="p-patches"><h2 id="h-patches"></h2><div class="grid" id="g-patches"></div></div></div></section>
+<section id="kits"><p class="note">🧩 Ready free setups for a real task. Follow the steps, everything here costs €0.</p><div class="bar"><input placeholder="Search starter kits..." data-q="kits"></div><div class="book"><div class="tabs" id="t-kits"></div><div class="page" id="p-kits"><h2 id="h-kits"></h2><div class="grid" id="g-kits"></div></div></div></section>
+<section id="gpu"><p class="note">⚡ Where to run and train models on a GPU for free. Limits change often, check the site before a long job.</p><div class="bar"><input placeholder="Search free GPU..." data-q="gpu"></div><div class="book"><div class="tabs" id="t-gpu"></div><div class="page" id="p-gpu"><h2 id="h-gpu"></h2><div class="grid" id="g-gpu"></div></div></div></section>
+<section id="learn"><p class="note">🎓 Free courses and guides about AI, from first steps to training your own models.</p><div class="bar"><input placeholder="Search courses..." data-q="learn"></div><div class="book"><div class="tabs" id="t-learn"></div><div class="page" id="p-learn"><h2 id="h-learn"></h2><div class="grid" id="g-learn"></div></div></div></section>
+<section id="prompts"><p class="note">✍️ Copy a prompt, replace the [brackets] with your details and paste it into any AI.</p><div class="bar"><input placeholder="Search prompts..." data-q="prompts"></div><div class="book"><div class="tabs" id="t-prompts"></div><div class="page" id="p-prompts"><h2 id="h-prompts"></h2><div class="grid" id="g-prompts"></div></div></div></section>
 <section id="contacts">
 <div class="about">
 <h2>💡 Made for everyone</h2>
@@ -175,7 +189,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <li><b>Bonuses & services</b> - everything around AI that is not a model: free cloud credits and VPS to host bots and agents, search APIs for agents, proxies, SMS numbers and virtual cards for signups. Bookmarks on the left split them by type</li>
 </ol>
 <h2>Roadmap</h2>
-<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>✅ AI → Install yourself: open-weight models you can run locally and fine-tune, refreshed from Hugging Face</li><li>✅ 👍 / 👎 votes on every card, stored in a shared database, and sorting by rating</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
+<ol><li>✅ AI, patches, skills and offers tabs</li><li>✅ Auto-refresh every 3 days via GitHub Actions - every link is re-checked and dated</li><li>✅ Direct links to services</li><li>✅ 50+ patches and 70 skills from real GitHub repos, in folders</li><li>✅ AI → Install yourself: open-weight models you can run locally and fine-tune, refreshed from Hugging Face</li><li>✅ 👍 / 👎 votes on every card, stored in a shared database, and sorting by rating</li><li>✅ Starter kits, Free GPU, Learn and Prompts sections</li><li>✅ Sort AI by LMArena rating</li><li>⏳ "New" badge for fresh offers</li><li>⏳ Changelog</li></ol>
 <p class="upd">Offer source - <a href="https://vldtech.si/offers/">vldtech.si/offers</a></p>
 </section>
 </main>
@@ -197,6 +211,11 @@ const tags=a=>a&&a.length?`<div class="tags">${a.map(t=>`<span class="tag">${esc
 const OF={cloud:["Cloud credits","#8ad4ff"],vps:["VPS & VMs","#c9a8ff"],search:["Search APIs","#ffe08a"],proxy:["Proxies","#ffb87a"],sms:["SMS numbers","#ff8a8a"],cards:["Virtual cards","#c6ff3d"]};
 const OK={"Cloud":"cloud","VPS":"vps","Cloud VM":"vps","Search":"search","Proxy":"proxy","SMS":"sms","Cards":"cards"};
 FOLD.offers=OF;F.offers="all";
+FOLD.kits={code:["Coding","#8ad4ff"],chat:["Chat","#c9a8ff"],voice:["Voice & audio","#ff8a8a"],images:["Images","#e85cf0"],agents:["Agents","#ffe08a"],train:["Fine-tuning","#ffb87a"]};
+FOLD.gpu={notebook:["Notebooks","#ffb87a"],host:["App hosting","#c9a8ff"],cloud:["Cloud credits","#8ad4ff"]};
+FOLD.learn={beginner:["Beginner","#3fae7f"],intermediate:["Intermediate","#ffe08a"],advanced:["Advanced","#ff8a8a"]};
+FOLD.prompts={code:["Code","#8ad4ff"],text:["Text","#ffe08a"],image:["Images","#e85cf0"],study:["Study","#3fae7f"],agent:["Agents","#c9a8ff"]};
+Object.assign(F,{kits:"all",gpu:"all",learn:"all",prompts:"all"});
 const lg=o=>Object.values(o).map(([n,c])=>`<div><span class="sw" style="background:${c}"></span>${n}</div>`).join("");
 $("#legend").innerHTML=lg(FOLD.skills);$("#legend-p").innerHTML=lg(PF);
 const q=t=>(document.querySelector(`[data-q="${t}"]`).value||"").toLowerCase();
@@ -217,6 +236,10 @@ function render(){
  book("ai",ais,aik,o=>aik(o)=="local"?openCard(o):`<div class="c pc" style="--pc:${FOLD.ai[aik(o)][1]}"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`,flip);
  book("patches",D.patches.filter(o=>(P.patches=="all"||(PAIDPLAN.has(o.repo)?"paid":"free")==P.patches)&&m(o,"patches")),o=>o.f,o=>`<div class="c pc" style="--pc:${PF[o.f][1]}"><div class="d">${PF[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,"GitHub")}</div>`,flip);
  book("skills",D.skills.filter(o=>(P.skills=="all"||o.p==P.skills)&&m(o,"skills")),o=>o.g,o=>`<div class="c pc" style="--pc:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
+ book("kits",D.kits.filter(o=>m(o,"kits")),o=>o.f,o=>`<div class="c pc" style="--pc:${FOLD.kits[o.f][1]}"><div class="d">${FOLD.kits[o.f][0]} · <b class="fw">€0</b></div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${tags(o.tools)}<ol class="steps">${o.steps.map(x=>`<li>${esc(x)}</li>`).join("")}</ol>${link(o,"Start here")}</div>`,flip);
+ book("gpu",D.gpu.filter(o=>m(o,"gpu")),o=>o.f,o=>`<div class="c pc" style="--pc:${FOLD.gpu[o.f][1]}"><div class="d">${FOLD.gpu[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div><div class="d">Requires: ${esc(o.req.join(", "))}</div>${link(o,"Open")}</div>`,flip);
+ book("learn",D.learn.filter(o=>m(o,"learn")),o=>o.f,o=>`<div class="c pc" style="--pc:${FOLD.learn[o.f][1]}"><div class="d">${FOLD.learn[o.f][0]} · free</div><h3>${esc(o.n)}</h3><div class="v">${esc(o.by)}</div><div class="d">${esc(o.d)}</div>${link(o,"Start learning")}</div>`,flip);
+ book("prompts",D.prompts.filter(o=>m(o,"prompts")),o=>o.f,o=>`<div class="c pc" style="--pc:${FOLD.prompts[o.f][1]}"><div class="d">${FOLD.prompts[o.f][0]}</div><h3>${esc(o.n)}</h3><pre class="pr">${esc(o.t)}</pre><button class="go copyp" type="button">Copy prompt</button></div>`,flip);
  flip=false;
 }
 let flip=false;
@@ -224,9 +247,10 @@ function book(t,items,key,card,anim){
  const nm=o=>String(o.n).toLowerCase(),abc=(a,b)=>nm(a).localeCompare(nm(b));
  const SO=SORT[t]||"def";
  if(SO=="def")items=[...items].sort(abc);else if(SO=="za")items=[...items].sort((a,b)=>abc(b,a));
+ else if(SO=="arena")items=[...items].sort((a,b)=>(b.arena?.s??-1)-(a.arena?.s??-1)||abc(a,b));
  else if(SO=="stars")items=[...items].sort((a,b)=>(b.stars??-1)-(a.stars??-1)||abc(a,b));
  else{const sc=o=>{const c=VC[vid(t,o)]||[0,0],n=c[0]+c[1];return SO=="most"?n:wilson(c[0],n)};items=items.map((o,i)=>[o,i]).sort((a,b)=>sc(b[0])-sc(a[0])||a[1]-b[1]).map(x=>x[0])}
- const card0=card;card=o=>card0(o).replace(/^(<div[^>]*>)/,"$1"+(o.stars!=null?`<span class="starb" tabindex="0" data-tip="GitHub stars: how many people bookmarked this project on GitHub. More stars = more popular and trusted.">★ ${k(o.stars)}</span>`:"")).replace(/<\/div>\s*$/,vbar(t,o)+"</div>");
+ const card0=card;card=o=>card0(o).replace(/^(<div[^>]*>)/,"$1"+(o.arena?`<span class="arena" tabindex="0" data-tip="LMArena text score of the best model it offers (${esc(o.arena.m)}), ${esc(D.arena_date)}. Higher = better rated by people in blind tests.">🏆 ${o.arena.s}</span>`:"")+(o.stars!=null?`<span class="starb" tabindex="0" data-tip="GitHub stars: how many people bookmarked this project on GitHub. More stars = more popular and trusted.">★ ${k(o.stars)}</span>`:"")).replace(/<\/div>\s*$/,vbar(t,o)+"</div>");
  const fold=FOLD[t],cnt={};items.forEach(o=>cnt[key(o)]=(cnt[key(o)]||0)+1);
  if(F[t]!="all"&&!cnt[F[t]])F[t]="all";
  const AL={all:["All","#d6d9e0"],free:["All free","#2f8f5f"],paid:["All paid","#ffd166"]}[P[t]||"all"];
@@ -237,7 +261,7 @@ function book(t,items,key,card,anim){
  $("#g-"+t).innerHTML=items.filter(o=>F[t]=="all"||key(o)==F[t]).map(card).join("")||'<p class="upd">Nothing found.</p>';
  if(anim){pg.classList.remove("flip");void pg.offsetWidth;pg.classList.add("flip")}
 }
-["ai","skills","patches","offers"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
+["ai","skills","patches","offers","kits","gpu","learn","prompts"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
 const P={ai:"all",skills:"all",offers:"all",patches:"all"};
 const PAIDPLAN=new Set(["BerriAI/litellm","Portkey-AI/gateway","continuedev/continue","cline/cline","Kilo-Org/kilocode","RooCodeInc/Roo-Code","anomalyco/opencode","ollama/ollama","open-webui/open-webui","Mintplex-Labs/anything-llm","TabbyML/tabby","lobehub/lobehub","czlonkowski/n8n-mcp","upstash/context7","openai/codex","google-gemini/gemini-cli","OpenHands/OpenHands"]);
 const LB={ai:"AI",skills:"Skills",offers:"Bonuses & services",patches:"Patches"};
@@ -247,10 +271,11 @@ let CUR="road";
 const SB="https://ghztrdkufbgggbzwwtlf.supabase.co/rest/v1/rpc/",SK="sb_publishable_yzOV4c3b4f7f2PxkN2n9kg_v6b_qAae";
 const rpc=(f,b)=>fetch(SB+f,{method:"POST",headers:{apikey:SK,"Content-Type":"application/json"},body:JSON.stringify(b||{})});
 let VOTER;try{VOTER=localStorage.getItem("fah-voter")||crypto.randomUUID();localStorage.setItem("fah-voter",VOTER)}catch{VOTER=crypto.randomUUID()}
-const VC={},MY={};const SORT={ai:"def",skills:"def",patches:"def",offers:"def"};
+const VC={},MY={};const SORT={ai:"def",skills:"def",patches:"def",offers:"def",kits:"def",gpu:"def",learn:"def",prompts:"def"};
 function vid(t,o){return (t=="ai"&&o.author?"open":t)+":"+(o.repo||o.n)}
 function wilson(up,n){if(!n)return 0;const z=1.96,p=up/n;return (p+z*z/(2*n)-z*Math.sqrt((p*(1-p)+z*z/(4*n))/n))/(1+z*z/n)}
 function vbar(t,o){const id=vid(t,o),c=VC[id]||[0,0],m=MY[id]||0;return `<div class="vote" data-id="${esc(id)}"><button class="up${m==1?" on":""}" title="Like">👍 <b>${c[0]}</b></button><button class="down${m==-1?" on":""}" title="Dislike">👎 <b>${c[1]}</b></button></div>`}
+document.addEventListener("click",async e=>{const cp=e.target.closest(".copyp");if(cp){const t=cp.parentElement.querySelector(".pr").textContent;try{await navigator.clipboard.writeText(t);cp.textContent="Copied ✓"}catch{cp.textContent="Select and copy"}setTimeout(()=>cp.textContent="Copy prompt",1500);return}});
 document.addEventListener("click",async e=>{const b=e.target.closest(".vote button");if(!b)return;const box=b.parentElement,id=box.dataset.id,want=b.classList.contains("up")?1:-1,old=MY[id]||0,nv=old==want?0:want,c=VC[id]=VC[id]||[0,0];
  const apply=(from,to)=>{if(from==1)c[0]--;if(from==-1)c[1]--;if(to==1)c[0]++;if(to==-1)c[1]++;MY[id]=to;document.querySelectorAll(`.vote[data-id="${CSS.escape(id)}"]`).forEach(v=>{v.querySelector(".up").classList.toggle("on",to==1);v.querySelector(".down").classList.toggle("on",to==-1);v.querySelector(".up b").textContent=c[0];v.querySelector(".down b").textContent=c[1]})};
  apply(old,nv);try{const r=await rpc("vote",{p_item:id,p_voter:VOTER,p_v:nv});if(!r.ok)throw 0}catch{apply(nv,old)}});
@@ -262,7 +287,7 @@ document.addEventListener("click",()=>sbox.classList.remove("open"));
 Promise.all([rpc("vote_counts").then(r=>r.json()),rpc("my_votes",{p_voter:VOTER}).then(r=>r.json())]).then(([a,b])=>{a.forEach(x=>VC[x.item]=[+x.likes,+x.dislikes]);b.forEach(x=>MY[x.item]=x.v);render()}).catch(()=>{});
 function seg(){const el=$("#seg");document.querySelectorAll("nav .dd").forEach(d=>d.classList.toggle("cur",d.querySelector("[data-t]").dataset.t==CUR));
  $("#sortbox").classList.toggle("show",CUR in SORT);
- if(CUR in SORT){sbox.querySelector('[data-v=stars]').hidden=!["skills","patches"].includes(CUR);sbox.classList.remove("open");sortUI()}
+ if(CUR in SORT){sbox.querySelector('[data-v=stars]').hidden=!["skills","patches"].includes(CUR);sbox.querySelector('[data-v=arena]').hidden=CUR!="ai";sbox.classList.remove("open");sortUI()}
  if(!(CUR in P)){el.classList.remove("show");return}
  el.classList.add("show");el.innerHTML=`<span>Show</span>`+[["all","All"],["free","✅ Free"],["paid","💲 Paid"]].map(([v,l])=>`<button data-v="${v}" class="${P[CUR]==v?"sel":""}">${l}</button>`).join("")}
 $("#seg").onclick=e=>{e.stopPropagation();const b=e.target.closest("button");if(!b||P[CUR]==b.dataset.v)return;P[CUR]=b.dataset.v;flip=true;mark();render();seg()};

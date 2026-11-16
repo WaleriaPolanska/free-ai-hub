@@ -11,6 +11,11 @@ A catalog of free and nearly free AI services, open-source patches and AI skills
 - **Patches** - 54 free open-source tools in 8 folders: routers and proxies, CLI agents, IDE extensions, local models, chat UIs, MCP servers, usage and hooks, free API lists.
 - Every GitHub card shows live ★ stars and last update. Each card also says which AIs make it free and which make it paid.
 - **Bonuses & services** - non-AI deals: cloud and VPS credits, proxies, SMS numbers, search APIs for agents.
+- **Starter kits** - step-by-step free setups for real tasks (coding agent, local ChatGPT, voiceover, speech to text, images, research agent, fine-tuning).
+- **Free GPU** - where to run and train models on a GPU for free (Colab, Kaggle, SageMaker Studio Lab, HF Spaces, Lightning AI, Modal).
+- **Learn** - 16 free AI courses split into Beginner, Intermediate and Advanced.
+- **Prompts** - ready prompt templates with a Copy button.
+- **LLM Arena rating** - AI cards show the LMArena text score of the best model they offer, and the AI tab can sort by it.
 - **Votes and rating** - every card has 👍 / 👎 with live counts, stored in Supabase (PostgreSQL). You can sort by "Top rated" (Wilson score, so 1 like does not beat 50 likes and 2 dislikes) or "Most voted". One vote per browser per card. The table is hidden behind RLS and reached only through `SECURITY DEFINER` functions.
 - **Auto-refresh** - a GitHub Actions workflow runs every 3 days, re-checks every link, refreshes GitHub stars and activity through the GraphQL API, picks the current trending model for each open family on Hugging Face, and stamps each card with its check date. Dead links are flagged on the site.
 
