@@ -67,8 +67,8 @@ nav{padding-bottom:58px}
 .arena::after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;width:230px;padding:9px 11px;border-radius:10px;background:#1d212b;border:1px solid #4fb3e888;color:var(--tx);font:500 12px/1.4 "Inter",sans-serif;box-shadow:0 8px 24px #000a;opacity:0;pointer-events:none;transition:opacity .15s}
 .arena:hover::after,.arena:focus::after{opacity:1}
 .seg span,.seg button.sel[data-v=all],.seg button.sel[data-v=paid],.seg button[data-v=all],.seg button[data-v=paid]{text-shadow:none}
-.navrow [data-t=contacts]{background:linear-gradient(180deg,#16405e,#0f2c44);border:2px solid #4fb3e8;box-shadow:0 0 8px #4fb3e877,0 0 18px #4fb3e833;color:#fff}
-.navrow [data-t=contacts].on{background:#4fb3e8;color:#08121c}
+.hr{display:flex;flex-direction:column;align-items:flex-end;gap:8px}.cbtn{cursor:pointer;padding:8px 18px;border-radius:8px;font:700 15px "Space Grotesk",sans-serif;background:linear-gradient(180deg,#16405e,#0f2c44);border:2px solid #4fb3e8;box-shadow:0 0 8px #4fb3e877,0 0 18px #4fb3e833;color:#fff}
+.cbtn.on{background:#4fb3e8;color:#08121c}
 .vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
 .vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
 @media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
@@ -125,7 +125,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 </style>
 </head>
 <body>
-<header><h1><span>Free AI Hub</span></h1><div class="upd" id="upd"></div></header>
+<header><h1><span>Free AI Hub</span></h1><div class="hr"><div class="upd" id="upd"></div><button class="cbtn" data-t="contacts">Contacts</button></div></header>
 <nav id="nav">
 <div class="navrow">
 <button data-t="road" class="on">Roadmap & legend</button>
@@ -137,7 +137,6 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <button data-t="learn">Learn</button>
 <button data-t="prompts">Prompts</button>
 <div class="dd"><button data-t="offers">Bonuses & Services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
-<button data-t="contacts">Contacts</button>
 </div>
 <div class="strip">
 <div class="seg" id="seg"></div>
@@ -298,7 +297,8 @@ const ML=["waleriapolanska","gmail.com"].join("@");$("#mail").href="mailto:"+ML;
 $("#copy").onclick=async()=>{try{await navigator.clipboard.writeText(ML);$("#copy").textContent="Copied ✓"}catch{$("#copy").textContent=ML}};
 $("#mailtxt").textContent=ML;
 document.addEventListener("input",render);render();
-$("#nav").onclick=e=>{const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
+$("header .cbtn").onclick=e=>{document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));e.currentTarget.classList.add("on");$("#contacts").classList.add("on");CUR="contacts";seg();window.scrollTo(0,0)};
+$("#nav").onclick=e=>{$("header .cbtn").classList.remove("on");const b=e.target.closest("button"),t=b&&b.dataset.t;if(!t)return;
  if(t in P){const v=b.dataset.go||"all";if(P[t]!=v){P[t]=v;flip=true}mark();render();b.blur()}
  document.querySelectorAll("nav button,section").forEach(x=>x.classList.remove("on"));$(`.navrow > [data-t="${t}"],.navrow > .dd > [data-t="${t}"]`).classList.add("on");$("#"+t).classList.add("on");CUR=t;seg()};
 })();
