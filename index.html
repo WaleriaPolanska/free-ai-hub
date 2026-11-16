@@ -51,6 +51,7 @@ nav{padding-bottom:58px}
 .starb{cursor:help;z-index:2}.starb::after{content:attr(data-tip);position:absolute;top:calc(100% + 8px);right:0;width:220px;padding:9px 11px;border-radius:10px;background:#1d212b;border:1px solid #ffd16688;color:var(--tx);font:500 12px/1.4 "Inter",sans-serif;box-shadow:0 8px 24px #000a;opacity:0;pointer-events:none;transform:translateY(-4px);transition:opacity .15s,transform .15s;white-space:normal;text-align:left}
 .starb:hover::after,.starb:focus::after{opacity:1;transform:none}
 .usd{display:inline-block;width:1.1em;text-align:center;font:800 15px "Space Grotesk",sans-serif;color:#ffd34d;text-shadow:0 0 4px #ffcc33,0 0 10px #ffb30099,0 0 16px #ffb30066}
+.note{margin:0 0 12px;padding:10px 14px;border-radius:10px;background:#ffffff08;border:1px solid var(--line);font-size:14px;color:#cfd5e2}
 .vote{display:flex;gap:6px;margin-top:2px}.vote button{display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border-radius:99px;border:1px solid #ffffff22;background:#00000033;color:var(--tx);cursor:pointer;font:600 13px "JetBrains Mono",monospace;transition:transform .1s,background .15s}
 .vote button:hover{transform:scale(1.06)}.vote .up.on{background:#2f8f5f;border-color:#5fd39a}.vote .down.on{background:#a8324a;border-color:#ff8a8a}
 @media (max-width:600px){.seg span{display:none}.sort{padding:4px 6px}}
@@ -113,8 +114,8 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <button data-t="road" class="on">Roadmap & legend</button>
 <div class="dd"><button data-t="ai">AI ▾</button><div class="menu"><button data-t="ai" data-go="free">✅ Free</button><button data-t="ai" data-go="paid">💲 Paid</button></div></div>
 <div class="dd"><button data-t="skills">Skills ▾</button><div class="menu"><button data-t="skills" data-go="free">✅ Free</button><button data-t="skills" data-go="paid">💲 Paid</button></div></div>
-<button data-t="patches">Patches</button>
-<button data-t="offers">Bonuses & services</button>
+<div class="dd"><button data-t="patches">Patches ▾</button><div class="menu"><button data-t="patches" data-go="free">✅ Free</button><button data-t="patches" data-go="paid">💲 Paid</button></div></div>
+<div class="dd"><button data-t="offers">Bonuses & services ▾</button><div class="menu"><button data-t="offers" data-go="free">✅ Free</button><button data-t="offers" data-go="paid">💲 Paid</button></div></div>
 <button data-t="contacts">Contacts</button>
 </div>
 <div class="strip">
@@ -127,7 +128,7 @@ ol li,ul li{margin:4px 0}section{display:none}section.on{display:block}
 <section id="ai"><div class="bar"><input placeholder="Search" data-q="ai"><label class="tog" title="Show only services you can sign up for without entering a bank card"><input type="checkbox" id="nocard"><span>💳 No card needed</span></label></div>
 <p class="upd hint">"No card needed" hides services that ask for a bank card at signup, even when they are free.</p><div class="book"><div class="tabs" id="t-ai"></div><div class="page" id="p-ai"><h2 id="h-ai"></h2><div class="grid" id="g-ai"></div></div></div></section>
 <section id="skills"><div class="bar"><input placeholder="Search skills" data-q="skills"></div><div class="book"><div class="tabs" id="t-skills"></div><div class="page" id="p-skills"><h2 id="h-skills"></h2><div class="grid" id="g-skills"></div></div></div></section>
-<section id="patches"><div class="bar"><input placeholder="Search patches" data-q="patches"></div><div class="book"><div class="tabs" id="t-patches"></div><div class="page" id="p-patches"><h2 id="h-patches"></h2><div class="grid" id="g-patches"></div></div></div></section>
+<section id="patches"><p class="note">🔓 Every patch is free and open source. <b class="fw">✅ Free</b> means there is no paid plan at all. <b class="pw">💲 Paid</b> means the core is free, but the project also sells an optional paid plan or cloud. You pay only for the AI model you connect.</p><div class="bar"><input placeholder="Search patches" data-q="patches"></div><div class="book"><div class="tabs" id="t-patches"></div><div class="page" id="p-patches"><h2 id="h-patches"></h2><div class="grid" id="g-patches"></div></div></div></section>
 <section id="contacts">
 <div class="about">
 <h2>💡 Made for everyone</h2>
@@ -199,11 +200,11 @@ const openCard=o=>`<div class="c pc" style="--pc:#ffb87a"><span class="st ok">�
 <div class="meta"><span class="i-dl">⬇ ${k(o.downloads||0)}</span>/month · <span class="i-like">♥ ${k(o.likes||0)}</span> · updated ${esc(o.modified||"")}</div><div class="meta">License: <b class="i-lic">${esc(o.license||"unknown")}</b></div>
 ${cost({free:"Download and run it on your own computer (Ollama, llama.cpp, LM Studio, ComfyUI), fine-tune it and build on it",paid:"Only your hardware or a rented GPU. "+(OPENLIC.includes(o.license)?`${o.license} license allows commercial use and changes`:"Custom license - check its limits before commercial use")})}${link(o,"Hugging Face")}</div>`;
 function render(){
- book("offers",D.offers.filter(o=>m(o,"offers")),o=>OK[o.cat]||"cloud",o=>`<div class="c pc" style="--pc:${OF[OK[o.cat]||"cloud"][1]}"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}${link(o,"Visit site")}</div>`,flip);
+ book("offers",D.offers.filter(o=>(P.offers=="all"||(/^from /i.test(o.v)?"paid":"free")==P.offers)&&m(o,"offers")),o=>OK[o.cat]||"cloud",o=>`<div class="c pc" style="--pc:${OF[OK[o.cat]||"cloud"][1]}"><span class="st ${o.s}">● ${SN[o.s]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.cat)} · ${esc(o.d)}</div>${tags(o.req)}${link(o,"Visit site")}</div>`,flip);
  const nc=$("#nocard").checked,aik=o=>o.model!==undefined||o.author?"local":o.t=="free"?"forever":o.t;
  const ais=[...D.ai.filter(o=>(P.ai=="all"||(P.ai=="paid"?o.t=="paid":o.t!="paid"))&&(!nc||!o.req.includes("Card"))),...(P.ai!="paid"?D.open:[])].filter(o=>m(o,"ai"));
  book("ai",ais,aik,o=>aik(o)=="local"?openCard(o):`<div class="c pc" style="--pc:${FOLD.ai[aik(o)][1]}"><span class="st ${o.s}">● ${SN[o.s]} · ${TN[o.t]}</span><h3>${esc(o.n)}</h3><div class="v">${esc(o.v)}</div><div class="d">${esc(o.d)}</div>${tags(o.cap)}${o.req.length?`<div class="d">Requires: ${esc(o.req.join(", "))}</div>`:`<div class="d">No requirements</div>`}${link(o,"Visit site")}</div>`,flip);
- book("patches",D.patches.filter(o=>m(o,"patches")),o=>o.f,o=>`<div class="c pc" style="--pc:${PF[o.f][1]}"><div class="d">${PF[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,"GitHub")}</div>`,flip);
+ book("patches",D.patches.filter(o=>(P.patches=="all"||(PAIDPLAN.has(o.repo)?"paid":"free")==P.patches)&&m(o,"patches")),o=>o.f,o=>`<div class="c pc" style="--pc:${PF[o.f][1]}"><div class="d">${PF[o.f][0]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,"GitHub")}</div>`,flip);
  book("skills",D.skills.filter(o=>(P.skills=="all"||o.p==P.skills)&&m(o,"skills")),o=>o.g,o=>`<div class="c pc" style="--pc:var(--${o.g})"><div class="d">${G[o.g]}</div><h3>${esc(o.n)}</h3><div class="d">${esc(o.d)}</div>${meta(o)}${cost(o)}${link(o,o.repo?"GitHub":"Open")}</div>`,flip);
  flip=false;
 }
@@ -226,8 +227,9 @@ function book(t,items,key,card,anim){
  if(anim){pg.classList.remove("flip");void pg.offsetWidth;pg.classList.add("flip")}
 }
 ["ai","skills","patches","offers"].forEach(t=>$("#t-"+t).onclick=e=>{const b=e.target.closest("button");if(!b||b.dataset.f==F[t])return;F[t]=b.dataset.f;flip=true;render()});
-const P={ai:"all",skills:"all"};
-const LB={ai:"AI",skills:"Skills"};
+const P={ai:"all",skills:"all",offers:"all",patches:"all"};
+const PAIDPLAN=new Set(["BerriAI/litellm","Portkey-AI/gateway","continuedev/continue","cline/cline","Kilo-Org/kilocode","RooCodeInc/Roo-Code","anomalyco/opencode","ollama/ollama","open-webui/open-webui","Mintplex-Labs/anything-llm","TabbyML/tabby","lobehub/lobehub","czlonkowski/n8n-mcp","upstash/context7","openai/codex","google-gemini/gemini-cli","OpenHands/OpenHands"]);
+const LB={ai:"AI",skills:"Skills",offers:"Bonuses & services",patches:"Patches"};
 function mark(){for(const t in P){$(`nav .dd > [data-t="${t}"]`).textContent=`${LB[t]} ▾`;
  document.querySelectorAll(`.menu [data-t="${t}"]`).forEach(x=>x.classList.toggle("sel",x.dataset.go==P[t]))}}mark();
 let CUR="road";
